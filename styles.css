@@ -991,6 +991,16 @@ body.home .nav-logo {
     right: 25px;
 }
 
+/* Override for volunteer cards to use relative positioning */
+.volunteer-card-expandable .learn-more-btn {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin-top: 20px;
+    justify-content: flex-start;
+}
+
 .learn-more-btn:hover {
     opacity: 1;
     color: #4B6F81;
