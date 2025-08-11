@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteering - Amedeo Rosenfield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="bio.html" class="nav-link">Bio</a></li>
+                <li><a href="engineering.html" class="nav-link">Engineering</a></li>
+                <li><a href="volunteering.html" class="nav-link active">Volunteering</a></li>
+                <li><a href="photography.html" class="nav-link">Photography</a></li>
+                <li><a href="dj.html" class="nav-link">DJ</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Volunteering Landing Section -->
+    <section class="volunteering-landing">
+        <div class="volunteering-landing-container">
+            <h1 class="volunteering-landing-title">Making a Difference</h1>
+            <p class="volunteering-landing-intro">
+                Creating impact through volunteer work, community engagement, and supporting meaningful causes
+            </p>
+            
+            <!-- Scroll indicator -->
+            <div class="volunteering-scroll-indicator" onclick="scrollToContent()">
+                <div class="scroll-arrow">↓</div>
+                <span class="scroll-text">Scroll to see volunteer experiences</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Volunteering Content -->
+    <main class="volunteering-main-content">
+        <section class="volunteer-section">
+            <div class="container">
+
+            <!-- Volunteer Experiences -->
+            <div class="volunteer-experiences">
+                <h3>Volunteer Experiences</h3>
+                
+                <!-- Main Volunteer Experience: Open Door Sports -->
+                <article class="volunteer-card-expandable main-project" data-volunteer="1" onclick="toggleVolunteer(1)">
+                    <!-- Initial Preview -->
+                    <div class="volunteer-preview">
+                        <div class="volunteer-header">
+                            <h4 class="volunteer-title">Youth Sports Instructor</h4>
+                            <span class="volunteer-date">July 2021 – Present</span>
+                        </div>
+                        <div class="volunteer-organization">
+                            <strong>Organization:</strong> Open Door Sports Inc. — Rockville, MD
+                        </div>
+                        
+                        <div class="volunteer-section">
+                            <h5 class="volunteer-subheading">Role & Impact</h5>
+                            <p>
+                                Coach a diverse group of 15 to 20 young athletes from low-income families and those with disabilities, providing a supportive environment where they can develop and improve their technical skills in soccer, basketball, and tennis.
+                            </p>
+                        </div>
+                        
+                        <div class="learn-more-btn">
+                            <span class="btn-text">Click to learn more</span>
+                        </div>
+                    </div>
+
+                    <!-- Expanded Content (Hidden Initially) -->
+                    <div class="volunteer-expanded" id="volunteer-expanded-1">
+                        <div class="volunteer-content-full">
+                            <div class="volunteer-main-content">
+                                <div class="volunteer-details">
+                                    <div class="volunteer-section">
+                                        <h5 class="volunteer-subheading">Key Responsibilities</h5>
+                                        <ul class="volunteer-list">
+                                            <li>Provide personalized coaching and instruction in soccer, basketball, and tennis</li>
+                                            <li>Create supportive learning environments for athletes with diverse needs and backgrounds</li>
+                                            <li>Organize fundraising events to support the organization's programs</li>
+                                            <li>Ensure continued access to sports and recreational opportunities for underserved youth</li>
+                                            <li>Develop event planning and community engagement strategies</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="volunteer-section">
+                                        <h5 class="volunteer-subheading">Personal Growth & Skills Developed</h5>
+                                        <ul class="volunteer-list">
+                                            <li>Enhanced patience, empathy, and communication skills through working with diverse athletes</li>
+                                            <li>Strengthened leadership abilities both on and off the field</li>
+                                            <li>Deepened understanding of challenges faced by underserved communities</li>
+                                            <li>Improved skills in event planning, community engagement, and teamwork</li>
+                                            <li>Reinforced the importance of inclusion in sports and community programs</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="volunteer-section">
+                                        <h5 class="volunteer-subheading">Impact & Reflection</h5>
+                                        <p>
+                                            This experience has deepened my understanding of the challenges faced by underserved communities and reinforced the importance of inclusion in sports. Working with players who sometimes face frustration or obstacles has significantly improved my patience, empathy, and communication skills. Volunteering at Open Door Sports has been an inspiring journey, allowing me to give back while growing personally and professionally.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Secondary Volunteer Experience: Charity Bike Ride -->
+                <article class="volunteer-card-expandable" data-volunteer="2" onclick="toggleVolunteer(2)">
+                    <!-- Initial Preview -->
+                    <div class="volunteer-preview">
+                        <div class="volunteer-header">
+                            <h4 class="volunteer-title">Charity Bike Ride Organizer</h4>
+                            <span class="volunteer-date">2024</span>
+                        </div>
+                        <div class="volunteer-organization">
+                            <strong>Organization:</strong> Open Door Sports
+                        </div>
+                        
+                        <div class="volunteer-section">
+                            <h5 class="volunteer-subheading">What?</h5>
+                            <p>
+                                Raised funds for children with special needs through social media outreach, fundraiser events, and promoting a charity bike ride from Washington D.C. to Montreal.
+                            </p>
+                        </div>
+                        
+                        <div class="learn-more-btn">
+                            <span class="btn-text">Click to learn more</span>
+                        </div>
+                    </div>
+
+                    <!-- Expanded Content (Hidden Initially) -->
+                    <div class="volunteer-expanded" id="volunteer-expanded-2">
+                        <div class="volunteer-content-full">
+                            <div class="volunteer-main-content">
+                                <div class="volunteer-details">
+                                    <div class="volunteer-section">
+                                        <h5 class="volunteer-subheading">How?</h5>
+                                        <ul class="volunteer-list">
+                                            <li>Supported a participant's father biking from D.C. to Montreal by organizing daily ice baths, massages, moral support, food and water, and driving behind for safety</li>
+                                            <li>Posted daily on social media to raise awareness</li>
+                                            <li>Helped organize fundraising dinners to raise money</li>
+                                            <li>Continued volunteering weekly for Open Door Sports while in school</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="volunteer-section">
+                                        <h5 class="volunteer-subheading">Results?</h5>
+                                        <ul class="volunteer-list">
+                                            <li>Supported the rider for 740 miles over multiple days</li>
+                                            <li>Raised $7,000 over the intended goal, providing opportunities for hundreds of kids with special needs and low income families</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="volunteer-links">
+                                        <a href="#" class="volunteer-link" target="_blank">
+                                            <span class="link-icon">🔗</span>
+                                            <span class="link-text">Link to Article</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+                <!-- Call to Action -->
+                <div class="cta-section">
+                    <h3>Want to Connect?</h3>
+                    <a href="contact.html" class="cta-btn">Contact Me</a>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        function scrollToContent() {
+            document.querySelector('.volunteering-main-content').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function openVolunteerModal(volunteerId) {
+            const volunteerExpanded = document.getElementById(`volunteer-expanded-${volunteerId}`);
+            if (!volunteerExpanded) return;
+
+            // Create modal
+            const modal = document.createElement('div');
+            modal.className = 'volunteer-modal';
+
+            // Get volunteer header info
+            const volunteerCard = document.querySelector(`[data-volunteer="${volunteerId}"]`);
+            const volunteerTitle = volunteerCard.querySelector('.volunteer-title').textContent;
+            const volunteerDate = volunteerCard.querySelector('.volunteer-date').textContent;
+            const volunteerOrg = volunteerCard.querySelector('.volunteer-organization').innerHTML;
+
+            modal.innerHTML = `
+                <div class="volunteer-modal-content">
+                    <div class="volunteer-modal-header">
+                        <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; color: #222222; margin: 0; margin-bottom: 8px;">${volunteerTitle}</h3>
+                        <p style="font-family: 'Inter', sans-serif; color: #6A7B8C; margin: 0; font-size: 0.9rem;">${volunteerDate}</p>
+                        <p style="font-family: 'Inter', sans-serif; color: #4B6F81; margin: 8px 0 0 0; font-size: 1rem;">${volunteerOrg}</p>
+                        <button class="volunteer-modal-close" onclick="closeVolunteerModal()">&times;</button>
+                    </div>
+                    <div class="volunteer-modal-body">
+                        ${volunteerExpanded.innerHTML}
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVolunteerModal() {
+            const modal = document.querySelector('.volunteer-modal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function toggleVolunteer(volunteerId) {
+            openVolunteerModal(volunteerId);
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeVolunteerModal();
+            }
+        });
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('volunteer-modal')) {
+                closeVolunteerModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -15,61 +15,72 @@
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="bio.html" class="nav-link active">Bio</a></li>
                 <li><a href="engineering.html" class="nav-link">Engineering</a></li>
+                <li><a href="volunteering.html" class="nav-link">Volunteering</a></li>
                 <li><a href="photography.html" class="nav-link">Photography</a></li>
+                <li><a href="dj.html" class="nav-link">DJ</a></li>
                 <li><a href="contact.html" class="nav-link">Contact Me</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Bio Section -->
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <div class="bio-content">
-                    <div class="bio-text">
-                        <p>
-                            A journey of passion, innovation, and continuous growth through aerospace engineering, entrepreneurship, and creative pursuits.
-                        </p>
-                        <p>
-                            I was born in 2004 in San Diego, California, and grew up in Silver Spring, Maryland. My journey began at Blair High School, where I earned the MVP award for lacrosse in my senior year—a testament to my dedication and competitive spirit that continues to drive me today.
-                        </p>
-                        <p>
-                            Growing up, I spent many summers traveling solo to Italy to visit family, experiences that helped shape my independence and broaden my perspective on the world. These formative years taught me the value of adaptability and cultural awareness—skills that serve me well in today's interconnected world.
-                        </p>
-                        <p>
-                            During those early years, I worked various jobs and started several small businesses, including a digitization service, a reselling business, a yard work venture, and investing. These experiences fueled my entrepreneurial spirit and taught me valuable lessons about hard work, resilience, and the importance of taking calculated risks.
-                        </p>
-                        <p>
-                            I'm currently pursuing a B.S. in Aerospace Engineering with a minor in Robotics and Autonomous Systems at the University of Maryland. College has been an exciting journey of growth, allowing me to engage in hands-on projects focused on design, prototyping, and systems engineering. I've developed strong skills in spacecraft systems, CAD modeling, additive manufacturing, and robotics designed for extreme environments like the Moon and Mars.
-                        </p>
-                        <p>
-                            Along the way, I discovered a growing passion for AI engineering. I'm fascinated by how artificial intelligence can solve complex problems and accelerate innovation, especially when combined with aerospace technology. This passion drives me to create intelligent systems that improve mission success and expand humanity's reach into space.
-                        </p>
-                        <p>
-                            This summer, I'm interning at Glenair Italia, where I design 3D models and detailed 2D technical drawings for interconnectors used in aerospace, defense, railway, and industrial sectors. This experience has deepened my appreciation for precision engineering and the importance of reliability in mission-critical systems.
-                        </p>
-                        <p>
-                            Outside of academics and engineering, I enjoy music production, photography, and going to the gym. I'm committed to lifelong learning, embracing challenges, and building technologies that contribute meaningfully to our future beyond Earth.
-                        </p>
-                    </div>
-                    <!-- Optional profile photo placeholder -->
-                    <div class="bio-photo">
-                        <div class="photo-placeholder">
-                            <span>Your Photo</span>
-                        </div>
-                    </div>
+    <!-- Bio Landing Section -->
+    <section class="bio-landing">
+        <div class="bio-landing-container">
+            <h1 class="bio-landing-title">A Journey of Growth and Innovation</h1>
+            <div class="bio-landing-photo">
+                <div class="photo-placeholder">
+                    <span>Your Photo</span>
+                </div>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <div class="bio-scroll-indicator" onclick="scrollToBioContent()">
+                <div class="scroll-arrow">↓</div>
+                <span class="scroll-text">Scroll to read my story</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Bio Content -->
+    <main class="bio-main-content">
+        <section class="bio-story-section">
+            <div class="bio-story-container">
+                <div class="bio-story-text">
+                    <p>
+                        Born in 2004 in sunny San Diego, California, and raised in Silver Spring, Maryland, my story began with a spirit of exploration and determination. At Blair High School, where I was part of the Communication Arts Magnet Program and earned MVP honors on the lacrosse team, I learned early on the power of dedication, teamwork, and pushing beyond limits, qualities that continue to shape my path today.
+                    </p>
+                    <p>
+                        Summers spent traveling solo to Italy to visit family in Bologna helped me cultivate independence and cultural awareness, teaching me to adapt and thrive in new environments. These experiences gave me a global perspective and the confidence to navigate change, skills vital in today's fast-paced world.
+                    </p>
+                    <p>
+                        Entrepreneurship became a natural outlet for my drive to create and grow. From digitization services to reselling ventures and yard work businesses, I learned invaluable lessons about resilience, calculated risk-taking, and hard work.
+                    </p>
+                    <p>
+                        Currently, I am pursuing a B.S. in Aerospace Engineering with a minor in Robotics and Autonomous Systems at the University of Maryland. College has been a launchpad for hands-on innovation, designing spacecraft systems, mastering CAD modeling, additive manufacturing, and building robotics suited for lunar and Martian environments.
+                    </p>
+                    <p>
+                        My passion for innovation deepened during my internship in Bologna at Glenair Italia, where I designed precise 3D models and detailed 2D technical drawings for aerospace and defense interconnectors. The full internship was conducted in Italian, enriching both my language skills and professional adaptability in an international engineering setting.
+                    </p>
+                    <p>
+                        Today, I am interning at Space Copy working directly under CEO Madison Feehan to design lunar printing machines using additive manufacturing technologies. This role embodies my commitment to pushing aerospace boundaries and embracing cutting-edge innovation.
+                    </p>
+                    <p>
+                        Parallel to my engineering pursuits, I am deeply engaged in AI engineering, firmly believing that artificial intelligence will revolutionize every job as we know it. Adaptability is key in this rapidly evolving landscape, and I am proud to be on the front lines of this revolution. I am currently developing an emotional intelligence powered productivity coach and coding personalized websites, integrating new AI tools into every project I undertake.
+                    </p>
+                    <p>
+                        Beyond academics and engineering, I find balance through music production, photography, and regular gym sessions, activities that fuel my creativity and resilience.
+                    </p>
+                    <p>
+                        My journey is one of continuous growth and adaptability, a mission to build technologies that not only advance space exploration but also transform how humans interact with intelligent systems, shaping a future where innovation and empathy coexist.
+                    </p>
                 </div>
 
                 <!-- Call to Action -->
                 <div class="cta-section">
-                    <h3>Ready to Explore More?</h3>
-                    <p>Discover my engineering projects and photography work, or get in touch to discuss opportunities.</p>
+                    <h3>Want to Connect?</h3>
+                    <p>Let's discuss opportunities and explore how we can work together.</p>
                     <div class="cta-buttons">
-                        <a href="engineering.html" class="cta-button primary">View Engineering Projects</a>
-                        <a href="photography.html" class="cta-button secondary">See Photography</a>
-                        <a href="contact.html" class="cta-button secondary">Contact Me</a>
+                        <a href="contact.html" class="hero-btn secondary">Contact Me</a>
                     </div>
                 </div>
             </div>
@@ -82,5 +93,12 @@
             <p>&copy; 2024 Amedeo Rosenfield. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+        function scrollToBioContent() {
+            document.querySelector('.bio-main-content').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    </script>
 </body>
 </html>

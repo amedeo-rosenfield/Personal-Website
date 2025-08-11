@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ - Amedeo Rosenfield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="bio.html" class="nav-link">Bio</a></li>
+                <li><a href="engineering.html" class="nav-link">Engineering</a></li>
+                <li><a href="volunteering.html" class="nav-link">Volunteering</a></li>
+                <li><a href="photography.html" class="nav-link">Photography</a></li>
+                <li><a href="dj.html" class="nav-link active">DJ</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- DJ Landing Section -->
+    <section class="dj-landing">
+        <div class="dj-landing-container">
+            <h1 class="dj-landing-title">DJ DEO</h1>
+            <p class="dj-landing-intro">
+                Bring the perfect energy and atmosphere to every event with professional DJ services
+            </p>
+            
+            <!-- Scroll indicator -->
+            <div class="dj-scroll-indicator" onclick="scrollToContent()">
+                <div class="scroll-arrow">↓</div>
+                <span class="scroll-text">Explore services</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main DJ Content -->
+    <main class="dj-main-content">
+        <section class="dj-section">
+            <div class="container">
+                
+                <!-- DJ Services -->
+                <div class="dj-services">
+                    <h2>DJ Services</h2>
+                    <div class="services-grid">
+                        <!-- Private Events Service -->
+                        <div class="service-card" onclick="openServiceModal('private')">
+                            <div class="service-image">
+                                <img src="images/projects/11.23-22_Original.jpg" alt="Private Events DJ" class="service-photo">
+                            </div>
+                            <h3>Private Events</h3>
+                            <p>Professional DJ services for birthday parties, celebrations, and private gatherings.</p>
+                            <div class="learn-more-btn">
+                                <span class="btn-text">Click to Book</span>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card" onclick="openServiceModal('corporate')">
+                            <div class="service-image">
+                                <img src="images/projects/11.23-26_Original.jpg" alt="Corporate Events DJ" class="service-photo">
+                            </div>
+                            <h3>Corporate Events</h3>
+                            <p>Sophisticated music curation for corporate functions, networking events, and company celebrations.</p>
+                            <div class="learn-more-btn">
+                                <span class="btn-text">Click to Book</span>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card" onclick="openServiceModal('special')">
+                            <div class="service-image">
+                                <img src="images/projects/11.23-37_Original.jpg" alt="Special Occasions DJ" class="service-photo">
+                            </div>
+                            <h3>Special Occasions</h3>
+                            <p>Creating the perfect atmosphere for weddings, anniversaries, and milestone celebrations.</p>
+                            <div class="learn-more-btn">
+                                <span class="btn-text">Click to Book</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Section -->
+                <div class="dj-cta">
+                    <h3>Need DJ Services?</h3>
+                    <a href="contact.html" class="dj-contact-btn">Get in Touch</a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Amedeo Rosenfield. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="" class="lightbox-image">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- Service Booking Modal -->
+    <div id="service-modal" class="service-modal">
+        <div class="service-modal-content" onclick="event.stopPropagation()">
+            <div class="service-modal-header">
+                <h3 id="service-modal-title">DJ Service</h3>
+                <span class="service-modal-close" onclick="closeServiceModal()">&times;</span>
+            </div>
+            <div class="service-modal-body">
+                <div class="service-modal-image">
+                    <img id="service-modal-img" src="" alt="" class="service-modal-photo">
+                </div>
+                <div class="service-modal-info">
+                    <p id="service-modal-description">Service description</p>
+                    <div class="service-modal-features">
+                        <h4>What's Included:</h4>
+                        <ul id="service-modal-features-list">
+                            <!-- Features will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                    <div class="service-modal-contact">
+                        <h4>Ready to Book?</h4>
+                        <p>Contact me to check availability and discuss your event details.</p>
+                        <a href="contact.html" class="service-contact-btn">Contact About Availability</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DJ JavaScript -->
+    <script>
+        // Scroll to content function
+        function scrollToContent() {
+            document.querySelector('.dj-main-content').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Lightbox functionality
+        function openLightbox(imageSrc, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            lightboxImg.src = imageSrc;
+            lightboxImg.alt = caption;
+            lightboxCaption.textContent = caption;
+            
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Add fade-in animation
+            setTimeout(() => {
+                lightbox.style.opacity = '1';
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.opacity = '0';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+            }, 300);
+        }
+
+        // Close lightbox with escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeServiceModal();
+            }
+        });
+
+        // Service Modal Functionality
+        const serviceData = {
+            private: {
+                title: "Private Events",
+                image: "images/projects/11.23-22_Original.jpg",
+                description: "Professional DJ services for birthday parties, celebrations, and private gatherings. I bring the energy and atmosphere to make your special moments unforgettable.",
+                features: [
+                    "Professional DJ equipment and sound system",
+                    "Extensive music library across all genres",
+                    "Custom playlist creation based on your preferences",
+                    "MC services and event coordination",
+                    "Lighting setup for enhanced atmosphere",
+                    "Backup equipment for seamless performance"
+                ]
+            },
+            corporate: {
+                title: "Corporate Events",
+                image: "images/projects/11.23-26_Original.jpg",
+                description: "Sophisticated music curation for corporate functions, networking events, and company celebrations. Professional service that enhances your business events.",
+                features: [
+                    "Professional presentation and appearance",
+                    "Business-appropriate music selection",
+                    "Wireless microphone system for speeches",
+                    "Seamless background music during networking",
+                    "Customizable volume levels for different event phases",
+                    "Professional event coordination experience"
+                ]
+            },
+            special: {
+                title: "Special Occasions",
+                image: "images/projects/11.23-37_Original.jpg",
+                description: "Creating the perfect atmosphere for weddings, anniversaries, and milestone celebrations. Every moment deserves the perfect soundtrack.",
+                features: [
+                    "Comprehensive wedding and ceremony music",
+                    "Reception and dance floor entertainment",
+                    "Special song requests and dedications",
+                    "Coordination with other wedding vendors",
+                    "Professional sound for ceremonies",
+                    "Dance floor lighting and effects"
+                ]
+            }
+        };
+
+        function openServiceModal(serviceType) {
+            const modal = document.getElementById('service-modal');
+            const service = serviceData[serviceType];
+            
+            // Populate modal content
+            document.getElementById('service-modal-title').textContent = service.title;
+            document.getElementById('service-modal-img').src = service.image;
+            document.getElementById('service-modal-img').alt = service.title;
+            document.getElementById('service-modal-description').textContent = service.description;
+            
+            // Populate features list
+            const featuresList = document.getElementById('service-modal-features-list');
+            featuresList.innerHTML = '';
+            service.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                modal.style.opacity = '1';
+            }, 10);
+        }
+
+        function closeServiceModal() {
+            const modal = document.getElementById('service-modal');
+            modal.style.opacity = '0';
+            document.body.style.overflow = 'auto';
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+    </script>
+</body>
+</html>

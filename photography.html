@@ -15,187 +15,162 @@
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="bio.html" class="nav-link">Bio</a></li>
                 <li><a href="engineering.html" class="nav-link">Engineering</a></li>
+                <li><a href="volunteering.html" class="nav-link">Volunteering</a></li>
                 <li><a href="photography.html" class="nav-link active">Photography</a></li>
+                <li><a href="dj.html" class="nav-link">DJ</a></li>
                 <li><a href="contact.html" class="nav-link">Contact Me</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Photography Section -->
-        <section class="section">
+    <!-- Photography Landing Section -->
+    <section class="photography-landing">
+        <div class="photography-landing-container">
+            <h1 class="photography-landing-title">Photography</h1>
+            <p class="photography-landing-intro">
+                Freezing moments in time, so they live forever
+            </p>
+            
+            <!-- Scroll indicator -->
+            <div class="photography-scroll-indicator" onclick="scrollToGallery()">
+                <div class="scroll-arrow">↓</div>
+                <span class="scroll-text">View gallery</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Photography Content -->
+    <main class="photography-main-content">
+        <section class="gallery-section">
             <div class="container">
-                <h2 class="section-title">Photography</h2>
-                <p class="section-intro">
-                    Through my lens, I capture moments of beauty, adventure, and human connection. 
-                    My photography journey spans from solo travels through Italy to exploring the world around me, 
-                    always seeking that perfect balance of light, composition, and emotion.
-                </p>
 
-                <!-- Photography Categories -->
-                <div class="photo-categories">
-                    <div class="category-filter">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="travel">Travel</button>
-                        <button class="filter-btn" data-filter="landscape">Landscape</button>
-                        <button class="filter-btn" data-filter="urban">Urban</button>
-                        <button class="filter-btn" data-filter="portrait">Portrait</button>
+                <!-- Photography Sections -->
+                <div class="photography-sections">
+                    <div class="section-filter">
+                        <button class="section-btn active" data-section="professional">Professional</button>
+                        <button class="section-btn" data-section="personal">Personal</button>
                     </div>
                 </div>
 
-                <!-- Photo Gallery -->
-                <div class="photo-gallery">
-                    <!-- Travel Photos -->
-                    <div class="photo-item" data-category="travel">
-                        <div class="photo-placeholder">
-                            <span>Italian Countryside</span>
-                        </div>
-                        <div class="photo-info">
-                            <h4 class="photo-title">Summer in Tuscany</h4>
-                            <p class="photo-caption">
-                                Rolling hills and ancient vineyards during my solo travels to Italy. 
-                                This shot captures the golden hour light that makes Tuscany so magical.
-                            </p>
-                            <span class="photo-location">Tuscany, Italy</span>
-                        </div>
+                <!-- Personal Photography Section -->
+                <div class="photography-section personal-section" data-section="personal" style="display: none;">
+                    <div class="section-header">
+                        <h2>Personal Photography</h2>
                     </div>
-
-                    <!-- Landscape Photos -->
-                    <div class="photo-item" data-category="landscape">
-                        <div class="photo-placeholder">
-                            <span>Mountain Vista</span>
+                    
+                    <div class="personal-photo-grid">
+                        <!-- First Row -->
+                        <div class="personal-photo-item" onclick="openLightbox('images/projects/IMG_9628.jpg', 'Personal Photography')">
+                            <img src="images/projects/IMG_9628.jpg" alt="Personal Photography" class="personal-photo">
                         </div>
-                        <div class="photo-info">
-                            <h4 class="photo-title">Mountain Serenity</h4>
-                            <p class="photo-caption">
-                                Early morning landscape capturing the interplay of light and shadow 
-                                across mountain peaks. Shot during a hiking expedition.
-                            </p>
-                            <span class="photo-location">Rocky Mountains</span>
+                        <div class="personal-photo-item" onclick="openLightbox('images/projects/IMG_9351.jpg', 'Personal Photography')">
+                            <img src="images/projects/IMG_9351.jpg" alt="Personal Photography" class="personal-photo">
                         </div>
-                    </div>
-
-                    <!-- Urban Photos -->
-                    <div class="photo-item" data-category="urban">
-                        <div class="photo-placeholder">
-                            <span>City Architecture</span>
+                        <div class="personal-photo-item" onclick="openLightbox('images/projects/IMG_9047.jpg', 'Personal Photography')">
+                            <img src="images/projects/IMG_9047.jpg" alt="Personal Photography" class="personal-photo">
                         </div>
-                        <div class="photo-info">
-                            <h4 class="photo-title">Urban Geometry</h4>
-                            <p class="photo-caption">
-                                Modern architecture meets classic design in this urban composition. 
-                                Exploring the geometric patterns that define our built environment.
-                            </p>
-                            <span class="photo-location">Washington, DC</span>
+                        <!-- Second Row -->
+                        <div class="personal-photo-item" onclick="openLightbox('images/projects/IMG_9301.jpg', 'Personal Photography')">
+                            <img src="images/projects/IMG_9301.jpg" alt="Personal Photography" class="personal-photo">
                         </div>
-                    </div>
-
-                    <!-- Travel Photos -->
-                    <div class="photo-item" data-category="travel">
-                        <div class="photo-placeholder">
-                            <span>Italian Coast</span>
+                        <div class="personal-photo-item" onclick="openLightbox('images/projects/IMG_8888.jpg', 'Personal Photography')">
+                            <img src="images/projects/IMG_8888.jpg" alt="Personal Photography" class="personal-photo">
                         </div>
-                        <div class="photo-info">
-                            <h4 class="photo-title">Mediterranean Dreams</h4>
-                            <p class="photo-caption">
-                                The dramatic coastline of southern Italy, where ancient cliffs 
-                                meet crystal-clear waters. A testament to natural beauty.
-                            </p>
-                            <span class="photo-location">Amalfi Coast, Italy</span>
+                        <div class="personal-photo-item" onclick="openLightbox('images/projects/IMG_0200.jpg', 'Personal Photography')">
+                            <img src="images/projects/IMG_0200.jpg" alt="Personal Photography" class="personal-photo">
                         </div>
-                    </div>
-
-                    <!-- Portrait Photos -->
-                    <div class="photo-item" data-category="portrait">
-                        <div class="photo-placeholder">
-                            <span>Cultural Portrait</span>
+                        <!-- Third Row -->
+                        <div class="personal-photo-item" onclick="openLightbox('images/projects/IMG_2442.jpg', 'Personal Photography')">
+                            <img src="images/projects/IMG_2442.jpg" alt="Personal Photography" class="personal-photo">
                         </div>
-                        <div class="photo-info">
-                            <h4 class="photo-title">Stories in Faces</h4>
-                            <p class="photo-caption">
-                                Capturing the wisdom and character that comes from a life well-lived. 
-                                Each portrait tells a unique story of human experience.
-                            </p>
-                            <span class="photo-location">Local Community</span>
+                        <div class="personal-photo-item" onclick="openLightbox('images/projects/IMG_2581.jpg', 'Personal Photography')">
+                            <img src="images/projects/IMG_2581.jpg" alt="Personal Photography" class="personal-photo">
                         </div>
-                    </div>
-
-                    <!-- Landscape Photos -->
-                    <div class="photo-item" data-category="landscape">
-                        <div class="photo-placeholder">
-                            <span>Sunset Reflection</span>
+                        <div class="personal-photo-item" onclick="openLightbox('images/projects/IMG_3530.jpg', 'Personal Photography')">
+                            <img src="images/projects/IMG_3530.jpg" alt="Personal Photography" class="personal-photo">
                         </div>
-                        <div class="photo-info">
-                            <h4 class="photo-title">Golden Reflections</h4>
-                            <p class="photo-caption">
-                                Perfect symmetry as the setting sun creates mirror-like reflections 
-                                on still water. Nature's own masterpiece.
-                            </p>
-                            <span class="photo-location">Chesapeake Bay</span>
+                        <!-- Fourth Row -->
+                        <div class="personal-photo-item" onclick="openLightbox('images/projects/IMG_8115.jpg', 'Personal Photography')">
+                            <img src="images/projects/IMG_8115.jpg" alt="Personal Photography" class="personal-photo">
                         </div>
-                    </div>
-
-                    <!-- Urban Photos -->
-                    <div class="photo-item" data-category="urban">
-                        <div class="photo-placeholder">
-                            <span>Street Life</span>
+                        <div class="personal-photo-item" onclick="openLightbox('images/projects/IMG_8282.jpg', 'Personal Photography')">
+                            <img src="images/projects/IMG_8282.jpg" alt="Personal Photography" class="personal-photo">
                         </div>
-                        <div class="photo-info">
-                            <h4 class="photo-title">Urban Energy</h4>
-                            <p class="photo-caption">
-                                The pulse and rhythm of city life captured in a single frame. 
-                                Movement, energy, and human connection in urban spaces.
-                            </p>
-                            <span class="photo-location">Silver Spring, MD</span>
-                        </div>
-                    </div>
-
-                    <!-- Travel Photos -->
-                    <div class="photo-item" data-category="travel">
-                        <div class="photo-placeholder">
-                            <span>Italian Architecture</span>
-                        </div>
-                        <div class="photo-info">
-                            <h4 class="photo-title">Timeless Architecture</h4>
-                            <p class="photo-caption">
-                                Ancient Roman architecture that has stood the test of time. 
-                                These summers in Italy taught me to appreciate both history and craftsmanship.
-                            </p>
-                            <span class="photo-location">Rome, Italy</span>
-                        </div>
-                    </div>
-
-                    <!-- Landscape Photos -->
-                    <div class="photo-item" data-category="landscape">
-                        <div class="photo-placeholder">
-                            <span>Natural Patterns</span>
-                        </div>
-                        <div class="photo-info">
-                            <h4 class="photo-title">Nature's Design</h4>
-                            <p class="photo-caption">
-                                The intricate patterns found in nature often inspire my engineering work. 
-                                This shot explores the intersection of natural beauty and geometric precision.
-                            </p>
-                            <span class="photo-location">Natural Reserve</span>
+                        <div class="personal-photo-item" onclick="openLightbox('images/projects/IMG_8536 (1).jpg', 'Personal Photography')">
+                            <img src="images/projects/IMG_8536 (1).jpg" alt="Personal Photography" class="personal-photo">
                         </div>
                     </div>
                 </div>
 
-                <!-- Photography Philosophy -->
-                <div class="photography-philosophy">
-                    <h3>My Photography Philosophy</h3>
-                    <p>
-                        Photography, like engineering, is about seeing the world from different perspectives and 
-                        finding beauty in both the grand and the minute. Whether I'm designing spacecraft systems 
-                        or composing a photograph, I'm drawn to the interplay of technical precision and creative vision.
-                    </p>
-                    <p>
-                        My travels to Italy and experiences growing up between different cultures have taught me 
-                        to appreciate diverse perspectives—something that deeply influences both my photography and 
-                        my approach to engineering challenges.
-                    </p>
+                <!-- Professional Photography Section -->
+                <div class="photography-section professional-section" data-section="professional">
+                    <div class="section-header">
+                        <h2>Professional Photography</h2>
+                    </div>
+                    
+                    <div class="photo-gallery">
+                        <!-- Basketball Camp Project -->
+                        <div class="photo-project-item" onclick="openBasketballGallery()">
+                            <div class="photo-project-main">
+                                <img src="images/projects/NXT_GEN-03183 (1).jpg" alt="Next Gen Agility Basketball Camp" class="project-hero-image">
+                            </div>
+                            <div class="photo-project-info">
+                                <h4 class="photo-project-title">Next Gen Agility Basketball Camp</h4>
+                                <div class="learn-more-btn">
+                                    <span class="btn-text">Click to view sample photos</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- GW Hospital Golf Tournament Project -->
+                    <div class="photo-project-item" onclick="openGolfGallery()">
+                        <div class="photo-project-main">
+                            <img src="images/projects/GW_Golf-07545 (1).jpg" alt="GW Hospital Charity Golf Tournament" class="project-hero-image">
+                        </div>
+                        <div class="photo-project-info">
+                            <h4 class="photo-project-title">GW Hospital Charity Golf Tournament</h4>
+                            <div class="learn-more-btn">
+                                <span class="btn-text">Click to view sample photos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 50th Birthday Party Project -->
+                    <div class="photo-project-item" onclick="openBirthdayGallery()">
+                        <div class="photo-project-main">
+                            <img src="images/projects/Elena_50th-8950.jpg" alt="50th Birthday Party" class="project-hero-image">
+                        </div>
+                        <div class="photo-project-info">
+                            <h4 class="photo-project-title">50th Birthday Party</h4>
+                            <div class="learn-more-btn">
+                                <span class="btn-text">Click to view sample photos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Beach Wedding Project -->
+                    <div class="photo-project-item" onclick="openBeachWeddingGallery()">
+                        <div class="photo-project-main">
+                            <img src="images/projects/IMG_6063.jpg" alt="Beach Wedding" class="project-hero-image">
+                        </div>
+                        <div class="photo-project-info">
+                            <h4 class="photo-project-title">Beach Wedding</h4>
+                            <div class="learn-more-btn">
+                                <span class="btn-text">Click to view sample photos</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+                    
+                    <!-- Professional Photography CTA -->
+                    <div class="photography-cta">
+                        <h3>Looking for a Photographer?</h3>
+                        <a href="contact.html" class="photography-contact-btn">Contact Me</a>
+                    </div>
+                </div>
+
+
             </div>
         </section>
     </main>
@@ -207,33 +182,477 @@
         </div>
     </footer>
 
-    <!-- Photography Filter JavaScript -->
-    <script>
-        // Photography category filter functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const photoItems = document.querySelectorAll('.photo-item');
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="" class="lightbox-image">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
 
-            filterButtons.forEach(button => {
+    <!-- Basketball Gallery Modal -->
+    <div id="basketball-gallery-modal" class="gallery-modal">
+        <div class="gallery-slideshow-container">
+            <span class="gallery-modal-close" onclick="closeBasketballGallery()">&times;</span>
+            
+            <!-- Main image display -->
+            <div class="gallery-main-image">
+                <img id="gallery-current-image" src="" alt="" class="gallery-large-image">
+            </div>
+            
+            <!-- Navigation arrows below image -->
+            <div class="gallery-nav-bottom">
+                <button class="gallery-nav-btn gallery-prev" onclick="previousImage()">
+                    <span>&#8249;</span>
+                </button>
+                
+                <!-- Image counter -->
+                <div class="gallery-counter">
+                    <span id="gallery-current-number">1</span> / <span id="gallery-total-number">9</span>
+                </div>
+                
+                <button class="gallery-nav-btn gallery-next" onclick="nextImage()">
+                    <span>&#8250;</span>
+                </button>
+            </div>
+            
+
+        </div>
+    </div>
+
+    <!-- Golf Tournament Gallery Modal -->
+    <div id="golf-gallery-modal" class="gallery-modal">
+        <div class="gallery-slideshow-container">
+            <span class="gallery-modal-close" onclick="closeGolfGallery()">&times;</span>
+            
+            <!-- Main image display -->
+            <div class="gallery-main-image">
+                <img id="golf-current-image" src="" alt="" class="gallery-large-image">
+            </div>
+            
+            <!-- Navigation arrows below image -->
+            <div class="gallery-nav-bottom">
+                <button class="gallery-nav-btn gallery-prev" onclick="previousGolfImage()">
+                    <span>&#8249;</span>
+                </button>
+                
+                <!-- Image counter -->
+                <div class="gallery-counter">
+                    <span id="golf-current-number">1</span> / <span id="golf-total-number">10</span>
+                </div>
+                
+                <button class="gallery-nav-btn gallery-next" onclick="nextGolfImage()">
+                    <span>&#8250;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Birthday Party Gallery Modal -->
+    <div id="birthday-gallery-modal" class="gallery-modal">
+        <div class="gallery-slideshow-container">
+            <span class="gallery-modal-close" onclick="closeBirthdayGallery()">&times;</span>
+            
+            <!-- Main image display -->
+            <div class="gallery-main-image">
+                <img id="birthday-current-image" src="" alt="" class="gallery-large-image">
+            </div>
+            
+            <!-- Navigation arrows below image -->
+            <div class="gallery-nav-bottom">
+                <button class="gallery-nav-btn gallery-prev" onclick="previousBirthdayImage()">
+                    <span>&#8249;</span>
+                </button>
+                
+                <!-- Image counter -->
+                <div class="gallery-counter">
+                    <span id="birthday-current-number">1</span> / <span id="birthday-total-number">10</span>
+                </div>
+                
+                <button class="gallery-nav-btn gallery-next" onclick="nextBirthdayImage()">
+                    <span>&#8250;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Beach Wedding Gallery Modal -->
+    <div id="beach-wedding-gallery-modal" class="gallery-modal" onclick="closeBeachWeddingGallery()">
+        <div class="gallery-slideshow-container" onclick="event.stopPropagation()">
+            <span class="gallery-modal-close" onclick="closeBeachWeddingGallery()">&times;</span>
+            
+            <!-- Main image display -->
+            <div class="gallery-main-image">
+                <img id="beach-wedding-current-image" src="" alt="" class="gallery-large-image">
+            </div>
+            
+            <!-- Navigation arrows below image -->
+            <div class="gallery-nav-bottom">
+                <button class="gallery-nav-btn gallery-prev" onclick="previousBeachWeddingImage()">
+                    <span>&#8249;</span>
+                </button>
+                
+                <!-- Image counter -->
+                <div class="gallery-counter">
+                    <span id="beach-wedding-current-number">1</span> / <span id="beach-wedding-total-number">6</span>
+                </div>
+                
+                <button class="gallery-nav-btn gallery-next" onclick="nextBeachWeddingImage()">
+                    <span>&#8250;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Photography Section JavaScript -->
+    <script>
+        // Photography section switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const sectionButtons = document.querySelectorAll('.section-btn');
+            const photographySections = document.querySelectorAll('.photography-section');
+
+            sectionButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     // Remove active class from all buttons
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    sectionButtons.forEach(btn => btn.classList.remove('active'));
                     // Add active class to clicked button
                     this.classList.add('active');
 
-                    const filterValue = this.getAttribute('data-filter');
+                    const sectionValue = this.getAttribute('data-section');
+                    console.log('Switching to section:', sectionValue);
 
-                    photoItems.forEach(item => {
-                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                            item.style.display = 'block';
-                            item.style.animation = 'fadeIn 0.5s ease-in';
-                        } else {
-                            item.style.display = 'none';
-                        }
+                    // Hide all sections
+                    photographySections.forEach(section => {
+                        section.style.display = 'none';
                     });
+
+                    // Show the selected section
+                    const targetSection = document.querySelector(`.photography-section[data-section="${sectionValue}"]`);
+                    if (targetSection) {
+                        targetSection.style.display = 'block';
+                        targetSection.style.animation = 'fadeIn 0.5s ease-in';
+                    }
                 });
             });
         });
+
+        // Scroll to gallery function
+        function scrollToGallery() {
+            document.querySelector('.photography-main-content').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Lightbox functionality
+        function openLightbox(imageSrc, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            lightboxImg.src = imageSrc;
+            lightboxImg.alt = caption;
+            lightboxCaption.textContent = caption;
+            
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Add fade-in animation
+            setTimeout(() => {
+                lightbox.style.opacity = '1';
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.opacity = '0';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+            }, 300);
+        }
+
+        // Close lightbox with escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeBasketballGallery();
+                closeGolfGallery();
+                closeBirthdayGallery();
+                closeBeachWeddingGallery();
+            }
+        });
+
+        // Basketball Gallery functionality
+        const basketballImages = [
+            { src: 'images/projects/NXT_GEN-03183 (1).jpg', caption: 'Basketball Training Action' },
+            { src: 'images/projects/NXT_GEN-03075.jpg', caption: 'Agility Training' },
+            { src: 'images/projects/NXT_GEN-03046 (1).jpg', caption: 'Skill Development' },
+            { src: 'images/projects/NXT_GEN-02969.jpg', caption: 'Team Training' },
+            { src: 'images/projects/NXT_GEN-02362 (1).jpg', caption: 'Basketball Fundamentals' },
+            { src: 'images/projects/NXT_GEN-02299.jpg', caption: 'Athletic Excellence' },
+            { src: 'images/projects/NXT_GEN-02281 (1).jpg', caption: 'Training Session' },
+            { src: 'images/projects/NXT_GEN-02270 (1).jpg', caption: 'Basketball Camp' },
+            { src: 'images/projects/NXT_GEN-1584.jpg', caption: 'Sports Photography' }
+        ];
+
+        let currentImageIndex = 0;
+
+        function openBasketballGallery() {
+            const modal = document.getElementById('basketball-gallery-modal');
+            currentImageIndex = 0;
+            showCurrentImage();
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                modal.style.opacity = '1';
+            }, 10);
+        }
+
+        function closeBasketballGallery() {
+            const modal = document.getElementById('basketball-gallery-modal');
+            modal.style.opacity = '0';
+            document.body.style.overflow = 'auto';
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        function showCurrentImage() {
+            const currentImage = basketballImages[currentImageIndex];
+            document.getElementById('gallery-current-image').src = currentImage.src;
+            document.getElementById('gallery-current-image').alt = currentImage.caption;
+            document.getElementById('gallery-current-number').textContent = currentImageIndex + 1;
+            document.getElementById('gallery-total-number').textContent = basketballImages.length;
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % basketballImages.length;
+            showCurrentImage();
+        }
+
+        function previousImage() {
+            currentImageIndex = (currentImageIndex - 1 + basketballImages.length) % basketballImages.length;
+            showCurrentImage();
+        }
+
+        // Add keyboard navigation for gallery
+        document.addEventListener('keydown', function(e) {
+            const basketballModal = document.getElementById('basketball-gallery-modal');
+            const golfModal = document.getElementById('golf-gallery-modal');
+            const birthdayModal = document.getElementById('birthday-gallery-modal');
+            const beachWeddingModal = document.getElementById('beach-wedding-gallery-modal');
+            
+            if (basketballModal.style.display === 'flex') {
+                if (e.key === 'ArrowRight') {
+                    nextImage();
+                } else if (e.key === 'ArrowLeft') {
+                    previousImage();
+                }
+            } else if (golfModal.style.display === 'flex') {
+                if (e.key === 'ArrowRight') {
+                    nextGolfImage();
+                } else if (e.key === 'ArrowLeft') {
+                    previousGolfImage();
+                }
+            } else if (birthdayModal.style.display === 'flex') {
+                if (e.key === 'ArrowRight') {
+                    nextBirthdayImage();
+                } else if (e.key === 'ArrowLeft') {
+                    previousBirthdayImage();
+                }
+            } else if (beachWeddingModal.style.display === 'flex') {
+                if (e.key === 'ArrowRight') {
+                    nextBeachWeddingImage();
+                } else if (e.key === 'ArrowLeft') {
+                    previousBeachWeddingImage();
+                }
+            }
+        });
+
+        // Golf Tournament Gallery functionality
+        const golfImages = [
+            { src: 'images/projects/GW_Golf-07545 (1).jpg', caption: 'Golf Tournament Event' },
+            { src: 'images/projects/GW_Golf-08094.jpg', caption: 'Tournament Action' },
+            { src: 'images/projects/GW_Golf-07891 (1).jpg', caption: 'Golf Course Photography' },
+            { src: 'images/projects/GW_Golf-07754 (1).jpg', caption: 'Professional Golf Event' },
+            { src: 'images/projects/GW_Golf-07722.jpg', caption: 'Tournament Participants' },
+            { src: 'images/projects/GW_Golf-07651.jpg', caption: 'Golf Course Event' },
+            { src: 'images/projects/GW_Golf-07623 (1).jpg', caption: 'Golf Tournament Photography' },
+            { src: 'images/projects/GW_Golf-07508.jpg', caption: 'Event Coverage' },
+            { src: 'images/projects/GW_Golf-07500 (1).jpg', caption: 'Golf Tournament Action' }
+        ];
+
+        let currentGolfImageIndex = 0;
+
+        function openGolfGallery() {
+            const modal = document.getElementById('golf-gallery-modal');
+            currentGolfImageIndex = 0;
+            showCurrentGolfImage();
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                modal.style.opacity = '1';
+            }, 10);
+        }
+
+        function closeGolfGallery() {
+            const modal = document.getElementById('golf-gallery-modal');
+            modal.style.opacity = '0';
+            document.body.style.overflow = 'auto';
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        function showCurrentGolfImage() {
+            const currentImage = golfImages[currentGolfImageIndex];
+            document.getElementById('golf-current-image').src = currentImage.src;
+            document.getElementById('golf-current-image').alt = currentImage.caption;
+            document.getElementById('golf-current-number').textContent = currentGolfImageIndex + 1;
+            document.getElementById('golf-total-number').textContent = golfImages.length;
+        }
+
+        function nextGolfImage() {
+            currentGolfImageIndex = (currentGolfImageIndex + 1) % golfImages.length;
+            showCurrentGolfImage();
+        }
+
+        function previousGolfImage() {
+            currentGolfImageIndex = (currentGolfImageIndex - 1 + golfImages.length) % golfImages.length;
+            showCurrentGolfImage();
+        }
+
+        // Birthday Party Gallery functionality
+        const birthdayImages = [
+            { src: 'images/projects/Elena_50th-8950.jpg', caption: '50th Birthday Celebration' },
+            { src: 'images/projects/Elena_50th-8482 (1).jpg', caption: 'Birthday Party Event' },
+            { src: 'images/projects/Elena_50th-8490.jpg', caption: 'Party Photography' },
+            { src: 'images/projects/Elena_50th-8506.jpg', caption: 'Birthday Celebration' },
+            { src: 'images/projects/Elena_50th-8553.jpg', caption: 'Event Photography' },
+            { src: 'images/projects/Elena_50th-8743.jpg', caption: 'Party Moments' },
+            { src: 'images/projects/Elena_50th-8794.jpg', caption: 'Birthday Event' },
+            { src: 'images/projects/Elena_50th-9046 (1).jpg', caption: 'Celebration Photography' },
+            { src: 'images/projects/Elena_50th-9110.jpg', caption: 'Party Event' },
+            { src: 'images/projects/Elena_50th-9282.jpg', caption: 'Birthday Photography' }
+        ];
+
+        let currentBirthdayImageIndex = 0;
+
+        function openBirthdayGallery() {
+            const modal = document.getElementById('birthday-gallery-modal');
+            currentBirthdayImageIndex = 0;
+            showCurrentBirthdayImage();
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                modal.style.opacity = '1';
+            }, 10);
+        }
+
+        function closeBirthdayGallery() {
+            const modal = document.getElementById('birthday-gallery-modal');
+            modal.style.opacity = '0';
+            document.body.style.overflow = 'auto';
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        function showCurrentBirthdayImage() {
+            const currentImage = birthdayImages[currentBirthdayImageIndex];
+            document.getElementById('birthday-current-image').src = currentImage.src;
+            document.getElementById('birthday-current-image').alt = currentImage.caption;
+            document.getElementById('birthday-current-number').textContent = currentBirthdayImageIndex + 1;
+            document.getElementById('birthday-total-number').textContent = birthdayImages.length;
+        }
+
+        function nextBirthdayImage() {
+            currentBirthdayImageIndex = (currentBirthdayImageIndex + 1) % birthdayImages.length;
+            showCurrentBirthdayImage();
+        }
+
+        function previousBirthdayImage() {
+            currentBirthdayImageIndex = (currentBirthdayImageIndex - 1 + birthdayImages.length) % birthdayImages.length;
+            showCurrentBirthdayImage();
+        }
+
+        // Beach Wedding Gallery functionality
+        const beachWeddingImages = [
+            { src: 'images/projects/IMG_6063.jpg', caption: 'Beach Wedding Photography' },
+            { src: 'images/projects/IMG_6292.jpg', caption: 'Wedding Celebration' },
+            { src: 'images/projects/IMG_6365.jpg', caption: 'Beach Wedding Event' },
+            { src: 'images/projects/IMG_6480.jpg', caption: 'Wedding Photography' },
+            { src: 'images/projects/IMG_6659.jpg', caption: 'Beach Wedding Moment' },
+            { src: 'images/projects/IMG_6687.jpg', caption: 'Wedding Ceremony' }
+        ];
+
+        let currentBeachWeddingImageIndex = 0;
+
+        function openBeachWeddingGallery() {
+            const modal = document.getElementById('beach-wedding-gallery-modal');
+            if (!modal) {
+                return;
+            }
+            currentBeachWeddingImageIndex = 0;
+            showCurrentBeachWeddingImage();
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Add opacity transition like other galleries
+            setTimeout(() => {
+                modal.style.opacity = '1';
+            }, 10);
+        }
+
+        function closeBeachWeddingGallery() {
+            const modal = document.getElementById('beach-wedding-gallery-modal');
+            modal.style.opacity = '0';
+            document.body.style.overflow = 'auto';
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        function showCurrentBeachWeddingImage() {
+            const currentImage = beachWeddingImages[currentBeachWeddingImageIndex];
+            const imgElement = document.getElementById('beach-wedding-current-image');
+            if (!imgElement) {
+                return;
+            }
+            imgElement.src = currentImage.src;
+            imgElement.alt = currentImage.caption;
+            document.getElementById('beach-wedding-current-number').textContent = currentBeachWeddingImageIndex + 1;
+            document.getElementById('beach-wedding-total-number').textContent = beachWeddingImages.length;
+        }
+
+        function nextBeachWeddingImage() {
+            currentBeachWeddingImageIndex = (currentBeachWeddingImageIndex + 1) % beachWeddingImages.length;
+            showCurrentBeachWeddingImage();
+        }
+
+        function previousBeachWeddingImage() {
+            currentBeachWeddingImageIndex = (currentBeachWeddingImageIndex - 1 + beachWeddingImages.length) % beachWeddingImages.length;
+            showCurrentBeachWeddingImage();
+        }
+
     </script>
 </body>
 </html>
+
+

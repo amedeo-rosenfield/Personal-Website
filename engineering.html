@@ -15,26 +15,38 @@
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="bio.html" class="nav-link">Bio</a></li>
                 <li><a href="engineering.html" class="nav-link active">Engineering</a></li>
+                <li><a href="volunteering.html" class="nav-link">Volunteering</a></li>
                 <li><a href="photography.html" class="nav-link">Photography</a></li>
+                <li><a href="dj.html" class="nav-link">DJ</a></li>
                 <li><a href="contact.html" class="nav-link">Contact Me</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Engineering Projects Section -->
-        <section class="section">
+    <!-- Engineering Landing Section -->
+    <section class="engineering-landing">
+        <div class="engineering-landing-container">
+            <h1 class="engineering-landing-title">Engineering and AI Projects</h1>
+            <p class="engineering-landing-intro">
+                A showcase of my passion for aerospace, AI, robotics, and CAD through innovative, boundary-pushing projects.
+            </p>
+            
+            <!-- Scroll indicator -->
+            <div class="engineering-scroll-indicator" onclick="scrollToProjects()">
+                <div class="scroll-arrow">↓</div>
+                <span class="scroll-text">Scroll to see projects</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Projects Content -->
+    <main class="engineering-main-content">
+        <section class="projects-section">
             <div class="container">
-                <h2 class="section-title">Engineering Projects</h2>
-                <p class="section-intro">
-                    A showcase of my work in aerospace engineering, AI, robotics, and CAD design. 
-                    These projects reflect my passion for creating innovative solutions and pushing the boundaries of technology.
-                </p>
                 
                 <div class="projects-list">
                     <!-- Project 1: High Speed Train Connector -->
-                    <article class="project-card-expandable" data-project="1">
+                    <article class="project-card-expandable" data-project="1" onclick="toggleProject(1)">
                         <!-- Initial Preview -->
                         <div class="project-preview">
                             <div class="project-header">
@@ -49,10 +61,9 @@
                                 </p>
                             </div>
                             
-                            <button class="learn-more-btn" onclick="toggleProject(1)">
-                                <span class="btn-text">Learn More</span>
-                                <span class="btn-arrow">▼</span>
-                            </button>
+                                                            <div class="learn-more-btn">
+                                    <span class="btn-text">Click to learn more</span>
+                                </div>
                         </div>
 
                         <!-- Expanded Content (Hidden Initially) -->
@@ -131,27 +142,28 @@
                                                     <span class="zoom-text">Click to enlarge</span>
                                                 </div>
                                             </div>
+                                            <div class="project-photo-container" onclick="openLightbox('images/projects/imagetrain.jpg', 'Train Application')">
+                                                <img src="images/projects/imagetrain.jpg" alt="Train Application" class="project-photo-img">
+                                                <p class="photo-caption">Train Application</p>
+                                                <div class="photo-overlay">
+                                                    <span class="zoom-icon">🔍</span>
+                                                    <span class="zoom-text">Click to enlarge</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Show Less Button at Bottom -->
-                                <div class="project-footer">
-                                    <button class="show-less-btn" onclick="toggleProject(1)">
-                                        <span class="btn-text">Show Less</span>
-                                        <span class="btn-arrow">▲</span>
-                                    </button>
-                                </div>
+
                             </div>
                         </div>
                     </article>
 
                     <!-- Project 2: Over Terrain Vehicle (OTV) -->
-                    <article class="project-card-expandable" data-project="2">
+                    <article class="project-card-expandable" data-project="2" onclick="toggleProject(2)">
                         <!-- Initial Preview -->
                         <div class="project-preview">
                             <div class="project-header">
-                                <h3 class="project-name">Over Terrain Vehicle (OTV) Project</h3>
+                                <h3 class="project-name">Over Terrain Vehicle (OTV)</h3>
                                 <p class="project-company">University of Maryland</p>
                             </div>
                             
@@ -162,10 +174,9 @@
                                 </p>
                             </div>
                             
-                            <button class="learn-more-btn" onclick="toggleProject(2)">
-                                <span class="btn-text">Learn More</span>
-                                <span class="btn-arrow">▼</span>
-                            </button>
+                                                            <div class="learn-more-btn">
+                                    <span class="btn-text">Click to learn more</span>
+                                </div>
                         </div>
 
                         <!-- Expanded Content (Hidden Initially) -->
@@ -244,13 +255,297 @@
                                         </div>
                                     </div>
                                 </div>
+
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3: Anti-Nitrate Water Vessel -->
+                    <article class="project-card-expandable" data-project="3" onclick="toggleProject(3)">
+                        <!-- Initial Preview -->
+                        <div class="project-preview">
+                            <div class="project-header">
+                                <h3 class="project-name">Anti-Nitrate Water Vessel</h3>
+                                <p class="project-company">Northrop Grumman Innovation Lab</p>
+                            </div>
+                            
+                            <div class="project-section">
+                                <h4 class="project-subheading">What?</h4>
+                                <p class="project-description">
+                                    Designed an autonomous vessel to track nitrate pollution entering the Chesapeake Bay to support preservation efforts. Aimed to detect and follow areas of high nitrate concentration using onboard sensors while serving on the sensor calibration team to ensure accurate environmental readings.
+                                </p>
+                            </div>
+                            
+                            <div class="project-actions">
+                                <div class="learn-more-btn">
+                                    <span class="btn-text">Click to learn more</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Expanded Content -->
+                        <div class="project-expanded" id="project-expanded-3" style="display: none;">
+                            <div class="project-main-content">
+                                <div class="project-text-content">
+                                    <div class="project-section">
+                                        <h4 class="project-subheading">What?</h4>
+                                        <ul class="project-list">
+                                            <li>Designed an autonomous vessel to track nitrate pollution entering the Chesapeake Bay to support preservation efforts</li>
+                                            <li>Aimed to detect and follow areas of high nitrate concentration using onboard sensors</li>
+                                            <li>Served on the sensor calibration team to ensure accurate environmental readings</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="project-section">
+                                        <h4 class="project-subheading">How?</h4>
+                                        <ul class="project-list">
+                                            <li>Calibrated turbidity (TBD) and total dissolved solids (TDS) sensors using Arduino (C++)</li>
+                                            <li>Integrating multiple sensors through a shared microcontroller</li>
+                                            <li>Enabled real-time data transmission via Wi-Fi and onboard SD card logging</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="project-section">
+                                        <h4 class="project-subheading">Results?</h4>
+                                        <ul class="project-list">
+                                            <li>Achieved 90% accuracy with turbidity sensor readings</li>
+                                            <li>Maintained 1 Hz real-time sampling with 100% logging over 10+ hours</li>
+                                            <li>Expanding vessel capabilities to detect methane, petroleum, and industrial chemicals, while also improving accuracy</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="project-skills">
+                                        <h4 class="skills-heading">Skills Applied</h4>
+                                        <div class="skills-grid">
+                                            <span class="skill-tag">Arduino Programming</span>
+                                            <span class="skill-tag">C++</span>
+                                            <span class="skill-tag">Sensor Calibration</span>
+                                            <span class="skill-tag">Environmental Monitoring</span>
+                                            <span class="skill-tag">Autonomous Systems</span>
+                                            <span class="skill-tag">Data Transmission</span>
+                                            <span class="skill-tag">Wi-Fi Integration</span>
+                                            <span class="skill-tag">SD Card Logging</span>
+                                            <span class="skill-tag">Microcontroller Integration</span>
+                                            <span class="skill-tag">Real-time Systems</span>
+                                            <span class="skill-tag">Water Quality Testing</span>
+                                            <span class="skill-tag">Marine Engineering</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-links">
+                                        <a href="https://www.northropgrumman.com/" class="simple-website-link" target="_blank">View Northrop Grumman Website →</a>
+                                    </div>
+                                </div>
                                 
-                                <!-- Show Less Button at Bottom -->
-                                <div class="project-footer">
-                                    <button class="show-less-btn" onclick="toggleProject(2)">
-                                        <span class="btn-text">Show Less</span>
-                                        <span class="btn-arrow">▲</span>
-                                    </button>
+                                <div class="project-photos">
+                                    <h4 class="photos-heading">Supporting Photos</h4>
+                                    <div class="photos-grid">
+                                        <div class="project-photo-container" onclick="openLightbox('images/projects/image1.jpg', 'Chesapeake Bay')">
+                                            <img src="images/projects/image1.jpg" alt="Chesapeake Bay" class="project-photo-img">
+                                            <p class="photo-caption">Chesapeake Bay</p>
+                                            <div class="photo-overlay">
+                                                <span class="zoom-icon">🔍</span>
+                                                <span class="zoom-text">Click to enlarge</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-photo-container" onclick="openLightbox('images/projects/image12.png', 'Sensor Array Setup')">
+                                            <img src="images/projects/image12.png" alt="Sensor Array Setup" class="project-photo-img">
+                                            <p class="photo-caption">Sensor Array Setup</p>
+                                            <div class="photo-overlay">
+                                                <span class="zoom-icon">🔍</span>
+                                                <span class="zoom-text">Click to enlarge</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-photo-container" onclick="openLightbox('images/projects/Screenshot 2025-08-11 135139.png', 'Piece of calibration code')">
+                                            <img src="images/projects/Screenshot 2025-08-11 135139.png" alt="Piece of calibration code" class="project-photo-img">
+                                            <p class="photo-caption">Piece of calibration code</p>
+                                            <div class="photo-overlay">
+                                                <span class="zoom-icon">🔍</span>
+                                                <span class="zoom-text">Click to enlarge</span>
+                                            </div>
+                                        </div>
+                                        <div class="project-photo-container" onclick="openLightbox('images/projects/image3.jpg', 'Water Vessel Prototype')">
+                                            <img src="images/projects/image3.jpg" alt="Water Vessel Prototype" class="project-photo-img">
+                                            <p class="photo-caption">Water Vessel Prototype</p>
+                                            <div class="photo-overlay">
+                                                <span class="zoom-icon">🔍</span>
+                                                <span class="zoom-text">Click to enlarge</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </article>
+
+                    <!-- Project 4: Tia.ai -->
+                    <article class="project-card-expandable" data-project="4" onclick="toggleProject(4)">
+                        <!-- Initial Preview -->
+                        <div class="project-preview">
+                            <div class="project-header">
+                                <h3 class="project-name">Tia.ai</h3>
+                                <p class="project-company">Personal AI Project</p>
+                            </div>
+                            
+                            <div class="project-section">
+                                <h4 class="project-subheading">What?</h4>
+                                <p class="project-description">
+                                    Tia.ai is a voice-activated AI productivity coach designed to help users stay organized, focused, and motivated through personalized goal tracking, task management, and emotional intelligence.
+                                </p>
+                            </div>
+                            
+                            <div class="learn-more-btn">
+                                <span class="btn-text">Click to learn more</span>
+                            </div>
+                        </div>
+
+                        <!-- Expanded Content (Hidden Initially) -->
+                        <div class="project-expanded" id="project-expanded-4">
+                            <div class="project-content-full">
+                                <div class="project-main-content">
+                                    <div class="project-text-content">
+                                        <div class="project-section">
+                                            <h4 class="project-subheading">How?</h4>
+                                            <ul class="project-list">
+                                                <li>Developed backend AI processing and natural language understanding using Python</li>
+                                                <li>Built the frontend overlay interface with HTML, CSS, and JavaScript</li>
+                                                <li>Enabled seamless communication between backend and frontend components</li>
+                                                <li>Integrated APIs for calendar and task management functionality</li>
+                                                <li>Designed the overlay to launch via a customizable keyboard shortcut for quick access</li>
+                                                <li>Incorporated emotional intelligence algorithms to personalize user interactions</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="project-section">
+                                            <h4 class="project-subheading">Results?</h4>
+                                            <ul class="project-list">
+                                                <li>Successfully implemented core APIs and ensured smooth backend-frontend integration</li>
+                                                <li>Deployed a lightweight, responsive overlay activated by keyboard shortcut</li>
+                                                <li>Created an intuitive voice-driven interface for productivity coaching</li>
+                                                <li>Currently testing to optimize user experience and improve AI responsiveness</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="project-skills">
+                                            <h4 class="skills-heading">Skills Applied</h4>
+                                            <div class="skills-grid">
+                                                <span class="skill-tag">Python</span>
+                                                <span class="skill-tag">Natural Language Processing</span>
+                                                <span class="skill-tag">HTML</span>
+                                                <span class="skill-tag">CSS</span>
+                                                <span class="skill-tag">JavaScript</span>
+                                                <span class="skill-tag">API Integration</span>
+                                                <span class="skill-tag">AI Development</span>
+                                                <span class="skill-tag">Frontend Development</span>
+                                                <span class="skill-tag">Backend Development</span>
+                                                <span class="skill-tag">User Interface Design</span>
+                                                <span class="skill-tag">Machine Learning</span>
+                                                <span class="skill-tag">Emotional Intelligence</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-photos">
+                                        <h4 class="photos-heading">Supporting Documentation</h4>
+                                        <div class="photos-grid">
+                                            <!-- Placeholder for when you add project images -->
+                                            <div class="project-photo-placeholder">
+                                                <span>Add screenshots of Tia.ai interface</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 5: Maintenance Checklist -->
+                    <article class="project-card-expandable" data-project="5" onclick="toggleProject(5)">
+                        <!-- Initial Preview -->
+                        <div class="project-preview">
+                            <div class="project-header">
+                                <h3 class="project-name">Maintenance Checklist</h3>
+                                <p class="project-company">Space Copy</p>
+                            </div>
+                            
+                            <div class="project-section">
+                                <h4 class="project-subheading">What?</h4>
+                                <p class="project-description">
+                                    Developed a comprehensive maintenance checklist for advanced lunar printer cooling systems, crucial for sustaining optimal operational temperatures in extreme extraterrestrial environments.
+                                </p>
+                            </div>
+                            
+                            <div class="learn-more-btn">
+                                <span class="btn-text">Click to learn more</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Expanded Content -->
+                        <div class="project-expanded" id="project-expanded-5">
+                            <div class="project-content-full">
+                                <div class="project-main-content">
+                                    <div class="project-text-content">
+                                        <div class="project-section">
+                                            <h4 class="project-subheading">How?</h4>
+                                            <ul class="project-list">
+                                                <li>Conducted extensive, multidisciplinary research encompassing thermodynamics, materials science, and fluid dynamics, simulating real-world lunar conditions</li>
+                                                <li>Pioneered virtual testing methodologies using highly sophisticated computational fluid dynamics (CFD) models, simulating thermal performance under vacuum and microgravity</li>
+                                                <li>Collaborated intensively with CEO Madison Feehan, integrating cutting-edge theoretical insights with practical engineering constraints</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="project-section">
+                                            <h4 class="project-subheading">Results?</h4>
+                                            <ul class="project-list">
+                                                <li>Authored a 25-page, meticulously detailed technical report, providing an indispensable framework for ensuring the longevity and reliability of lunar printer cooling infrastructure</li>
+                                                <li>Designed robust contingency plans, anticipating potential system failures and providing fail-safe protocols, thereby establishing unprecedented levels of operational resilience for future lunar expeditions</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="project-skills">
+                                            <h4 class="skills-heading">Skills Applied</h4>
+                                            <div class="skills-grid">
+                                                <span class="skill-tag">Thermodynamics</span>
+                                                <span class="skill-tag">Materials Science</span>
+                                                <span class="skill-tag">Fluid Dynamics</span>
+                                                <span class="skill-tag">CFD Modeling</span>
+                                                <span class="skill-tag">Thermal Analysis</span>
+                                                <span class="skill-tag">Virtual Testing</span>
+                                                <span class="skill-tag">Technical Writing</span>
+                                                <span class="skill-tag">Systems Engineering</span>
+                                                <span class="skill-tag">Space Technology</span>
+                                                <span class="skill-tag">Failure Analysis</span>
+                                                <span class="skill-tag">Risk Assessment</span>
+                                                <span class="skill-tag">Lunar Engineering</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="project-links">
+                                            <a href="https://spacecopy.com/" class="simple-website-link" target="_blank">View Space Copy Website →</a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-photos">
+                                        <h4 class="photos-heading">Supporting Documentation</h4>
+                                        <div class="document-viewer">
+                                            <div class="document-preview" onclick="openDocumentViewer()">
+                                                <div class="document-stack">
+                                                    <img src="images/projects/First Draft of Maintenance Checklist for Cooling Systems (1)-images-0.jpg" alt="Maintenance Checklist - Cover Page" class="document-cover">
+                                                    <div class="document-stack-effect"></div>
+                                                    <div class="document-stack-effect-2"></div>
+                                                </div>
+                                                <div class="document-info">
+                                                    <h5 class="document-title">Maintenance Checklist for Cooling Systems</h5>
+                                                    <p class="document-pages">24 pages • Technical Report</p>
+                                                    <div class="document-overlay">
+                                                        <span class="zoom-icon">📖</span>
+                                                        <span class="zoom-text">Click to read full document</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -285,36 +580,63 @@
 
     <!-- Project Expansion JavaScript -->
     <script>
-        function toggleProject(projectId) {
-            const expandedSection = document.getElementById(`project-expanded-${projectId}`);
-            const learnMoreButton = document.querySelector(`[data-project="${projectId}"] .learn-more-btn`);
-            const arrow = learnMoreButton.querySelector('.btn-arrow');
-            const btnText = learnMoreButton.querySelector('.btn-text');
+        function openProjectModal(projectId) {
+            // Get project data
+            const projectCard = document.querySelector(`[data-project="${projectId}"]`);
+            const projectName = projectCard.querySelector('.project-name').textContent;
+            const projectCompany = projectCard.querySelector('.project-company').textContent;
+            const projectDescription = projectCard.querySelector('.project-description').textContent;
             
-            if (expandedSection.style.display === 'none' || expandedSection.style.display === '') {
-                // Expand
-                expandedSection.style.display = 'block';
-                setTimeout(() => {
-                    expandedSection.style.opacity = '1';
-                    expandedSection.style.maxHeight = '2000px';
-                }, 10);
-                
-                // Hide the Learn More button when expanded
-                learnMoreButton.style.display = 'none';
-            } else {
-                // Collapse
-                expandedSection.style.opacity = '0';
-                expandedSection.style.maxHeight = '0';
-                setTimeout(() => {
-                    expandedSection.style.display = 'none';
-                }, 300);
-                
-                // Show the Learn More button when collapsed
-                setTimeout(() => {
-                    learnMoreButton.style.display = 'flex';
-                }, 300);
+            // Get expanded content
+            const expandedSection = document.getElementById(`project-expanded-${projectId}`);
+            const expandedContent = expandedSection.innerHTML;
+            
+            // Create modal
+            const modal = document.createElement('div');
+            modal.className = 'project-modal';
+            modal.innerHTML = `
+                <div class="project-modal-content">
+                    <div class="project-modal-header">
+                        <h2 class="project-name">${projectName}</h2>
+                        <p class="project-company">${projectCompany}</p>
+                        <button class="project-modal-close" onclick="closeProjectModal()">&times;</button>
+                    </div>
+                    <div class="project-modal-body">
+                        ${expandedContent}
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeProjectModal() {
+            const modal = document.querySelector('.project-modal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = 'auto';
             }
         }
+        
+        // Update toggleProject to use modal
+        function toggleProject(projectId) {
+            openProjectModal(projectId);
+        }
+        
+        // Close modal on escape key or outside click
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeProjectModal();
+            }
+        });
+        
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('project-modal')) {
+                closeProjectModal();
+            }
+        });
 
         // Initialize all expanded sections as hidden
         document.addEventListener('DOMContentLoaded', function() {
@@ -404,6 +726,64 @@
                     this.style.transform = 'translateX(0)';
                 });
             });
+        });
+
+        // Scroll to projects function
+        function scrollToProjects() {
+            document.querySelector('.engineering-main-content').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Document viewer function
+        function openDocumentViewer() {
+            // Create modal if it doesn't exist
+            let modal = document.getElementById('documentModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'documentModal';
+                modal.className = 'document-modal';
+                
+                let modalContent = '<div class="document-close" onclick="closeDocumentViewer()">&times;</div>';
+                modalContent += '<div class="document-modal-content">';
+                
+                // Add all 24 pages
+                for (let i = 0; i <= 23; i++) {
+                    modalContent += `<img src="images/projects/First Draft of Maintenance Checklist for Cooling Systems (1)-images-${i}.jpg" alt="Page ${i + 1}" class="document-page">`;
+                }
+                
+                modalContent += '</div>';
+                modalContent += '<div class="document-page-counter">24 Pages • Maintenance Checklist</div>';
+                
+                modal.innerHTML = modalContent;
+                document.body.appendChild(modal);
+            }
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDocumentViewer() {
+            const modal = document.getElementById('documentModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal on outside click
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('documentModal');
+            if (event.target === modal) {
+                closeDocumentViewer();
+            }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeDocumentViewer();
+            }
         });
     </script>
 </body>
