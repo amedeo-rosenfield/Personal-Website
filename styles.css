@@ -998,7 +998,7 @@ body.home .nav-logo {
     left: auto;
     right: auto;
     margin-top: 20px;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .learn-more-btn:hover {
