@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Projects - Amedeo Rosenfield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="bio.html" class="nav-link">Bio</a></li>
+                <li><a href="engineering.html" class="nav-link active">Engineering</a></li>
+                <li><a href="photography.html" class="nav-link">Photography</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Engineering Projects Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Engineering Projects</h2>
+                <p class="section-intro">
+                    A showcase of my work in aerospace engineering, AI, robotics, and CAD design. 
+                    These projects reflect my passion for creating innovative solutions and pushing the boundaries of technology.
+                </p>
+                
+                <div class="projects-list">
+                    <!-- Project 1: High Speed Train Connector -->
+                    <article class="project-card-expandable" data-project="1">
+                        <!-- Initial Preview -->
+                        <div class="project-preview">
+                            <div class="project-header">
+                                <h3 class="project-name">High Speed Train Connector</h3>
+                                <p class="project-company">Glenair Inc.</p>
+                            </div>
+                            
+                            <div class="project-section">
+                                <h4 class="project-subheading">What?</h4>
+                                <p class="project-description">
+                                    Engineered a weather-resistant electrical connector for high-speed rail, ensuring durability against rain, wind, and dust while meeting strict size and contact requirements specified by the customer.
+                                </p>
+                            </div>
+                            
+                            <button class="learn-more-btn" onclick="toggleProject(1)">
+                                <span class="btn-text">Learn More</span>
+                                <span class="btn-arrow">▼</span>
+                            </button>
+                        </div>
+
+                        <!-- Expanded Content (Hidden Initially) -->
+                        <div class="project-expanded" id="project-expanded-1">
+                            <div class="project-content-full">
+                                <div class="project-main-content">
+                                    <div class="project-details">
+                                        <div class="project-section">
+                                            <h4 class="project-subheading">How?</h4>
+                                            <ul class="project-list">
+                                                <li>Designed and assembled 3D connector components using SolidWorks.</li>
+                                                <li>Produced detailed 2D technical drawings to support precision manufacturing.</li>
+                                                <li>Collaborated with in-house manufacturers, electricians, and assemblers to finalize the product.</li>
+                                                <li>Communicated exclusively in Italian during team discussions and daily tasks.</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="project-section">
+                                            <h4 class="project-subheading">Results?</h4>
+                                            <ul class="project-list">
+                                                <li>Successfully underwent water, heat, dust, torque, and force testing due to neoprene material used insulating the connectors.</li>
+                                                <li>Made the assembly process smoother by tweaking design details based on direct input from technicians and production staff.</li>
+                                                <li>Reduced raw material usage by 15% through thoughtful design optimizations including wall thickness, internal geometry, and contact layout balancing performance with cost and manufacturability.</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="project-skills">
+                                            <h4 class="skills-heading">Skills Applied</h4>
+                                            <div class="skills-grid">
+                                                <span class="skill-tag">2D CAD Drawing</span>
+                                                <span class="skill-tag">Product Design</span>
+                                                <span class="skill-tag">SOLIDWORKS</span>
+                                                <span class="skill-tag">Communication</span>
+                                                <span class="skill-tag">Microsoft Outlook</span>
+                                                <span class="skill-tag">Leadership</span>
+                                                <span class="skill-tag">Microsoft Dynamics AX</span>
+                                                <span class="skill-tag">Manufacturing</span>
+                                                <span class="skill-tag">3D Modeling</span>
+                                                <span class="skill-tag">Customer Service</span>
+                                                <span class="skill-tag">Italian</span>
+                                                <span class="skill-tag">Teamwork</span>
+                                                <span class="skill-tag">Computer-Aided Design (CAD)</span>
+                                                <span class="skill-tag">Microsoft Excel</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="project-links">
+                                            <a href="https://www.glenair.com/" class="simple-website-link" target="_blank">View Company Website →</a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-photos">
+                                        <h4 class="photos-heading">Supporting Photos</h4>
+                                        <div class="photos-grid">
+                                            <div class="project-photo-container" onclick="openLightbox('images/projects/image8.jpg', 'CAD Model View')">
+                                                <img src="images/projects/image8.jpg" alt="CAD Model View" class="project-photo-img">
+                                                <p class="photo-caption">CAD Model View</p>
+                                                <div class="photo-overlay">
+                                                    <span class="zoom-icon">🔍</span>
+                                                    <span class="zoom-text">Click to enlarge</span>
+                                                </div>
+                                            </div>
+                                            <div class="project-photo-container" onclick="openLightbox('images/projects/image10.jpg', 'Technical Drawing')">
+                                                <img src="images/projects/image10.jpg" alt="Technical Drawing" class="project-photo-img">
+                                                <p class="photo-caption">Technical Drawing</p>
+                                                <div class="photo-overlay">
+                                                    <span class="zoom-icon">🔍</span>
+                                                    <span class="zoom-text">Click to enlarge</span>
+                                                </div>
+                                            </div>
+                                            <div class="project-photo-container" onclick="openLightbox('images/projects/image2.jpg', 'Finished Connector')">
+                                                <img src="images/projects/image2.jpg" alt="Finished Connector" class="project-photo-img">
+                                                <p class="photo-caption">Finished Connector</p>
+                                                <div class="photo-overlay">
+                                                    <span class="zoom-icon">🔍</span>
+                                                    <span class="zoom-text">Click to enlarge</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Show Less Button at Bottom -->
+                                <div class="project-footer">
+                                    <button class="show-less-btn" onclick="toggleProject(1)">
+                                        <span class="btn-text">Show Less</span>
+                                        <span class="btn-arrow">▲</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2: Over Terrain Vehicle (OTV) -->
+                    <article class="project-card-expandable" data-project="2">
+                        <!-- Initial Preview -->
+                        <div class="project-preview">
+                            <div class="project-header">
+                                <h3 class="project-name">Over Terrain Vehicle (OTV) Project</h3>
+                                <p class="project-company">University of Maryland</p>
+                            </div>
+                            
+                            <div class="project-section">
+                                <h4 class="project-subheading">What?</h4>
+                                <p class="project-description">
+                                    Led the navigation development of an autonomous over-terrain rescue vehicle, enabling obstacle avoidance, crash site detection, and repair initiation. Planned, built, and iteratively refined the vehicle from scratch under tight deadlines, coordinating full system integration and a final live demonstration.
+                                </p>
+                            </div>
+                            
+                            <button class="learn-more-btn" onclick="toggleProject(2)">
+                                <span class="btn-text">Learn More</span>
+                                <span class="btn-arrow">▼</span>
+                            </button>
+                        </div>
+
+                        <!-- Expanded Content (Hidden Initially) -->
+                        <div class="project-expanded" id="project-expanded-2">
+                            <div class="project-content-full">
+                                <div class="project-main-content">
+                                    <div class="project-details">
+                                        <div class="project-section">
+                                            <h4 class="project-subheading">How?</h4>
+                                            <ul class="project-list">
+                                                <li>Programmed the navigation system using C++ in Arduino, building modular movement functions and logic loops to allow autonomous course correction, obstacle avoidance, and waypoint execution.</li>
+                                                <li>Integrated a Wi-Fi module for real-time communication and telemetry, enabling on-the-fly adjustments during field testing.</li>
+                                                <li>Conducted regular test runs to iteratively improve navigation accuracy and timing across varied terrains.</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="project-section">
+                                            <h4 class="project-subheading">Results?</h4>
+                                            <ul class="project-list">
+                                                <li>While mechanical issues prevented full site repair, the vehicle successfully navigated under bridges, around large obstacles, and into the crash site zone.</li>
+                                                <li>The navigation system performed reliably across trials, completing the mission course with a 95% success rate.</li>
+                                                <li>Successfully cut overall navigation time by over 5 minutes, significantly improving mission efficiency and responsiveness.</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="project-skills">
+                                            <h4 class="skills-heading">Skills Applied</h4>
+                                            <div class="skills-grid">
+                                                <span class="skill-tag">C++ Programming</span>
+                                                <span class="skill-tag">Arduino</span>
+                                                <span class="skill-tag">Autonomous Systems</span>
+                                                <span class="skill-tag">Navigation Systems</span>
+                                                <span class="skill-tag">Wi-Fi Integration</span>
+                                                <span class="skill-tag">Real-time Communication</span>
+                                                <span class="skill-tag">System Integration</span>
+                                                <span class="skill-tag">Field Testing</span>
+                                                <span class="skill-tag">Project Management</span>
+                                                <span class="skill-tag">Problem Solving</span>
+                                                <span class="skill-tag">Robotics</span>
+                                                <span class="skill-tag">Embedded Systems</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="project-links">
+                                            <a href="https://www.umd.edu/" class="simple-website-link" target="_blank">View University Website →</a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-photos">
+                                        <h4 class="photos-heading">Supporting Photos</h4>
+                                        <div class="photos-grid">
+                                            <div class="project-photo-container" onclick="openLightbox('images/projects/image13.png', 'OTV Vehicle Overview')">
+                                                <img src="images/projects/image13.png" alt="OTV Vehicle Overview" class="project-photo-img">
+                                                <p class="photo-caption">OTV Vehicle Overview</p>
+                                                <div class="photo-overlay">
+                                                    <span class="zoom-icon">🔍</span>
+                                                    <span class="zoom-text">Click to enlarge</span>
+                                                </div>
+                                            </div>
+                                            <div class="project-photo-container" onclick="openLightbox('images/projects/image11.png', 'Navigation System')">
+                                                <img src="images/projects/image11.png" alt="Navigation System" class="project-photo-img">
+                                                <p class="photo-caption">Navigation System</p>
+                                                <div class="photo-overlay">
+                                                    <span class="zoom-icon">🔍</span>
+                                                    <span class="zoom-text">Click to enlarge</span>
+                                                </div>
+                                            </div>
+                                            <div class="project-photo-container" onclick="openLightbox('images/projects/image9.jpg', 'Field Testing')">
+                                                <img src="images/projects/image9.jpg" alt="Field Testing" class="project-photo-img">
+                                                <p class="photo-caption">Field Testing</p>
+                                                <div class="photo-overlay">
+                                                    <span class="zoom-icon">🔍</span>
+                                                    <span class="zoom-text">Click to enlarge</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Show Less Button at Bottom -->
+                                <div class="project-footer">
+                                    <button class="show-less-btn" onclick="toggleProject(2)">
+                                        <span class="btn-text">Show Less</span>
+                                        <span class="btn-arrow">▲</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="cta-section">
+                    <h3>Interested in Collaborating?</h3>
+                    <p>I'm always excited to work on challenging projects that push the boundaries of aerospace engineering and AI.</p>
+                    <a href="contact.html" class="cta-button">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Amedeo Rosenfield. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="" class="lightbox-image">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- Project Expansion JavaScript -->
+    <script>
+        function toggleProject(projectId) {
+            const expandedSection = document.getElementById(`project-expanded-${projectId}`);
+            const learnMoreButton = document.querySelector(`[data-project="${projectId}"] .learn-more-btn`);
+            const arrow = learnMoreButton.querySelector('.btn-arrow');
+            const btnText = learnMoreButton.querySelector('.btn-text');
+            
+            if (expandedSection.style.display === 'none' || expandedSection.style.display === '') {
+                // Expand
+                expandedSection.style.display = 'block';
+                setTimeout(() => {
+                    expandedSection.style.opacity = '1';
+                    expandedSection.style.maxHeight = '2000px';
+                }, 10);
+                
+                // Hide the Learn More button when expanded
+                learnMoreButton.style.display = 'none';
+            } else {
+                // Collapse
+                expandedSection.style.opacity = '0';
+                expandedSection.style.maxHeight = '0';
+                setTimeout(() => {
+                    expandedSection.style.display = 'none';
+                }, 300);
+                
+                // Show the Learn More button when collapsed
+                setTimeout(() => {
+                    learnMoreButton.style.display = 'flex';
+                }, 300);
+            }
+        }
+
+        // Initialize all expanded sections as hidden
+        document.addEventListener('DOMContentLoaded', function() {
+            const expandedSections = document.querySelectorAll('.project-expanded');
+            expandedSections.forEach(section => {
+                section.style.display = 'none';
+                section.style.opacity = '0';
+                section.style.maxHeight = '0';
+            });
+        });
+
+        // Lightbox functionality
+        function openLightbox(imageSrc, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            lightboxImg.src = imageSrc;
+            lightboxImg.alt = caption;
+            lightboxCaption.textContent = caption;
+            
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Add fade-in animation
+            setTimeout(() => {
+                lightbox.style.opacity = '1';
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.opacity = '0';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+            }, 300);
+        }
+
+        // Close lightbox with escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Enhanced animations and scroll effects
+        function scrollToNextSection() {
+            const nextSection = document.querySelector('.section');
+            if (nextSection) {
+                nextSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Intersection Observer for enhanced animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections and cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            const cards = document.querySelectorAll('.project-card-expandable, .quick-link-card');
+            
+            sections.forEach(section => observer.observe(section));
+            cards.forEach(card => observer.observe(card));
+
+            // Enhanced hover effects for project titles
+            const projectTitles = document.querySelectorAll('.project-name');
+            projectTitles.forEach(title => {
+                title.style.cursor = 'pointer';
+                title.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(8px)';
+                });
+                title.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

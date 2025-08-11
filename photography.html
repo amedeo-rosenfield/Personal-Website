@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography - Amedeo Rosenfield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="bio.html" class="nav-link">Bio</a></li>
+                <li><a href="engineering.html" class="nav-link">Engineering</a></li>
+                <li><a href="photography.html" class="nav-link active">Photography</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Photography Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Photography</h2>
+                <p class="section-intro">
+                    Through my lens, I capture moments of beauty, adventure, and human connection. 
+                    My photography journey spans from solo travels through Italy to exploring the world around me, 
+                    always seeking that perfect balance of light, composition, and emotion.
+                </p>
+
+                <!-- Photography Categories -->
+                <div class="photo-categories">
+                    <div class="category-filter">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="travel">Travel</button>
+                        <button class="filter-btn" data-filter="landscape">Landscape</button>
+                        <button class="filter-btn" data-filter="urban">Urban</button>
+                        <button class="filter-btn" data-filter="portrait">Portrait</button>
+                    </div>
+                </div>
+
+                <!-- Photo Gallery -->
+                <div class="photo-gallery">
+                    <!-- Travel Photos -->
+                    <div class="photo-item" data-category="travel">
+                        <div class="photo-placeholder">
+                            <span>Italian Countryside</span>
+                        </div>
+                        <div class="photo-info">
+                            <h4 class="photo-title">Summer in Tuscany</h4>
+                            <p class="photo-caption">
+                                Rolling hills and ancient vineyards during my solo travels to Italy. 
+                                This shot captures the golden hour light that makes Tuscany so magical.
+                            </p>
+                            <span class="photo-location">Tuscany, Italy</span>
+                        </div>
+                    </div>
+
+                    <!-- Landscape Photos -->
+                    <div class="photo-item" data-category="landscape">
+                        <div class="photo-placeholder">
+                            <span>Mountain Vista</span>
+                        </div>
+                        <div class="photo-info">
+                            <h4 class="photo-title">Mountain Serenity</h4>
+                            <p class="photo-caption">
+                                Early morning landscape capturing the interplay of light and shadow 
+                                across mountain peaks. Shot during a hiking expedition.
+                            </p>
+                            <span class="photo-location">Rocky Mountains</span>
+                        </div>
+                    </div>
+
+                    <!-- Urban Photos -->
+                    <div class="photo-item" data-category="urban">
+                        <div class="photo-placeholder">
+                            <span>City Architecture</span>
+                        </div>
+                        <div class="photo-info">
+                            <h4 class="photo-title">Urban Geometry</h4>
+                            <p class="photo-caption">
+                                Modern architecture meets classic design in this urban composition. 
+                                Exploring the geometric patterns that define our built environment.
+                            </p>
+                            <span class="photo-location">Washington, DC</span>
+                        </div>
+                    </div>
+
+                    <!-- Travel Photos -->
+                    <div class="photo-item" data-category="travel">
+                        <div class="photo-placeholder">
+                            <span>Italian Coast</span>
+                        </div>
+                        <div class="photo-info">
+                            <h4 class="photo-title">Mediterranean Dreams</h4>
+                            <p class="photo-caption">
+                                The dramatic coastline of southern Italy, where ancient cliffs 
+                                meet crystal-clear waters. A testament to natural beauty.
+                            </p>
+                            <span class="photo-location">Amalfi Coast, Italy</span>
+                        </div>
+                    </div>
+
+                    <!-- Portrait Photos -->
+                    <div class="photo-item" data-category="portrait">
+                        <div class="photo-placeholder">
+                            <span>Cultural Portrait</span>
+                        </div>
+                        <div class="photo-info">
+                            <h4 class="photo-title">Stories in Faces</h4>
+                            <p class="photo-caption">
+                                Capturing the wisdom and character that comes from a life well-lived. 
+                                Each portrait tells a unique story of human experience.
+                            </p>
+                            <span class="photo-location">Local Community</span>
+                        </div>
+                    </div>
+
+                    <!-- Landscape Photos -->
+                    <div class="photo-item" data-category="landscape">
+                        <div class="photo-placeholder">
+                            <span>Sunset Reflection</span>
+                        </div>
+                        <div class="photo-info">
+                            <h4 class="photo-title">Golden Reflections</h4>
+                            <p class="photo-caption">
+                                Perfect symmetry as the setting sun creates mirror-like reflections 
+                                on still water. Nature's own masterpiece.
+                            </p>
+                            <span class="photo-location">Chesapeake Bay</span>
+                        </div>
+                    </div>
+
+                    <!-- Urban Photos -->
+                    <div class="photo-item" data-category="urban">
+                        <div class="photo-placeholder">
+                            <span>Street Life</span>
+                        </div>
+                        <div class="photo-info">
+                            <h4 class="photo-title">Urban Energy</h4>
+                            <p class="photo-caption">
+                                The pulse and rhythm of city life captured in a single frame. 
+                                Movement, energy, and human connection in urban spaces.
+                            </p>
+                            <span class="photo-location">Silver Spring, MD</span>
+                        </div>
+                    </div>
+
+                    <!-- Travel Photos -->
+                    <div class="photo-item" data-category="travel">
+                        <div class="photo-placeholder">
+                            <span>Italian Architecture</span>
+                        </div>
+                        <div class="photo-info">
+                            <h4 class="photo-title">Timeless Architecture</h4>
+                            <p class="photo-caption">
+                                Ancient Roman architecture that has stood the test of time. 
+                                These summers in Italy taught me to appreciate both history and craftsmanship.
+                            </p>
+                            <span class="photo-location">Rome, Italy</span>
+                        </div>
+                    </div>
+
+                    <!-- Landscape Photos -->
+                    <div class="photo-item" data-category="landscape">
+                        <div class="photo-placeholder">
+                            <span>Natural Patterns</span>
+                        </div>
+                        <div class="photo-info">
+                            <h4 class="photo-title">Nature's Design</h4>
+                            <p class="photo-caption">
+                                The intricate patterns found in nature often inspire my engineering work. 
+                                This shot explores the intersection of natural beauty and geometric precision.
+                            </p>
+                            <span class="photo-location">Natural Reserve</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photography Philosophy -->
+                <div class="photography-philosophy">
+                    <h3>My Photography Philosophy</h3>
+                    <p>
+                        Photography, like engineering, is about seeing the world from different perspectives and 
+                        finding beauty in both the grand and the minute. Whether I'm designing spacecraft systems 
+                        or composing a photograph, I'm drawn to the interplay of technical precision and creative vision.
+                    </p>
+                    <p>
+                        My travels to Italy and experiences growing up between different cultures have taught me 
+                        to appreciate diverse perspectives—something that deeply influences both my photography and 
+                        my approach to engineering challenges.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Amedeo Rosenfield. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Photography Filter JavaScript -->
+    <script>
+        // Photography category filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const photoItems = document.querySelectorAll('.photo-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+
+                    photoItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                            item.style.animation = 'fadeIn 0.5s ease-in';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
