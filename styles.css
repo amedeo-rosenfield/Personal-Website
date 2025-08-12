@@ -2771,22 +2771,23 @@ body.home .nav-logo {
     margin-top: 20px;
     justify-content: center;
     color: rgb(0, 123, 255);
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, rgb(0, 123, 255), rgb(0, 100, 220));
-    color: white;
-    border-radius: 25px;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     transition: all 0.3s ease;
+    opacity: 0.8;
+    flex-shrink: 0;
 }
 
 .service-card .learn-more-btn:hover {
-    background: linear-gradient(135deg, rgb(0, 100, 220), rgb(0, 80, 180));
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
-    color: white;
     opacity: 1;
+    color: #4B6F81;
 }
 
 /* Service Modal */
