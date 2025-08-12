@@ -166,6 +166,14 @@ p, li, span, a, label, input, textarea, button {
     animation: gentleFadeIn 2s ease-out 0.5s forwards;
     line-height: 1.2;
     min-height: 2.1rem; /* Ensures consistent height even when empty */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.nav-logo:hover {
+    color: #0078ff;
+    text-shadow: 0 0 20px rgba(0, 120, 255, 0.3);
+    transform: scale(1.15);
 }
 
 /* Hide nav logo on home page but maintain exact same layout */
