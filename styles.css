@@ -244,9 +244,9 @@ body.home .nav-logo {
 }
 
             .hero-container:hover {
-                transform: scale(1.03);
-                filter: drop-shadow(0 0 30px rgba(0, 120, 255, 0.1));
-            }
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 30px rgba(0, 120, 255, 0.1));
+}
 
 .hero-name {
     font-family: 'Poppins', sans-serif;
@@ -280,10 +280,10 @@ body.home .nav-logo {
 }
 
             .hero-roles:hover {
-                color: #0078ff;
-                text-shadow: 0 0 15px rgba(0, 120, 255, 0.25);
-                transform: scale(1.06);
-            }
+    color: #0078ff;
+    text-shadow: 0 0 15px rgba(0, 120, 255, 0.25);
+    transform: scale(1.12);
+}
 
 .hero-tagline {
     font-size: 1rem; /* 33% smaller than 1.5rem */
@@ -300,10 +300,10 @@ body.home .nav-logo {
 }
 
             .hero-tagline:hover {
-                color: #0078ff;
-                text-shadow: 0 0 12px rgba(0, 120, 255, 0.2);
-                transform: scale(1.04);
-            }
+    color: #0078ff;
+    text-shadow: 0 0 12px rgba(0, 120, 255, 0.2);
+    transform: scale(1.10);
+}
 
 /* Bottom action buttons - positioned below fold */
 .bottom-actions {
