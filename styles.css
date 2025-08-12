@@ -3009,16 +3009,22 @@ body.home .nav-logo {
 
 /* Contact content layout */
 .contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
 }
 
 /* Contact information */
 .contact-info {
     text-align: center;
     width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .contact-info h3,
@@ -3077,11 +3083,11 @@ body.home .nav-logo {
 /* Horizontal contact links layout */
 .contact-links-horizontal {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 40px;
-    margin-top: 30px;
+    margin-top: 40px;
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -3090,12 +3096,11 @@ body.home .nav-logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 25px 30px;
     background-color: #f8f9fa;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    flex: 1;
-    min-width: 0;
+    min-width: 200px;
 }
 
 .contact-link-item:hover {
@@ -3244,12 +3249,14 @@ body.home .nav-logo {
         flex-direction: column;
         gap: 20px;
         align-items: center;
+        max-width: 400px;
     }
     
     .contact-link-item {
         width: 100%;
-        max-width: 300px;
+        max-width: 350px;
         justify-content: center;
+        padding: 20px 25px;
     }
     
     .category-filter {
