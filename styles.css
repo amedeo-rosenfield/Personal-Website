@@ -902,6 +902,9 @@ body.home .nav-logo {
 .project-modal .project-photos {
     max-height: none;
     overflow: visible;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-modal .photos-heading {
@@ -916,12 +919,13 @@ body.home .nav-logo {
 
 .project-modal .photos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    flex: 1;
 }
 
 .project-modal .project-photo-img {
-    height: 120px;
+    height: 140px;
     object-fit: cover;
     border-radius: 6px;
 }
@@ -1044,7 +1048,7 @@ body.home .nav-logo {
 
 .project-main-content {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr 1.5fr;
     gap: 40px;
     margin-bottom: 30px;
 }
