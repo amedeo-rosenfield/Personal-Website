@@ -239,6 +239,13 @@ body.home .nav-logo {
     padding: 0 24px;
     margin: 0 auto;
     width: 100%;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.hero-container:hover {
+    transform: scale(1.01);
+    filter: drop-shadow(0 0 30px rgba(0, 120, 255, 0.1));
 }
 
 .hero-name {
@@ -250,6 +257,14 @@ body.home .nav-logo {
     letter-spacing: -0.02em;
     line-height: 1.1;
     animation: gentleFadeInUp 1.2s ease-out;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.hero-name:hover {
+    color: #0078ff;
+    text-shadow: 0 0 20px rgba(0, 120, 255, 0.3);
+    transform: scale(1.02);
 }
 
 .hero-roles {
@@ -260,6 +275,14 @@ body.home .nav-logo {
     letter-spacing: 0.05em;
     text-transform: uppercase;
     animation: gentleFadeInUp 1.2s ease-out 0.2s both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.hero-roles:hover {
+    color: #0078ff;
+    text-shadow: 0 0 15px rgba(0, 120, 255, 0.25);
+    transform: scale(1.01);
 }
 
 .hero-tagline {
@@ -272,6 +295,14 @@ body.home .nav-logo {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.hero-tagline:hover {
+    color: #0078ff;
+    text-shadow: 0 0 12px rgba(0, 120, 255, 0.2);
+    transform: scale(1.005);
 }
 
 /* Bottom action buttons - positioned below fold */
