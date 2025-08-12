@@ -3068,6 +3068,50 @@ body.home .nav-logo {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Horizontal contact links layout */
+.contact-links-horizontal {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.contact-link-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-link-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-link-item .contact-icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+.contact-link-item .contact-details h4 {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.contact-link-item .contact-details a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.contact-link-item .contact-details a:hover {
+    color: #2980b9;
+}
+
 .form-group {
     margin-bottom: 25px;
 }
@@ -3181,6 +3225,18 @@ body.home .nav-logo {
     .contact-content {
         grid-template-columns: 1fr;
         gap: 40px;
+    }
+    
+    .contact-links-horizontal {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    
+    .contact-link-item {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
     }
     
     .category-filter {
