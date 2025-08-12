@@ -229,6 +229,7 @@ body.home .nav-logo {
     background: #FFFFFF;
     overflow: hidden;
     padding-top: 35vh;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-container {
@@ -246,6 +247,11 @@ body.home .nav-logo {
             .hero-container:hover {
     transform: scale(1.03);
     filter: drop-shadow(0 0 30px rgba(0, 120, 255, 0.1));
+}
+
+/* Add blue glow to background when hovering over hero content */
+.hero-main:hover {
+    background: radial-gradient(circle at center, rgba(0, 120, 255, 0.03) 0%, rgba(0, 120, 255, 0.01) 70%, #FFFFFF 100%);
 }
 
 .hero-name {
