@@ -2762,6 +2762,33 @@ body.home .nav-logo {
     transform: scale(1.05);
 }
 
+/* DJ Service Card Button Override */
+.service-card .learn-more-btn {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin-top: 20px;
+    justify-content: center;
+    color: rgb(0, 123, 255);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, rgb(0, 123, 255), rgb(0, 100, 220));
+    color: white;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.service-card .learn-more-btn:hover {
+    background: linear-gradient(135deg, rgb(0, 100, 220), rgb(0, 80, 180));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+    color: white;
+    opacity: 1;
+}
+
 /* Service Modal */
 .service-modal {
     display: none;
