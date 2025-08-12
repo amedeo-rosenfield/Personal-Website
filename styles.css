@@ -3016,11 +3016,17 @@ body.home .nav-logo {
 }
 
 /* Contact information */
+.contact-info {
+    text-align: center;
+    width: 100%;
+}
+
 .contact-info h3,
 .contact-form-container h3 {
     font-size: 1.6rem;
     color: #2c3e50;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .contact-item {
@@ -3071,18 +3077,25 @@ body.home .nav-logo {
 /* Horizontal contact links layout */
 .contact-links-horizontal {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: 40px;
     margin-top: 30px;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .contact-link-item {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 20px;
     background-color: #f8f9fa;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1;
+    min-width: 0;
 }
 
 .contact-link-item:hover {
