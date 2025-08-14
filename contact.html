@@ -34,12 +34,6 @@
                     <p class="contact-landing-intro">
                         Let's connect, visualize the future, and make it happen.
                     </p>
-                    
-                    <!-- Soft scroll indicator -->
-                    <div class="contact-scroll-indicator" onclick="scrollToContactInfo()">
-                        <div class="scroll-arrow">↓</div>
-                        <span class="scroll-text">Contact information</span>
-                    </div>
                 </div>
             </div>
         </section>
@@ -86,19 +80,5 @@
             <p>&copy; 2024 Amedeo Rosenfield. All rights reserved.</p>
         </div>
     </footer>
-
-    <!-- Contact JavaScript -->
-    <script>
-        // Smooth scroll to contact info
-        function scrollToContactInfo() {
-            const contactSection = document.querySelector('.contact-content');
-            if (contactSection) {
-                contactSection.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
-    </script>
 </body>
 </html>

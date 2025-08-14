@@ -712,16 +712,16 @@ body.home .nav-logo {
 }
 
 /* ===== CONTACT PAGE LANDING ===== */
-.contact-landing {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    background: #FFFFFF;
-    margin-top: -100px;
-    padding-top: 100px;
-}
+        .contact-landing {
+            min-height: 67vh; /* Set to 67vh as requested */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: #FFFFFF;
+            margin-top: -100px;
+            padding-top: 100px;
+        }
 
 .contact-landing-content {
     text-align: center;
@@ -738,6 +738,14 @@ body.home .nav-logo {
     letter-spacing: -0.02em;
     line-height: 1.1;
     animation: gentleFadeInUp 1.2s ease-out 0.2s both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.contact-landing-title:hover {
+    color: #0078ff;
+    text-shadow: 0 0 20px rgba(0, 120, 255, 0.3);
+    transform: scale(1.15);
 }
 
 .contact-landing-intro {
@@ -747,7 +755,15 @@ body.home .nav-logo {
     color: #555555;
     animation: gentleFadeInUp 1.2s ease-out 0.4s both;
     max-width: 700px;
-    margin: 0 auto 60px;
+    margin: 0 auto 30px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.contact-landing-intro:hover {
+    color: #0078ff;
+    text-shadow: 0 0 15px rgba(0, 120, 255, 0.25);
+    transform: scale(1.10);
 }
 
 /* Contact scroll indicator */
@@ -1461,6 +1477,14 @@ body.home .nav-logo {
     margin-bottom: 2rem;
     line-height: 1.2;
     animation: gentleFadeInUp 1.2s ease-out 0.2s both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.photography-landing-title:hover {
+    color: #0078ff;
+    text-shadow: 0 0 20px rgba(0, 120, 255, 0.3);
+    transform: scale(1.15);
 }
 
 .photography-landing-intro {
@@ -1468,10 +1492,18 @@ body.home .nav-logo {
     line-height: 1.6;
     color: #555555;
     margin-bottom: 4rem;
-    max-width: 650px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     animation: gentleFadeInUp 1.2s ease-out 0.4s both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.photography-landing-intro:hover {
+    color: #0078ff;
+    text-shadow: 0 0 15px rgba(0, 120, 255, 0.25);
+    transform: scale(1.10);
 }
 
 /* Photography Scroll Indicator */
@@ -1542,6 +1574,14 @@ body.home .nav-logo {
     margin-bottom: 2rem;
     line-height: 1.2;
     animation: gentleFadeInUp 1.2s ease-out 0.2s both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.engineering-landing-title:hover {
+    color: #0078ff;
+    text-shadow: 0 0 20px rgba(0, 120, 255, 0.3);
+    transform: scale(1.15);
 }
 
 .engineering-landing-intro {
@@ -1553,6 +1593,14 @@ body.home .nav-logo {
     margin-left: auto;
     margin-right: auto;
     animation: gentleFadeInUp 1.2s ease-out 0.4s both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.engineering-landing-intro:hover {
+    color: #0078ff;
+    text-shadow: 0 0 15px rgba(0, 120, 255, 0.25);
+    transform: scale(1.10);
 }
 
 /* Engineering Scroll Indicator */
@@ -1623,6 +1671,14 @@ body.home .nav-logo {
     margin-bottom: 3rem;
     line-height: 1.2;
     animation: gentleFadeInUp 1.2s ease-out 0.2s both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.bio-landing-title:hover {
+    color: #0078ff;
+    text-shadow: 0 0 20px rgba(0, 120, 255, 0.3);
+    transform: scale(1.15);
 }
 
 .bio-landing-photo {
@@ -1647,6 +1703,21 @@ body.home .nav-logo {
 }
 
 .bio-landing-photo .photo-placeholder:hover {
+    transform: scale(1.05);
+}
+
+.bio-landing-photo .bio-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 20px 40px rgba(106, 123, 140, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.bio-landing-photo .bio-photo:hover {
     transform: scale(1.05);
 }
 
@@ -1713,6 +1784,11 @@ body.home .nav-logo {
     }
     
     .bio-landing-photo .photo-placeholder {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .bio-landing-photo .bio-photo {
         width: 150px;
         height: 150px;
     }
@@ -2702,6 +2778,14 @@ body.home .nav-logo {
     letter-spacing: -0.02em;
     opacity: 0;
     animation: gentleFadeInUp 1.2s ease-out 0.2s both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.dj-landing-title:hover {
+    color: #0078ff;
+    text-shadow: 0 0 20px rgba(0, 120, 255, 0.3);
+    transform: scale(1.15);
 }
 
 .dj-landing-intro {
@@ -2712,6 +2796,14 @@ body.home .nav-logo {
     margin-bottom: 40px;
     opacity: 0;
     animation: gentleFadeInUp 1.2s ease-out 0.4s both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.dj-landing-intro:hover {
+    color: #0078ff;
+    text-shadow: 0 0 15px rgba(0, 120, 255, 0.25);
+    transform: scale(1.10);
 }
 
 .dj-scroll-indicator {
@@ -3472,6 +3564,14 @@ body.home .nav-logo {
     margin-bottom: 2rem;
     line-height: 1.2;
     animation: gentleFadeInUp 1.2s ease-out 0.2s both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.volunteering-landing-title:hover {
+    color: #0078ff;
+    text-shadow: 0 0 20px rgba(0, 120, 255, 0.3);
+    transform: scale(1.15);
 }
 
 .volunteering-landing-intro {
@@ -3479,10 +3579,18 @@ body.home .nav-logo {
     line-height: 1.6;
     color: #555555;
     margin-bottom: 4rem;
-    max-width: 650px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     animation: gentleFadeInUp 1.2s ease-out 0.4s both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.volunteering-landing-intro:hover {
+    color: #0078ff;
+    text-shadow: 0 0 15px rgba(0, 120, 255, 0.25);
+    transform: scale(1.10);
 }
 
 /* Volunteering Scroll Indicator */
