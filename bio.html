@@ -27,15 +27,13 @@
     <!-- Bio Landing Section -->
     <section class="bio-landing">
         <div class="bio-landing-container">
-            <h1 class="bio-landing-title">A Journey of Growth and Innovation</h1>
-            <div class="bio-landing-photo">
+                                <h1 class="bio-landing-title">DRIVEN BY HARD WORK</h1>
+            <div class="bio-photo-container">
                 <img src="images/projects/2025-08-09_RVP_Rosenfield_Family-63.jpg" alt="Amedeo Rosenfield" class="bio-photo">
             </div>
-            
-            <!-- Scroll indicator -->
-            <div class="bio-scroll-indicator" onclick="scrollToBioContent()">
+            <div class="bio-scroll-indicator">
                 <div class="scroll-arrow">↓</div>
-                <span class="scroll-text">Scroll to read my story</span>
+                <div class="scroll-text">Scroll to learn more</div>
             </div>
         </div>
     </section>
@@ -73,15 +71,6 @@
                         My journey is one of continuous growth and adaptability, a mission to build technologies that not only advance space exploration but also transform how humans interact with intelligent systems, shaping a future where innovation and empathy coexist.
                     </p>
                 </div>
-
-                <!-- Call to Action -->
-                <div class="cta-section">
-                    <h3>Want to Connect?</h3>
-                    <p>Let's discuss opportunities and explore how we can work together.</p>
-                    <div class="cta-buttons">
-                        <a href="contact.html" class="hero-btn secondary">Contact Me</a>
-                    </div>
-                </div>
             </div>
         </section>
     </main>
@@ -92,12 +81,23 @@
             <p>&copy; 2024 Amedeo Rosenfield. All rights reserved.</p>
         </div>
     </footer>
+
     <script>
+        // Scroll to bio content when arrow is clicked
         function scrollToBioContent() {
             document.querySelector('.bio-main-content').scrollIntoView({
                 behavior: 'smooth'
             });
         }
+
+        // Add click event to scroll indicator
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollIndicator = document.querySelector('.bio-scroll-indicator');
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', scrollToBioContent);
+            }
+        });
     </script>
+
 </body>
 </html>
