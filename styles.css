@@ -420,15 +420,17 @@ img {
     line-height: 1.1;
     animation: gentleFadeInUp 1.2s ease-out;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: default;
+    cursor: pointer;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    user-select: none;
 }
 
 .bio-landing-title:hover {
-    color: #0078ff;
-    text-shadow: 0 0 20px rgba(0, 120, 255, 0.3);
-    transform: scale(1.15);
+    color: #0078ff !important;
+    text-shadow: 0 0 20px rgba(0, 120, 255, 0.3) !important;
+    transform: scale(1.15) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .bio-photo-container {
@@ -2748,13 +2750,15 @@ body.home .nav-logo {
     line-height: 1.2;
     animation: gentleFadeInUp 1.2s ease-out 0.2s both;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: default;
+    cursor: pointer;
+    user-select: none;
 }
 
 .bio-landing-title:hover {
-    color: #0078ff;
-    text-shadow: 0 0 20px rgba(0, 120, 255, 0.3);
-    transform: scale(1.15);
+    color: #0078ff !important;
+    text-shadow: 0 0 20px rgba(0, 120, 255, 0.3) !important;
+    transform: scale(1.15) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 /* Bio Scroll Indicator */
@@ -2863,13 +2867,15 @@ body.home .nav-logo {
     .bio-landing-title {
         font-size: 2.2rem;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: default;
+        cursor: pointer;
+        user-select: none;
     }
     
     .bio-landing-title:hover {
-        color: #0078ff;
-        text-shadow: 0 0 20px rgba(0, 120, 255, 0.3);
-        transform: scale(1.15);
+        color: #0078ff !important;
+        text-shadow: 0 0 20px rgba(0, 120, 255, 0.3) !important;
+        transform: scale(1.15) !important;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     
     .bio-photo-container .bio-photo {
