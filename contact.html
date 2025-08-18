@@ -6,8 +6,50 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Contact Me - Amedeo Rosenfield</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="theme.js"></script>
 </head>
-<body>
+<body class="contact">
+    <canvas id="dustCanvas"></canvas>
+    
+    <!-- Hero-like rocket background only on Contact page -->
+    <div class="hero-background">
+        <div class="floating-element element-1">
+            <svg class="rocket" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 10 C40 40, 40 80, 50 190 C60 80, 60 40, 50 10 Z" class="rocket-body" />
+                <path d="M50 130 L30 160 L50 160 Z" class="rocket-fin"/>
+                <path d="M50 130 L70 160 L50 160 Z" class="rocket-fin"/>
+                <path d="M50 190 C40 200, 60 200, 50 190 Z" class="rocket-flame"/>
+            </svg>
+            <div class="exhaust-trail"></div>
+            <div class="engine-glow"></div>
+            <div class="particle-trail"></div>
+            <div class="atmospheric-distortion"></div>
+        </div>
+        <div class="floating-element element-2">
+            <svg class="rocket" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 10 C40 40, 40 80, 50 190 C60 80, 60 40, 50 10 Z" class="rocket-body" />
+                <path d="M50 130 L30 160 L50 160 Z" class="rocket-fin"/>
+                <path d="M50 130 L70 160 L50 160 Z" class="rocket-fin"/>
+                <path d="M50 190 C40 200, 60 200, 50 190 Z" class="rocket-flame"/>
+            </svg>
+            <div class="exhaust-trail"></div>
+            <div class="engine-glow"></div>
+            <div class="particle-trail"></div>
+            <div class="atmospheric-distortion"></div>
+        </div>
+        <div class="floating-element element-3">
+            <svg class="rocket" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 10 C40 40, 40 80, 50 190 C60 80, 60 40, 50 10 Z" class="rocket-body" />
+                <path d="M50 130 L30 160 L50 160 Z" class="rocket-fin"/>
+                <path d="M50 130 L70 160 L50 160 Z" class="rocket-fin"/>
+                <path d="M50 190 C40 200, 60 200, 50 190 Z" class="rocket-flame"/>
+            </svg>
+            <div class="exhaust-trail"></div>
+            <div class="engine-glow"></div>
+            <div class="particle-trail"></div>
+            <div class="atmospheric-distortion"></div>
+        </div>
+    </div>
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
@@ -18,9 +60,9 @@
                 <li><a href="engineering.html" class="nav-link">Engineering</a></li>
                 <li><a href="volunteering.html" class="nav-link">Volunteering</a></li>
                 <li><a href="photography.html" class="nav-link">Photography</a></li>
-                <li><a href="dj.html" class="nav-link">DJ</a></li>
-                <li><a href="contact.html" class="nav-link active">Contact Me</a></li>
-            </ul>
+                                      <li><a href="dj.html" class="nav-link">DJ</a></li>
+                      <li><a href="contact.html" class="nav-link active">Contact Me</a></li>
+                  </ul>
         </div>
     </nav>
 
@@ -80,5 +122,143 @@
             <p>&copy; 2024 Amedeo Rosenfield. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Handle rocket animation transition from initial to infinite
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingElements = document.querySelectorAll('.floating-element');
+            floatingElements.forEach(element => {
+                element.addEventListener('animationend', function() {
+                    if (!this.classList.contains('initial-animation-complete')) {
+                        this.classList.add('initial-animation-complete');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Dust particles JavaScript for dark mode (same as home) -->
+    <script>
+        const canvas = document.getElementById('dustCanvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const numParticles = 20000;
+        const particles = [];
+        let activeShootingStars = 0;
+        const maxShootingStars = 5;
+
+        for (let i = 0; i < numParticles; i++) {
+            const isMotionless = Math.random() < 0.85;
+            const isMicroscopic = Math.random() < 0.8;
+            const isShootingStar = false;
+
+            let speedX = 0;
+            let speedY = 0;
+            let radius = isMicroscopic ? Math.random() * 0.1 : Math.random() * 0.5;
+            let alpha = isMicroscopic ? Math.random() * 0.3 : Math.random() * 0.6;
+
+            if (!isMotionless) {
+                speedX = (Math.random() - 0.5) * 0.1;
+                speedY = (Math.random() - 0.5) * 0.1;
+            }
+
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius,
+                alpha,
+                speedX,
+                speedY,
+                isShootingStar,
+                trail: null,
+                createdAt: Date.now()
+            });
+        }
+
+        function createShootingStar() {
+            if (activeShootingStars >= maxShootingStars) return;
+            const shootingStar = {
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 1.5 + 0.5,
+                alpha: Math.random() * 0.8 + 0.2,
+                speedX: (Math.random() - 0.5) * 3,
+                speedY: (Math.random() - 0.5) * 2,
+                isShootingStar: true,
+                trail: [],
+                createdAt: Date.now(),
+                lifespan: 3000
+            };
+            particles.push(shootingStar);
+            activeShootingStars++;
+        }
+
+        setInterval(createShootingStar, 2000);
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            const currentTime = Date.now();
+
+            const validParticles = particles.filter(p => {
+                if (p.isShootingStar) {
+                    const age = currentTime - p.createdAt;
+                    if (age > p.lifespan) {
+                        activeShootingStars--;
+                        return false;
+                    }
+                }
+                return true;
+            });
+            particles.length = 0;
+            particles.push(...validParticles);
+
+            particles.forEach(p => {
+                if (p.isShootingStar) {
+                    const age = currentTime - p.createdAt;
+                    const fadeOut = Math.max(0, 1 - (age / p.lifespan));
+                    if (p.trail.length > 0) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        for (let i = p.trail.length - 1; i >= 0; i--) {
+                            const t = p.trail[i];
+                            ctx.lineTo(t.x, t.y);
+                        }
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${p.alpha * 0.3 * fadeOut})`;
+                        ctx.lineWidth = p.radius * 0.5;
+                        ctx.stroke();
+                    }
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * fadeOut})`;
+                    ctx.fill();
+                    p.trail.push({ x: p.x, y: p.y });
+                    if (p.trail.length > 10) p.trail.shift();
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+                    ctx.fill();
+                }
+
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x < 0) p.x = width;
+                if (p.x > width) p.x = 0;
+                if (p.y < 0) p.y = height;
+                if (p.y > height) p.y = 0;
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+
 </body>
 </html>

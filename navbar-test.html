@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Theme Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="theme.js"></script>
+    <style>
+        .test-info {
+            margin-top: 120px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-primary);
+            color: var(--text-primary);
+        }
+        .test-button {
+            padding: 10px 20px;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .navbar-info {
+            background: var(--bg-secondary);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid var(--border-primary);
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-logo">Test Logo</h1>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active">Home</a></li>
+                <li><a href="#" class="nav-link">Bio</a></li>
+                <li><a href="#" class="nav-link">Engineering</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="test-info">
+        <h1>Navbar Theme Test</h1>
+        <p>Current theme: <span id="current-theme">Loading...</span></p>
+        <p>Current data-theme attribute: <span id="data-theme">Loading...</span></p>
+        <button id="theme-toggle" class="test-button">Toggle Theme</button>
+        <button onclick="logNavbarStyles()" class="test-button">Log Navbar Styles</button>
+        
+        <div class="navbar-info">
+            <h3>Navbar Computed Styles:</h3>
+            <div id="navbar-styles">Click "Log Navbar Styles" to see computed styles</div>
+        </div>
+    </div>
+    
+    <script>
+        function updateDisplay() {
+            const themeSpan = document.getElementById('current-theme');
+            const dataThemeSpan = document.getElementById('data-theme');
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            
+            themeSpan.textContent = currentTheme || 'none';
+            dataThemeSpan.textContent = currentTheme || 'none';
+        }
+        
+        function logNavbarStyles() {
+            const navbar = document.querySelector('.navbar');
+            const computedStyle = window.getComputedStyle(navbar);
+            const stylesDiv = document.getElementById('navbar-styles');
+            
+            const relevantStyles = [
+                'background-color',
+                'background',
+                'border-bottom-color',
+                'color'
+            ];
+            
+            let html = '';
+            relevantStyles.forEach(style => {
+                html += `<strong>${style}:</strong> ${computedStyle.getPropertyValue(style)}<br>`;
+            });
+            
+            stylesDiv.innerHTML = html;
+        }
+        
+        // Listen for theme changes
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+                    updateDisplay();
+                    setTimeout(logNavbarStyles, 100); // Log styles after theme change
+                }
+            });
+        });
+        
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-theme']
+        });
+        
+        // Initial update
+        updateDisplay();
+        setTimeout(logNavbarStyles, 500);
+    </script>
+</body>
+</html>

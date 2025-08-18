@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Amedeo Rosenfield - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="theme.js"></script>
 </head>
 <body class="home">
+    <!-- Dust particles canvas for dark mode -->
+    <canvas id="dustCanvas"></canvas>
+    
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
@@ -35,14 +39,63 @@
         
         <!-- Animated background elements -->
         <div class="hero-background">
-            <div class="floating-element element-1"></div>
-            <div class="floating-element element-2"></div>
-            <div class="floating-element element-3"></div>
+            <div class="floating-element element-1">
+                <svg class="rocket" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Rocket body -->
+                    <path d="M50 10 C40 40, 40 80, 50 190 C60 80, 60 40, 50 10 Z" 
+                          class="rocket-body" />
+                    <!-- Rocket fins -->
+                    <path d="M50 130 L30 160 L50 160 Z" class="rocket-fin"/>
+                    <path d="M50 130 L70 160 L50 160 Z" class="rocket-fin"/>
+                    <!-- Flame -->
+                    <path d="M50 190 C40 200, 60 200, 50 190 Z" 
+                          class="rocket-flame"/>
+                </svg>
+                <div class="exhaust-trail"></div>
+                <div class="engine-glow"></div>
+                <div class="particle-trail"></div>
+                <div class="atmospheric-distortion"></div>
+            </div>
+            <div class="floating-element element-2">
+                <svg class="rocket" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Rocket body -->
+                    <path d="M50 10 C40 40, 40 80, 50 190 C60 80, 60 40, 50 10 Z" 
+                          class="rocket-body" />
+                    <!-- Rocket fins -->
+                    <path d="M50 130 L30 160 L50 160 Z" class="rocket-fin"/>
+                    <path d="M50 130 L70 160 L50 160 Z" class="rocket-fin"/>
+                    <!-- Flame -->
+                    <path d="M50 190 C40 200, 60 200, 50 190 Z" 
+                          class="rocket-flame"/>
+                </svg>
+                <div class="exhaust-trail"></div>
+                <div class="engine-glow"></div>
+                <div class="particle-trail"></div>
+                <div class="atmospheric-distortion"></div>
+            </div>
+            <div class="floating-element element-3">
+                <svg class="rocket" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Rocket body -->
+                    <path d="M50 10 C40 40, 40 80, 50 190 C60 80, 60 40, 50 10 Z" 
+                          class="rocket-body" />
+                    <!-- Rocket fins -->
+                    <path d="M50 130 L30 160 L50 160 Z" class="rocket-fin"/>
+                    <path d="M50 130 L70 160 L50 160 Z" class="rocket-fin"/>
+                    <!-- Flame -->
+                    <path d="M50 190 C40 200, 60 200, 50 190 Z" 
+                          class="rocket-flame"/>
+                </svg>
+                <div class="exhaust-trail"></div>
+                <div class="engine-glow"></div>
+                <div class="particle-trail"></div>
+                <div class="atmospheric-distortion"></div>
+            </div>
         </div>
         
         <!-- Bottom action buttons -->
         <div class="bottom-actions">
             <a href="bio.html" class="hero-btn secondary">Learn About Me</a>
+            <button id="theme-toggle" class="hero-btn secondary">Dark Mode</button>
             <a href="engineering.html" class="hero-btn secondary">View My Work</a>
         </div>
     </main>
@@ -86,7 +139,160 @@
                     this.style.transform = 'translateY(0) scale(1)';
                 });
             });
+
+            // Handle rocket animation transition from initial to infinite
+            const floatingElements = document.querySelectorAll('.floating-element');
+            floatingElements.forEach(element => {
+                element.addEventListener('animationend', function() {
+                    if (!this.classList.contains('initial-animation-complete')) {
+                        this.classList.add('initial-animation-complete');
+                    }
+                });
+            });
         });
+    </script>
+
+    <!-- Dust particles JavaScript for dark mode -->
+    <script>
+        const canvas = document.getElementById('dustCanvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+                            // Create particles
+       const numParticles = 20000; // 100x more particles (original was 200)
+       const particles = [];
+       let activeShootingStars = 0;
+       const maxShootingStars = 5;
+
+       for (let i = 0; i < numParticles; i++) {
+         const isMotionless = Math.random() < 0.85; // 85% chance of being motionless
+         const isMicroscopic = Math.random() < 0.8; // 80% chance of being microscopically small
+         const isShootingStar = false; // We'll create shooting stars dynamically
+
+         let speedX = 0;
+         let speedY = 0;
+         let radius = isMicroscopic ? Math.random() * 0.1 : Math.random() * 0.5;
+         let alpha = isMicroscopic ? Math.random() * 0.3 : Math.random() * 0.6;
+
+         if (!isMotionless) {
+           // Regular moving particles
+           speedX = (Math.random() - 0.5) * 0.1;
+           speedY = (Math.random() - 0.5) * 0.1;
+         }
+
+         particles.push({
+           x: Math.random() * width,
+           y: Math.random() * height,
+           radius: radius,
+           alpha: alpha,
+           speedX: speedX,
+           speedY: speedY,
+           isShootingStar: isShootingStar,
+           trail: null,
+           createdAt: Date.now()
+         });
+       }
+
+       // Function to create a new shooting star
+       function createShootingStar() {
+         if (activeShootingStars >= maxShootingStars) return;
+
+         const shootingStar = {
+           x: Math.random() * width,
+           y: Math.random() * height,
+           radius: Math.random() * 1.5 + 0.5,
+           alpha: Math.random() * 0.8 + 0.2,
+           speedX: (Math.random() - 0.5) * 3,
+           speedY: (Math.random() - 0.5) * 2,
+           isShootingStar: true,
+           trail: [],
+           createdAt: Date.now(),
+           lifespan: 3000 // 3 seconds
+         };
+
+         particles.push(shootingStar);
+         activeShootingStars++;
+       }
+
+       // Create shooting stars periodically
+       setInterval(createShootingStar, 2000); // Create a new shooting star every 2 seconds
+
+               function animate() {
+         ctx.clearRect(0, 0, width, height);
+         const currentTime = Date.now();
+         
+         // Filter out expired shooting stars and update active count
+         const validParticles = particles.filter(p => {
+           if (p.isShootingStar) {
+             const age = currentTime - p.createdAt;
+             if (age > p.lifespan) {
+               activeShootingStars--;
+               return false; // Remove expired shooting star
+             }
+           }
+           return true;
+         });
+         
+         // Update particles array
+         particles.length = 0;
+         particles.push(...validParticles);
+         
+         particles.forEach(p => {
+           if (p.isShootingStar) {
+             const age = currentTime - p.createdAt;
+             const fadeOut = Math.max(0, 1 - (age / p.lifespan)); // Fade out over lifespan
+             
+             // Draw shooting star trail
+             if (p.trail.length > 0) {
+               ctx.beginPath();
+               ctx.moveTo(p.x, p.y);
+               for (let i = p.trail.length - 1; i >= 0; i--) {
+                 const trailPoint = p.trail[i];
+                 ctx.lineTo(trailPoint.x, trailPoint.y);
+               }
+               ctx.strokeStyle = `rgba(255, 255, 255, ${p.alpha * 0.3 * fadeOut})`;
+               ctx.lineWidth = p.radius * 0.5;
+               ctx.stroke();
+             }
+
+             // Draw shooting star
+             ctx.beginPath();
+             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+             ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * fadeOut})`;
+             ctx.fill();
+
+             // Update trail
+             p.trail.push({x: p.x, y: p.y});
+             if (p.trail.length > 10) {
+               p.trail.shift();
+             }
+           } else {
+             // Regular particle
+             ctx.beginPath();
+             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+             ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+             ctx.fill();
+           }
+
+           p.x += p.speedX;
+           p.y += p.speedY;
+
+           // Wrap around screen
+           if (p.x < 0) p.x = width;
+           if (p.x > width) p.x = 0;
+           if (p.y < 0) p.y = height;
+           if (p.y > height) p.y = 0;
+         });
+         requestAnimationFrame(animate);
+       }
+
+        animate();
     </script>
 </body>
 </html>

@@ -77,7 +77,7 @@
 }
 
 [data-theme="dark"] .navbar {
-    background: var(--bg-secondary) !important;
+    background: transparent !important;
     border-bottom: 1px solid var(--border-primary);
 }
 
@@ -107,6 +107,9 @@ html {
     font-size: 16px;
     overflow-x: hidden; /* Prevent horizontal scroll */
     width: 100%;
+    /* iOS Safari improvements */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -115,16 +118,18 @@ body {
     color: var(--text-secondary);
     background: var(--bg-primary);
     transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
-    /* Very subtle aerospace blueprint pattern */
-    background-image: 
-        radial-gradient(circle at 1px 1px, var(--bg-pattern) 1px, transparent 0);
-    background-size: 50px 50px;
+    /* Remove pattern for uniform white background */
+    background-image: none;
+    background-size: auto;
     font-weight: 400;
     letter-spacing: -0.005em;
     overflow-x: hidden; /* Prevent horizontal scroll */
     width: 100%;
     min-height: 100vh;
     transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    /* Ensure proper scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+    position: relative;
 }
 
 /* Universal responsive container */
@@ -928,7 +933,7 @@ img {
     top: 0;
     left: 0;
     right: 0;
-    background: var(--bg-secondary) !important;
+    background: transparent !important;
     backdrop-filter: blur(20px) saturate(180%);
     border-bottom: 1px solid var(--border-primary);
     z-index: 1000;
@@ -1132,14 +1137,14 @@ body.home .nav-logo {
 
 /* ===== HERO HOMEPAGE STYLES ===== */
 .hero-main {
-    min-height: 140vh;
+    min-height: 100vh;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     position: relative;
     background: var(--bg-primary);
-    overflow: hidden;
-    padding-top: 35vh;
+    overflow: visible;
+    padding: 20vh 0 10vh 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color var(--transition-speed) ease;
     width: 100%;
     box-sizing: border-box;
@@ -1148,8 +1153,8 @@ body.home .nav-logo {
 /* Hero responsive adjustments */
 @media (max-width: 1023px) {
     .hero-main {
-        min-height: 130vh;
-        padding-top: 30vh;
+        min-height: 100vh;
+        padding: 15vh 0 8vh 0;
     }
     
     .hero-container {
@@ -1160,7 +1165,7 @@ body.home .nav-logo {
 @media (max-width: 767px) {
     .hero-main {
         min-height: 100vh;
-        padding-top: 25vh;
+        padding: 12vh 0 6vh 0;
     }
     
     .hero-container {
@@ -1171,7 +1176,7 @@ body.home .nav-logo {
 @media (max-width: 480px) {
     .hero-main {
         min-height: 100vh;
-        padding-top: 20vh;
+        padding: 10vh 0 5vh 0;
     }
     
     .hero-container {
@@ -1182,7 +1187,7 @@ body.home .nav-logo {
 @media (max-width: 319px) {
     .hero-main {
         min-height: 100vh;
-        padding-top: 15vh;
+        padding: 8vh 0 4vh 0;
     }
     
     .hero-container {
@@ -1209,7 +1214,7 @@ body.home .nav-logo {
 
 /* Add blue glow to background when hovering over hero content */
 .hero-main:hover {
-    background: var(--gradient-accent);
+    background: var(--bg-primary);
 }
 
 .hero-name {
@@ -1368,86 +1373,180 @@ button.hero-btn:hover {
 .floating-element {
     position: absolute;
     pointer-events: none;
-    opacity: 0;
-    animation: spaceshipLaunch 8s ease-in-out infinite;
+    opacity: 0.35;
+    animation: rocketFlightInitial 12s cubic-bezier(0.42, 0, 1, 1) forwards;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    z-index: 1001; /* Higher than navbar to pass through */
+}
+
+.floating-element.initial-animation-complete {
+    animation: rocketFlight 12s cubic-bezier(0.42, 0, 1, 1) infinite;
 }
 
 .element-1 {
-    width: 60px;
-    height: 40px;
-    top: 80%;
-    left: 10%;
+    width: 50px;
+    height: 120px;
+    top: 110vh;
+    left: 15%;
     animation-delay: 0s;
 }
 
 .element-2 {
-    width: 80px;
-    height: 50px;
-    top: 85%;
-    left: 30%;
-    animation-delay: 2.5s;
+    width: 60px;
+    height: 150px;
+    top: 110vh;
+    left: 45%;
+    animation-delay: 3s;
 }
 
 .element-3 {
-    width: 50px;
-    height: 35px;
-    top: 90%;
-    left: 60%;
-    animation-delay: 5s;
+    width: 45px;
+    height: 110px;
+    top: 110vh;
+    left: 75%;
+    animation-delay: 6s;
 }
 
-/* Spaceship shape using CSS */
-.floating-element::before {
-    content: '';
-    position: absolute;
+/* SVG Rocket Styles */
+.floating-element .rocket {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    clip-path: polygon(0% 50%, 20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%);
-    border-radius: 4px;
-    box-shadow: 0 0 20px var(--shadow-accent);
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-/* Engine glow effect */
-.floating-element::after {
-    content: '';
+/* Element 1 - SpaceX-style rocket (silver/white with blue glow) */
+.element-1 .rocket-body,
+.element-1 .rocket-fin {
+    stroke: #00f6ff;  /* neon blue */
+    fill: none;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 4px #00f6ff) drop-shadow(0 0 8px #00f6ff);
+}
+
+.element-1 .rocket-flame {
+    fill: #ff3300;
+    filter: drop-shadow(0 0 4px #ff3300) drop-shadow(0 0 10px #ff2200);
+    animation: flame-flicker 0.2s infinite alternate;
+}
+
+/* Element 2 - NASA-style rocket (orange/white with orange glow) */
+.element-2 .rocket-body,
+.element-2 .rocket-fin {
+    stroke: #ff6600;  /* neon orange */
+    fill: none;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 4px #ff6600) drop-shadow(0 0 8px #ff6600);
+}
+
+.element-2 .rocket-flame {
+    fill: #ff3300;
+    filter: drop-shadow(0 0 4px #ff3300) drop-shadow(0 0 10px #ff2200);
+    animation: flame-flicker 0.2s infinite alternate;
+}
+
+/* Element 3 - Modern spacecraft (blue/white with purple glow) */
+.element-3 .rocket-body,
+.element-3 .rocket-fin {
+    stroke: #9933ff;  /* neon purple */
+    fill: none;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 4px #9933ff) drop-shadow(0 0 8px #9933ff);
+}
+
+.element-3 .rocket-flame {
+    fill: #ff3300;
+    filter: drop-shadow(0 0 4px #ff3300) drop-shadow(0 0 10px #ff2200);
+    animation: flame-flicker 0.2s infinite alternate;
+}
+
+@keyframes flame-flicker {
+    0%   { transform: scaleY(0.8) scaleX(0.9) translateY(0px); opacity: 0.8; }
+    100% { transform: scaleY(1.2) scaleX(1.1) translateY(2px); opacity: 1; }
+}
+
+/* Engine exhaust trail */
+.floating-element .exhaust-trail {
     position: absolute;
-    bottom: -10px;
+    bottom: -60px;
     left: 50%;
     transform: translateX(-50%);
     width: 8px;
-    height: 20px;
-    background: radial-gradient(ellipse at center, var(--accent-primary) 0%, transparent 70%);
-    animation: engineGlow 0.5s ease-in-out infinite alternate;
+    height: 60px;
+    background: linear-gradient(180deg, 
+        rgba(255, 100, 0, 0.8) 0%, 
+        rgba(255, 150, 0, 0.6) 30%, 
+        rgba(255, 200, 0, 0.4) 60%, 
+        rgba(255, 255, 255, 0.2) 100%);
+    border-radius: 50%;
+    animation: exhaustGlow 0.3s ease-in-out infinite alternate;
+    filter: blur(1px);
 }
 
-@keyframes spaceshipLaunch {
+/* Engine glow effect */
+.floating-element .engine-glow {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 25px;
+    background: radial-gradient(ellipse at center, 
+        rgba(255, 100, 0, 0.9) 0%, 
+        rgba(255, 150, 0, 0.7) 30%, 
+        rgba(255, 200, 0, 0.4) 60%, 
+        transparent 100%);
+    animation: engineGlow 0.2s ease-in-out infinite alternate;
+    filter: blur(2px);
+}
+
+@keyframes rocketFlight {
     0% {
-        opacity: 0;
-        transform: translateY(0) translateX(0) rotate(0deg);
-    }
-    10% {
-        opacity: 1;
-        transform: translateY(-20px) translateX(0) rotate(0deg);
-    }
-    90% {
-        opacity: 1;
-        transform: translateY(-100vh) translateX(100px) rotate(15deg);
+        transform: translate3d(0, 0, 0);
+        opacity: 0.35;
     }
     100% {
-        opacity: 0;
-        transform: translateY(-120vh) translateX(200px) rotate(30deg);
+        transform: translate3d(0, -120vh, 0);
+        opacity: 0.2;
+    }
+}
+
+@keyframes rocketFlightInitial {
+    0% {
+        transform: translate3d(0, -30vh, 0); /* Start 1/4 through the motion */
+        opacity: 0.35;
+    }
+    100% {
+        transform: translate3d(0, -120vh, 0);
+        opacity: 0.2;
     }
 }
 
 @keyframes engineGlow {
     0% {
-        opacity: 0.6;
+        opacity: 0.7;
         transform: translateX(-50%) scale(1);
+        filter: blur(2px);
     }
     100% {
         opacity: 1;
-        transform: translateX(-50%) scale(1.2);
+        transform: translateX(-50%) scale(1.3);
+        filter: blur(3px);
+    }
+}
+
+@keyframes exhaustGlow {
+    0% {
+        opacity: 0.6;
+        height: 60px;
+        filter: blur(1px);
+    }
+    100% {
+        opacity: 1;
+        height: 80px;
+        filter: blur(2px);
     }
 }
 
@@ -5324,4 +5423,416 @@ button.hero-btn:hover {
         font-size: 1.4rem;
         margin-bottom: 25px;
     }
+}
+
+/* ===== iOS SPECIFIC FIXES ===== */
+/* Ensure proper scrolling and navigation on iPhone */
+@supports (-webkit-touch-callout: none) {
+    /* iOS Safari specific styles */
+    body {
+        /* Prevent iOS Safari from hiding content behind the address bar */
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+    
+    .hero-main {
+        /* Ensure hero section is properly positioned on iOS */
+        min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+        padding-top: calc(env(safe-area-inset-top) + 10vh);
+        padding-bottom: calc(env(safe-area-inset-bottom) + 5vh);
+    }
+    
+    /* Ensure navbar doesn't interfere with content */
+    .navbar {
+        padding-top: env(safe-area-inset-top);
+    }
+    
+    /* Fix for iOS Safari viewport height issues */
+    .hero-main,
+    .section {
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* Additional mobile fixes for better scrolling */
+@media (max-width: 480px) {
+    /* Ensure content is scrollable on small screens */
+    body {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    
+    /* Fix hero section positioning on mobile */
+    .hero-main {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 15vh 0 10vh 0;
+    }
+    
+    /* Ensure hero content is visible and scrollable */
+    .hero-container {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 16px;
+    }
+    
+    /* Make sure text is readable on mobile */
+    .hero-name {
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-bottom: 12px;
+    }
+    
+    .hero-roles {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 20px;
+    }
+    
+    /* Ensure bottom actions are accessible */
+    .bottom-actions {
+        position: relative;
+        z-index: 10;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .hero-btn {
+        width: 100%;
+        max-width: 200px;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Particle trail effect */
+.floating-element .particle-trail {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 40px;
+    background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.8) 0%, 
+        rgba(255, 200, 100, 0.6) 40%, 
+        rgba(255, 150, 50, 0.4) 70%, 
+        transparent 100%);
+    border-radius: 50%;
+    animation: particleTrail 0.4s ease-in-out infinite alternate;
+    filter: blur(0.5px);
+}
+
+/* Atmospheric distortion effect */
+.floating-element .atmospheric-distortion {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 30px;
+    background: radial-gradient(ellipse at center, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(200, 200, 255, 0.05) 50%, 
+        transparent 100%);
+    animation: atmosphericDistortion 0.6s ease-in-out infinite alternate;
+    filter: blur(3px);
+}
+
+@keyframes particleTrail {
+    0% {
+        opacity: 0.4;
+        height: 40px;
+        transform: translateX(-50%) scaleY(1);
+    }
+    100% {
+        opacity: 0.8;
+        height: 60px;
+        transform: translateX(-50%) scaleY(1.2);
+    }
+}
+
+@keyframes atmosphericDistortion {
+    0% {
+        opacity: 0.3;
+        transform: translateX(-50%) scale(1);
+        filter: blur(3px);
+    }
+    100% {
+        opacity: 0.6;
+        transform: translateX(-50%) scale(1.1);
+        filter: blur(4px);
+    }
+}
+
+/* Enhanced rocket launch with more realistic physics */
+@keyframes rocketLaunch {
+    0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.8);
+    }
+    3% {
+        opacity: 0.3;
+        transform: translateY(-5px) translateX(0) rotate(0deg) scale(0.85);
+    }
+    8% {
+        opacity: 1;
+        transform: translateY(-20px) translateX(2px) rotate(1deg) scale(0.9);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(-80px) translateX(8px) rotate(3deg) scale(1);
+    }
+    35% {
+        opacity: 1;
+        transform: translateY(-200px) translateX(18px) rotate(6deg) scale(1.1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-400px) translateX(35px) rotate(10deg) scale(1.2);
+    }
+    65% {
+        opacity: 0.9;
+        transform: translateY(-600px) translateX(55px) rotate(14deg) scale(1.3);
+    }
+    80% {
+        opacity: 0.7;
+        transform: translateY(-800px) translateX(80px) rotate(17deg) scale(1.4);
+    }
+    90% {
+        opacity: 0.4;
+        transform: translateY(-950px) translateX(110px) rotate(19deg) scale(1.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-1100px) translateX(140px) rotate(20deg) scale(1.6);
+    }
+}
+
+/* Different rocket designs for variety */
+.element-1::before {
+    /* SpaceX-style rocket with white body and black fins */
+    background: linear-gradient(180deg, 
+        #ffffff 0%, 
+        #f8f9fa 15%, 
+        #e9ecef 35%, 
+        #dee2e6 55%, 
+        #ced4da 75%, 
+        #adb5bd 90%, 
+        #6c757d 100%);
+    clip-path: polygon(
+        50% 0%,    /* Sharp nose cone */
+        45% 8%,    /* Nose cone */
+        40% 18%,   /* Nose cone */
+        35% 28%,   /* Nose cone */
+        30% 38%,   /* Nose cone */
+        25% 48%,   /* Nose cone */
+        20% 58%,   /* Nose cone */
+        15% 68%,   /* Nose cone */
+        10% 78%,   /* Nose cone */
+        8% 88%,    /* Nose cone */
+        5% 98%,    /* Nose cone */
+        0% 100%,   /* Rocket base */
+        100% 100%, /* Rocket base */
+        95% 98%,   /* Rocket base */
+        92% 88%,   /* Rocket base */
+        90% 78%,   /* Rocket base */
+        85% 68%,   /* Rocket base */
+        80% 58%,   /* Rocket base */
+        75% 48%,   /* Rocket base */
+        70% 38%,   /* Rocket base */
+        65% 28%,   /* Rocket base */
+        60% 18%,   /* Rocket base */
+        55% 8%     /* Nose cone */
+    );
+}
+
+.element-2::before {
+    /* NASA-style rocket with orange/white color scheme */
+    background: linear-gradient(180deg, 
+        #ffffff 0%, 
+        #fff8f0 10%, 
+        #ffe8cc 25%, 
+        #ffd699 40%, 
+        #ffc266 55%, 
+        #ffad33 70%, 
+        #ff9900 85%, 
+        #e68a00 100%);
+    clip-path: polygon(
+        50% 0%,    /* Rounded nose cone */
+        48% 5%,    /* Nose cone */
+        45% 12%,   /* Nose cone */
+        40% 20%,   /* Nose cone */
+        35% 30%,   /* Nose cone */
+        30% 40%,   /* Nose cone */
+        25% 50%,   /* Nose cone */
+        20% 60%,   /* Nose cone */
+        15% 70%,   /* Nose cone */
+        10% 80%,   /* Nose cone */
+        8% 90%,    /* Nose cone */
+        5% 100%,   /* Rocket base */
+        100% 100%, /* Rocket base */
+        95% 90%,   /* Rocket base */
+        92% 80%,   /* Rocket base */
+        90% 70%,   /* Rocket base */
+        85% 60%,   /* Rocket base */
+        80% 50%,   /* Rocket base */
+        75% 40%,   /* Rocket base */
+        70% 30%,   /* Rocket base */
+        65% 20%,   /* Rocket base */
+        60% 12%,   /* Rocket base */
+        55% 5%     /* Nose cone */
+    );
+}
+
+.element-3::before {
+    /* Modern spacecraft with metallic finish */
+    background: linear-gradient(180deg, 
+        #f8f9fa 0%, 
+        #e9ecef 15%, 
+        #dee2e6 30%, 
+        #ced4da 45%, 
+        #adb5bd 60%, 
+        #6c757d 75%, 
+        #495057 90%, 
+        #343a40 100%);
+    clip-path: polygon(
+        50% 0%,    /* Pointed nose cone */
+        42% 10%,   /* Nose cone */
+        35% 20%,   /* Nose cone */
+        28% 30%,   /* Nose cone */
+        22% 40%,   /* Nose cone */
+        18% 50%,   /* Nose cone */
+        15% 60%,   /* Nose cone */
+        12% 70%,   /* Nose cone */
+        10% 80%,   /* Nose cone */
+        8% 90%,    /* Nose cone */
+        5% 100%,   /* Rocket base */
+        100% 100%, /* Rocket base */
+        95% 90%,   /* Rocket base */
+        90% 80%,   /* Rocket base */
+        85% 70%,   /* Rocket base */
+        80% 60%,   /* Rocket base */
+        75% 50%,   /* Rocket base */
+        70% 40%,   /* Rocket base */
+        65% 30%,   /* Rocket base */
+        60% 20%,   /* Rocket base */
+        55% 10%    /* Nose cone */
+    );
+}
+
+/* Different fin designs for each rocket */
+.element-1::after {
+    /* SpaceX-style grid fins */
+    background: linear-gradient(180deg, 
+        #212529 0%, 
+        #343a40 50%, 
+        #495057 100%);
+    clip-path: polygon(
+        0% 0%,     /* Left fin */
+        25% 0%,    /* Left fin */
+        30% 100%,  /* Left fin */
+        0% 100%,   /* Left fin */
+        0% 0%,     /* Center gap */
+        40% 0%,    /* Center gap */
+        40% 100%,  /* Center gap */
+        0% 100%,   /* Center gap */
+        0% 0%,     /* Right fin */
+        60% 0%,    /* Right fin */
+        65% 100%,  /* Right fin */
+        40% 100%,  /* Right fin */
+        40% 0%,    /* Right fin */
+        75% 0%,    /* Right fin */
+        80% 100%,  /* Right fin */
+        60% 100%,  /* Right fin */
+        60% 0%,    /* Right fin */
+        100% 0%,   /* Right fin */
+        100% 100%, /* Right fin */
+        75% 100%   /* Right fin */
+    );
+}
+
+.element-2::after {
+    /* Traditional rocket fins */
+    background: linear-gradient(180deg, 
+        #495057 0%, 
+        #343a40 50%, 
+        #212529 100%);
+    clip-path: polygon(
+        0% 0%,     /* Left fin */
+        20% 0%,    /* Left fin */
+        25% 100%,  /* Left fin */
+        0% 100%,   /* Left fin */
+        0% 0%,     /* Center gap */
+        50% 0%,    /* Center gap */
+        50% 100%,  /* Center gap */
+        0% 100%,   /* Center gap */
+        0% 0%,     /* Right fin */
+        80% 0%,    /* Right fin */
+        85% 100%,  /* Right fin */
+        50% 100%,  /* Right fin */
+        50% 0%,    /* Right fin */
+        100% 0%,   /* Right fin */
+        100% 100%, /* Right fin */
+        80% 100%   /* Right fin */
+    );
+}
+
+.element-3::after {
+    /* Modern delta fins */
+    background: linear-gradient(180deg, 
+        #6c757d 0%, 
+        #495057 50%, 
+        #343a40 100%);
+    clip-path: polygon(
+        0% 0%,     /* Left fin */
+        30% 0%,    /* Left fin */
+        35% 100%,  /* Left fin */
+        0% 100%,   /* Left fin */
+        0% 0%,     /* Center gap */
+        35% 0%,    /* Center gap */
+        35% 100%,  /* Center gap */
+        0% 100%,   /* Center gap */
+        0% 0%,     /* Right fin */
+        70% 0%,    /* Right fin */
+        75% 100%,  /* Right fin */
+        35% 100%,  /* Right fin */
+        35% 0%,    /* Right fin */
+        100% 0%,   /* Right fin */
+        100% 100%, /* Right fin */
+        70% 100%   /* Right fin */
+    );
+}
+
+/* Dust particles for dark mode */
+#dustCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* allows clicks through canvas */
+    z-index: 1; /* Behind everything but visible through transparent navbar */
+}
+
+/* Only show dust particles in dark mode */
+@media (prefers-color-scheme: light) {
+    #dustCanvas {
+        display: none;
+    }
+}
+
+/* Also hide dust when theme toggle is not dark */
+html:not([data-theme="dark"]) #dustCanvas {
+    display: none;
 }

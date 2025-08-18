@@ -6,8 +6,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Photography - Amedeo Rosenfield</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="theme.js"></script>
 </head>
 <body>
+    <canvas id="dustCanvas"></canvas>
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
@@ -18,9 +20,9 @@
                 <li><a href="engineering.html" class="nav-link">Engineering</a></li>
                 <li><a href="volunteering.html" class="nav-link">Volunteering</a></li>
                 <li><a href="photography.html" class="nav-link active">Photography</a></li>
-                <li><a href="dj.html" class="nav-link">DJ</a></li>
-                <li><a href="contact.html" class="nav-link">Contact Me</a></li>
-            </ul>
+                                      <li><a href="dj.html" class="nav-link">DJ</a></li>
+                      <li><a href="contact.html" class="nav-link">Contact Me</a></li>
+                  </ul>
         </div>
     </nav>
 
@@ -649,7 +651,131 @@
         }
 
     </script>
+
+    <!-- Dust particles JavaScript for dark mode -->
+    <script>
+        const canvas = document.getElementById('dustCanvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const numParticles = 20000;
+        const particles = [];
+        let activeShootingStars = 0;
+        const maxShootingStars = 5;
+
+        for (let i = 0; i < numParticles; i++) {
+            const isMotionless = Math.random() < 0.85;
+            const isMicroscopic = Math.random() < 0.8;
+            const isShootingStar = false;
+
+            let speedX = 0;
+            let speedY = 0;
+            let radius = isMicroscopic ? Math.random() * 0.1 : Math.random() * 0.5;
+            let alpha = isMicroscopic ? Math.random() * 0.3 : Math.random() * 0.6;
+
+            if (!isMotionless) {
+                speedX = (Math.random() - 0.5) * 0.1;
+                speedY = (Math.random() - 0.5) * 0.1;
+            }
+
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius,
+                alpha,
+                speedX,
+                speedY,
+                isShootingStar,
+                trail: null,
+                createdAt: Date.now()
+            });
+        }
+
+        function createShootingStar() {
+            if (activeShootingStars >= maxShootingStars) return;
+            const shootingStar = {
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 1.5 + 0.5,
+                alpha: Math.random() * 0.8 + 0.2,
+                speedX: (Math.random() - 0.5) * 3,
+                speedY: (Math.random() - 0.5) * 2,
+                isShootingStar: true,
+                trail: [],
+                createdAt: Date.now(),
+                lifespan: 3000
+            };
+            particles.push(shootingStar);
+            activeShootingStars++;
+        }
+
+        setInterval(createShootingStar, 2000);
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            const currentTime = Date.now();
+
+            const validParticles = particles.filter(p => {
+                if (p.isShootingStar) {
+                    const age = currentTime - p.createdAt;
+                    if (age > p.lifespan) {
+                        activeShootingStars--;
+                        return false;
+                    }
+                }
+                return true;
+            });
+            particles.length = 0;
+            particles.push(...validParticles);
+
+            particles.forEach(p => {
+                if (p.isShootingStar) {
+                    const age = currentTime - p.createdAt;
+                    const fadeOut = Math.max(0, 1 - (age / p.lifespan));
+                    if (p.trail.length > 0) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        for (let i = p.trail.length - 1; i >= 0; i--) {
+                            const t = p.trail[i];
+                            ctx.lineTo(t.x, t.y);
+                        }
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${p.alpha * 0.3 * fadeOut})`;
+                        ctx.lineWidth = p.radius * 0.5;
+                        ctx.stroke();
+                    }
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * fadeOut})`;
+                    ctx.fill();
+                    p.trail.push({ x: p.x, y: p.y });
+                    if (p.trail.length > 10) p.trail.shift();
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+                    ctx.fill();
+                }
+
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x < 0) p.x = width;
+                if (p.x > width) p.x = 0;
+                if (p.y < 0) p.y = height;
+                if (p.y > height) p.y = 0;
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 </body>
+</html>
 </html>
 
 

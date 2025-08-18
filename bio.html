@@ -6,8 +6,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>About Me - Amedeo Rosenfield</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="theme.js"></script>
 </head>
 <body>
+    <canvas id="dustCanvas"></canvas>
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
@@ -18,16 +20,16 @@
                 <li><a href="engineering.html" class="nav-link">Engineering</a></li>
                 <li><a href="volunteering.html" class="nav-link">Volunteering</a></li>
                 <li><a href="photography.html" class="nav-link">Photography</a></li>
-                <li><a href="dj.html" class="nav-link">DJ</a></li>
-                <li><a href="contact.html" class="nav-link">Contact Me</a></li>
-            </ul>
+                                      <li><a href="dj.html" class="nav-link">DJ</a></li>
+                      <li><a href="contact.html" class="nav-link">Contact Me</a></li>
+                  </ul>
         </div>
     </nav>
 
     <!-- Bio Landing Section -->
     <section class="bio-landing">
         <div class="bio-landing-container">
-            <h1 class="bio-landing-title">DRIVEN BY HARD WORK</h1>
+                         <h1 class="bio-landing-title">Curious. Creative. Committed.</h1>
             <div class="bio-scroll-indicator">
                 <div class="scroll-arrow">↓</div>
                 <div class="scroll-text">Scroll to learn more</div>
@@ -44,56 +46,54 @@
                 </div>
                 <div class="bio-content-layout">
                     <div class="bio-story-text">
-                        <div class="bio-section">
-                            <h2 class="bio-section-title">Early Years & Education</h2>
-                            <p>
-                                Born in 2004 in sunny San Diego, California, and raised in Silver Spring, Maryland, my story began with a spirit of exploration and determination. At Blair High School, where I was part of the Communication Arts Magnet Program and earned MVP honors on the lacrosse team, I learned early on the power of dedication, teamwork, and pushing beyond limits, qualities that continue to shape my path today.
-                            </p>
-                            <p>
-                                Summers spent traveling solo to Italy to visit family in Bologna helped me cultivate independence and cultural awareness, teaching me to adapt and thrive in new environments. These experiences gave me a global perspective and the confidence to navigate change, skills vital in today's fast-paced world.
-                            </p>
-                        </div>
+                                                                  <div class="bio-section">
+                                                                                             <h2 class="bio-section-title">Foundations & Growth</h2>
+                                              <p>
+                                                  Born in 2004 in San Diego, California, and raised in Silver Spring, Maryland, I first attended Flora Singer Elementary School, where I earned the Gold Presidential Award for Excellence signed by Barack Obama. I then attended Sligo Middle School and Blair High School, where I was part of the Communication Arts Magnet Program. At Blair, I earned MVP and All-County honors on the lacrosse team and contributed to the Blair Network Communications, creating short sports and informational packages that were aired through the school, filming and editing myself while also taking photos for sports events. Summers were spent working in various roles, including a reselling business, landscaping, lifeguarding, and photography, as well as traveling solo to Torino, Italy, to visit family. These experiences helped me develop independence, responsibility, and adaptability.
+                                              </p>
+                                          </div>
 
-                        <div class="bio-section">
-                            <h2 class="bio-section-title">Entrepreneurial Spirit</h2>
-                            <p>
-                                Entrepreneurship became a natural outlet for my drive to create and grow. From digitization services to reselling ventures and yard work businesses, I learned invaluable lessons about resilience, calculated risk-taking, and hard work.
-                            </p>
-                        </div>
+                        
 
-                        <div class="bio-section">
-                            <h2 class="bio-section-title">Academic Journey</h2>
-                            <p>
-                                Currently, I am pursuing a B.S. in Aerospace Engineering with a minor in Robotics and Autonomous Systems at the University of Maryland. College has been a launchpad for hands-on innovation, designing spacecraft systems, mastering CAD modeling, additive manufacturing, and building robotics suited for lunar and Martian environments.
-                            </p>
-                        </div>
+                                                                                                   <div class="bio-section">
+                                                             <h2 class="bio-section-title">Engineering Journey</h2>
+                             <p>
+                                 Started at the University of Maryland as a business major but quickly realized my true passion lay in aerospace and reusable rocket systems. This drive led me to transfer into the James A. Clark School of Engineering, where I've thrived, finding daily excitement in designing, building, and learning. I am on track to graduate in May 2027.
+                             </p>
+                             <p>
+                                 Last semester, I studied abroad in Madrid, continuing my aerospace coursework while immersing myself in a new culture and traveling on weekends—experiences that broadened my perspective and fueled my curiosity. With the recent surge in AI, I have been captivated by the technology and, building on my love for autonomous systems, chose a minor in Robotics and Autonomous Systems to push the boundaries of what I can create and innovate.
+                             </p>
+                         </div>
 
-                        <div class="bio-section">
-                            <h2 class="bio-section-title">Professional Experience</h2>
-                            <p>
-                                My passion for innovation deepened during my internship in Bologna at Glenair Italia, where I designed precise 3D models and detailed 2D technical drawings for aerospace and defense interconnectors. The full internship was conducted in Italian, enriching both my language skills and professional adaptability in an international engineering setting.
-                            </p>
-                            <p>
-                                Today, I am interning at Space Copy working directly under CEO Madison Feehan to design lunar printing machines using additive manufacturing technologies. This role embodies my commitment to pushing aerospace boundaries and embracing cutting-edge innovation.
-                            </p>
-                        </div>
+                                                                                                   <div class="bio-section">
+                                                             <h2 class="bio-section-title">Professional Experience</h2>
+                             <p>
+                                 My passion for innovation deepened during my internship in Bologna at Glenair Italia, where I designed precise 3D models and detailed 2D technical drawings for aerospace and defense interconnectors. The entire internship was conducted in Italian, giving me the opportunity to apply my language skills in a professional engineering environment and develop adaptability in an international, high-performance setting. This experience strengthened my technical expertise while teaching me how to navigate cross-cultural collaboration and engineering challenges.
+                             </p>
+                             <p>
+                                 Currently, I am interning at Space Copy, working directly under CEO Madison Feehan with weekly exposure and mentorship that allows me to contribute to designing lunar printing machines using advanced additive manufacturing technologies. This role fully embodies my commitment to pushing the boundaries of aerospace engineering and engaging with cutting-edge innovation on a global scale.
+                             </p>
+                             <p>
+                                 Alongside my academic and internship experiences, I have spent the past year working at Il Canale, balancing 10–15 hours per week with a full course load. This experience has honed my time management, customer service skills, and ability to perform consistently under pressure while maintaining focus on my academic and engineering pursuits.
+                             </p>
+                         </div>
 
-                        <div class="bio-section">
-                            <h2 class="bio-section-title">AI & Innovation</h2>
-                            <p>
-                                Parallel to my engineering pursuits, I am deeply engaged in AI engineering, firmly believing that artificial intelligence will revolutionize every job as we know it. Adaptability is key in this rapidly evolving landscape, and I am proud to be on the front lines of this revolution. I am currently developing an emotional intelligence powered productivity coach and coding personalized websites, integrating new AI tools into every project I undertake.
-                            </p>
-                        </div>
+                                                 <div class="bio-section">
+                                                           <h2 class="bio-section-title">AI & Technology Exploration</h2>
+                             <p>
+                                 This summer, my passion for artificial intelligence has surged as I've witnessed groundbreaking technologies being released and developed on a near-weekly basis. I've devoted myself to reading, learning new coding skills, and exploring how to implement AI tools into every project I undertake, maximizing productivity while staying ahead of the curve in a world where AI will touch nearly every aspect of life. I've taken on personal AI projects, including developing an emotional intelligence-powered productivity coach, and even leveraged AI to build and launch this website in just 12 hours, a task I never imagined possible. AI has empowered me to express my creativity and problem-solving in ways that were unimaginable before, fueling my drive to innovate at the intersection of technology, engineering, and human experience.
+                             </p>
+                         </div>
 
-                        <div class="bio-section">
-                            <h2 class="bio-section-title">Personal Growth</h2>
-                            <p>
-                                Beyond academics and engineering, I find balance through music production, photography, and regular gym sessions, activities that fuel my creativity and resilience.
-                            </p>
-                            <p>
-                                My journey is one of continuous growth and adaptability, a mission to build technologies that not only advance space exploration but also transform how humans interact with intelligent systems, shaping a future where innovation and empathy coexist.
-                            </p>
-                        </div>
+                                                 <div class="bio-section">
+                                                           <h2 class="bio-section-title">Creative & Personal Growth</h2>
+                             <p>
+                                 I have a strong passion for photography and have recently begun taking on professional gigs while marketing myself locally, turning a creative outlet into both skill development and income. Music is another key passion; I taught myself how to DJ and personally approached local venues, landing my first few gigs before studying abroad in Madrid. This experience helped me overcome stage fright, one of my biggest personal challenges, and taught me the power of putting myself in uncomfortable situations, something that has paid off immensely, giving me confidence to tackle any challenge.
+                             </p>
+                             <p>
+                                 I also dedicate myself to weightlifting, inspired by figures like Arnold Schwarzenegger and Sam Sulek. I am captivated by the discipline and commitment it requires, where consistent daily effort, much like in aerospace projects or AI applications, yields results only over time. I strive to implement this principle in all areas of my life: consistently pushing boundaries, tackling challenges I once thought impossible, and embracing growth through discomfort. These experiences have reinforced my belief that progress, in any domain, comes from persistence, focus, and the willingness to step beyond one's comfort zone.
+                             </p>
+                         </div>
                     </div>
                 </div>
             </div>
@@ -122,6 +122,129 @@
                 scrollIndicator.addEventListener('click', scrollToBioContent);
             }
         });
+    </script>
+
+    <!-- Dust particles JavaScript for dark mode -->
+    <script>
+        const canvas = document.getElementById('dustCanvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const numParticles = 20000;
+        const particles = [];
+        let activeShootingStars = 0;
+        const maxShootingStars = 5;
+
+        for (let i = 0; i < numParticles; i++) {
+            const isMotionless = Math.random() < 0.85;
+            const isMicroscopic = Math.random() < 0.8;
+            const isShootingStar = false;
+
+            let speedX = 0;
+            let speedY = 0;
+            let radius = isMicroscopic ? Math.random() * 0.1 : Math.random() * 0.5;
+            let alpha = isMicroscopic ? Math.random() * 0.3 : Math.random() * 0.6;
+
+            if (!isMotionless) {
+                speedX = (Math.random() - 0.5) * 0.1;
+                speedY = (Math.random() - 0.5) * 0.1;
+            }
+
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius,
+                alpha,
+                speedX,
+                speedY,
+                isShootingStar,
+                trail: null,
+                createdAt: Date.now()
+            });
+        }
+
+        function createShootingStar() {
+            if (activeShootingStars >= maxShootingStars) return;
+            const shootingStar = {
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 1.5 + 0.5,
+                alpha: Math.random() * 0.8 + 0.2,
+                speedX: (Math.random() - 0.5) * 3,
+                speedY: (Math.random() - 0.5) * 2,
+                isShootingStar: true,
+                trail: [],
+                createdAt: Date.now(),
+                lifespan: 3000
+            };
+            particles.push(shootingStar);
+            activeShootingStars++;
+        }
+
+        setInterval(createShootingStar, 2000);
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            const currentTime = Date.now();
+
+            const validParticles = particles.filter(p => {
+                if (p.isShootingStar) {
+                    const age = currentTime - p.createdAt;
+                    if (age > p.lifespan) {
+                        activeShootingStars--;
+                        return false;
+                    }
+                }
+                return true;
+            });
+            particles.length = 0;
+            particles.push(...validParticles);
+
+            particles.forEach(p => {
+                if (p.isShootingStar) {
+                    const age = currentTime - p.createdAt;
+                    const fadeOut = Math.max(0, 1 - (age / p.lifespan));
+                    if (p.trail.length > 0) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        for (let i = p.trail.length - 1; i >= 0; i--) {
+                            const t = p.trail[i];
+                            ctx.lineTo(t.x, t.y);
+                        }
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${p.alpha * 0.3 * fadeOut})`;
+                        ctx.lineWidth = p.radius * 0.5;
+                        ctx.stroke();
+                    }
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * fadeOut})`;
+                    ctx.fill();
+                    p.trail.push({ x: p.x, y: p.y });
+                    if (p.trail.length > 10) p.trail.shift();
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+                    ctx.fill();
+                }
+
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x < 0) p.x = width;
+                if (p.x > width) p.x = 0;
+                if (p.y < 0) p.y = height;
+                if (p.y > height) p.y = 0;
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
     </script>
 
 </body>
