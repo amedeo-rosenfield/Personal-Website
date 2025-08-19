@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Amedeo Rosenfield - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="theme.js"></script>
+    <link rel="stylesheet" href="styles.css?v=3">
+    <script src="theme.js?v=3"></script>
 </head>
 <body class="home">
     <!-- Dust particles canvas for dark mode -->
@@ -167,7 +167,7 @@
         });
 
                             // Create particles
-       const numParticles = 20000; // 100x more particles (original was 200)
+               const numParticles = 5000; // Reduced to prevent layout issues
        const particles = [];
            let activeShootingStars = 0;
     const maxShootingStars = 15;
@@ -223,7 +223,7 @@
        }
 
        // Create shooting stars periodically
-       setInterval(createShootingStar, 2000); // Create a new shooting star every 2 seconds
+               setInterval(createShootingStar, 8000); // Reduced frequency to prevent layout issues
 
                function animate() {
          ctx.clearRect(0, 0, width, height);

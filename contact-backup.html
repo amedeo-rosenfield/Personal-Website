@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Contact Me - Amedeo Rosenfield</title>
-    <link rel="stylesheet" href="styles.css?v=3">
-    <script src="theme.js?v=3"></script>
+    <link rel="stylesheet" href="styles.css?v=2">
+    <script src="theme.js?v=2"></script>
 </head>
 <body class="contact">
     <canvas id="dustCanvas"></canvas>
@@ -50,21 +50,23 @@
             <div class="atmospheric-distortion"></div>
         </div>
     </div>
-    <!-- Navigation Header -->
+        <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo-link">
-                <h1 class="nav-logo">Amedeo Rosenfield</h1>
-            </a>
+            <div class="nav-left">
+                <a href="index.html" class="nav-logo-link">
+                    <h1 class="nav-logo">Amedeo Rosenfield</h1>
+                </a>
+            </div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="bio.html" class="nav-link">Bio</a></li>
                 <li><a href="engineering.html" class="nav-link">Engineering</a></li>
                 <li><a href="volunteering.html" class="nav-link">Volunteering</a></li>
                 <li><a href="photography.html" class="nav-link">Photography</a></li>
-                                      <li><a href="dj.html" class="nav-link">DJ</a></li>
-                      <li><a href="contact.html" class="nav-link active">Contact Me</a></li>
-                  </ul>
+                <li><a href="dj.html" class="nav-link">DJ</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact Me</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -229,20 +231,6 @@
         });
     </script>
 
-    <script>
-        // Handle rocket animation transition from initial to infinite
-        document.addEventListener('DOMContentLoaded', function() {
-            const floatingElements = document.querySelectorAll('.floating-element');
-            floatingElements.forEach(element => {
-                element.addEventListener('animationend', function() {
-                    if (!this.classList.contains('initial-animation-complete')) {
-                        this.classList.add('initial-animation-complete');
-                    }
-                });
-            });
-        });
-    </script>
-
     <!-- Dust particles JavaScript for dark mode (same as home) -->
     <script>
         const canvas = document.getElementById('dustCanvas');
@@ -255,7 +243,7 @@
             height = canvas.height = window.innerHeight;
         });
 
-        const numParticles = 5000; // Further reduced to prevent layout issues
+        const numParticles = 20000;
         const particles = [];
             let activeShootingStars = 0;
     const maxShootingStars = 15;
@@ -306,8 +294,7 @@
             activeShootingStars++;
         }
 
-        // Reduced shooting star frequency to prevent layout issues
-        setInterval(createShootingStar, 8000);
+        setInterval(createShootingStar, 2000);
 
         function animate() {
             ctx.clearRect(0, 0, width, height);

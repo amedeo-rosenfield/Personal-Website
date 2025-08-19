@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>DJ - Amedeo Rosenfield</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="theme.js"></script>
+    <link rel="stylesheet" href="styles.css?v=3">
+    <script src="theme.js?v=3"></script>
 </head>
 <body>
     <canvas id="dustCanvas"></canvas>
@@ -276,7 +276,7 @@
             height = canvas.height = window.innerHeight;
         });
 
-        const numParticles = 20000;
+        const numParticles = 5000; // Reduced to prevent layout issues
         const particles = [];
             let activeShootingStars = 0;
     const maxShootingStars = 15;
@@ -327,7 +327,7 @@
             activeShootingStars++;
         }
 
-        setInterval(createShootingStar, 2000);
+        setInterval(createShootingStar, 8000); // Reduced frequency to prevent layout issues
 
         function animate() {
             ctx.clearRect(0, 0, width, height);

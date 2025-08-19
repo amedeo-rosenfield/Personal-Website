@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Engineering Projects - Amedeo Rosenfield</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="theme.js"></script>
+    <link rel="stylesheet" href="styles.css?v=3">
+    <script src="theme.js?v=3"></script>
 </head>
 <body>
     <canvas id="dustCanvas"></canvas>
@@ -57,7 +57,6 @@
                             </div>
                             
                             <div class="project-section">
-                                <h4 class="project-subheading">What?</h4>
                                 <p class="project-description">
                                     Engineered a high-performance electrical connector specifically for high-speed rail applications, designed for environmental resilience and meeting strict dimensional, contact, and electrical requirements.
                                 </p>
@@ -74,7 +73,6 @@
                                 <div class="project-main-content">
                                     <div class="project-details">
                                         <div class="project-section">
-                                            <h4 class="project-subheading">What?</h4>
                                             <ul class="project-list">
                                                 <li>Engineered a high-performance electrical connector specifically for high-speed rail applications</li>
                                                 <li>Designed for environmental resilience, ensuring consistent operation under rain, wind, dust, and other harsh conditions</li>
@@ -182,7 +180,6 @@
                             </div>
                             
                             <div class="project-section">
-                                <h4 class="project-subheading">What?</h4>
                                 <p class="project-description">
                                     Led the navigation development of an autonomous over-terrain repair vehicle for crash site operations, enabling obstacle avoidance, crash site detection, and repair initiation through integrated sensor and control systems.
                                 </p>
@@ -199,7 +196,6 @@
                                 <div class="project-main-content">
                                     <div class="project-details">
                                         <div class="project-section">
-                                            <h4 class="project-subheading">What?</h4>
                                             <ul class="project-list">
                                                 <li>Led the navigation development of an autonomous over-terrain repair vehicle for crash site operations</li>
                                                 <li>Enabled obstacle avoidance, crash site detection, and repair initiation through integrated sensor and control systems</li>
@@ -303,7 +299,6 @@
                             </div>
                             
                             <div class="project-section">
-                                <h4 class="project-subheading">What?</h4>
                                 <p class="project-description">
                                     Designed an autonomous vessel to track nitrate pollution entering the Chesapeake Bay, supporting environmental preservation efforts through onboard sensing systems and sensor calibration.
                                 </p>
@@ -321,7 +316,6 @@
                             <div class="project-main-content">
                                 <div class="project-text-content">
                                     <div class="project-section">
-                                        <h4 class="project-subheading">What?</h4>
                                         <ul class="project-list">
                                             <li>Designed an autonomous vessel to track nitrate pollution entering the Chesapeake Bay, supporting environmental preservation efforts</li>
                                             <li>Aimed to detect and follow areas of high nitrate concentration using onboard sensing systems</li>
@@ -431,7 +425,6 @@
                             </div>
                             
                             <div class="project-section">
-                                <h4 class="project-subheading">What?</h4>
                                 <p class="project-description">
                                     Developed Tia.ai, a voice-activated assistant that helps users stay organized, focused, and motivated through intelligent task and goal management with an empathetic, professional AI personality.
                                 </p>
@@ -448,7 +441,6 @@
                                 <div class="project-main-content">
                                     <div class="project-text-content">
                                         <div class="project-section">
-                                            <h4 class="project-subheading">What?</h4>
                                             <ul class="project-list">
                                                 <li>Developed Tia.ai, a voice-activated assistant that helps users stay organized, focused, and motivated through intelligent task and goal management</li>
                                                 <li>Enabled automatic goal detection, contextual coaching, and task prioritization with an empathetic, professional AI personality</li>
@@ -538,7 +530,6 @@
                             </div>
                             
                             <div class="project-section">
-                                <h4 class="project-subheading">What?</h4>
                                 <p class="project-description">
                                     Developed a comprehensive maintenance checklist for advanced lunar 3D printer cooling systems, ensuring optimal operational temperatures in extreme extraterrestrial environments.
                                 </p>
@@ -555,7 +546,6 @@
                                 <div class="project-main-content">
                                     <div class="project-text-content">
                                         <div class="project-section">
-                                            <h4 class="project-subheading">What?</h4>
                                             <ul class="project-list">
                                                 <li>Developed a comprehensive maintenance checklist for advanced lunar 3D printer cooling systems</li>
                                                 <li>Ensured optimal operational temperatures in extreme extraterrestrial environments</li>
@@ -607,22 +597,8 @@
                                     
                                     <div class="project-photos">
                                         <h4 class="photos-heading">Supporting Documentation</h4>
-                                        <div class="document-viewer">
-                                            <div class="document-preview" onclick="openDocumentViewer()">
-                                                <div class="document-stack">
-                                                    <img src="images/projects/First Draft of Maintenance Checklist for Cooling Systems (1)-images-0.jpg" alt="Maintenance Checklist - Cover Page" class="document-cover">
-                                                    <div class="document-stack-effect"></div>
-                                                    <div class="document-stack-effect-2"></div>
-                                                </div>
-                                                <div class="document-info">
-                                                    <h5 class="document-title">Maintenance Checklist for Cooling Systems</h5>
-                                                    <p class="document-pages">24 pages • Technical Report</p>
-                                                    <div class="document-overlay">
-                                                        <span class="zoom-icon">📖</span>
-                                                        <span class="zoom-text">Click to read full document</span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="project-image">
+                                            <img src="images/projects/First Draft of Maintenance Checklist for Cooling Systems (1)-images-0.jpg" alt="Maintenance Checklist Screenshot" class="project-screenshot" onclick="openLightbox(this.src, 'Maintenance Checklist Screenshot')">
                                         </div>
                                     </div>
                                 </div>
@@ -809,56 +785,7 @@
             });
         }
 
-        // Document viewer function
-        function openDocumentViewer() {
-            // Create modal if it doesn't exist
-            let modal = document.getElementById('documentModal');
-            if (!modal) {
-                modal = document.createElement('div');
-                modal.id = 'documentModal';
-                modal.className = 'document-modal';
-                
-                let modalContent = '<div class="document-close" onclick="closeDocumentViewer()">&times;</div>';
-                modalContent += '<div class="document-modal-content">';
-                
-                // Add all 24 pages
-                for (let i = 0; i <= 23; i++) {
-                    modalContent += `<img src="images/projects/First Draft of Maintenance Checklist for Cooling Systems (1)-images-${i}.jpg" alt="Page ${i + 1}" class="document-page">`;
-                }
-                
-                modalContent += '</div>';
-                modalContent += '<div class="document-page-counter">24 Pages • Maintenance Checklist</div>';
-                
-                modal.innerHTML = modalContent;
-                document.body.appendChild(modal);
-            }
-            
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
 
-        function closeDocumentViewer() {
-            const modal = document.getElementById('documentModal');
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        // Close modal on outside click
-        document.addEventListener('click', function(event) {
-            const modal = document.getElementById('documentModal');
-            if (event.target === modal) {
-                closeDocumentViewer();
-            }
-        });
-
-        // Close modal on escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeDocumentViewer();
-            }
-        });
     </script>
 
     <!-- Dust particles JavaScript for dark mode -->
@@ -873,7 +800,7 @@
             height = canvas.height = window.innerHeight;
         });
 
-        const numParticles = 20000;
+        const numParticles = 5000; // Reduced to prevent layout issues
         const particles = [];
             let activeShootingStars = 0;
     const maxShootingStars = 15;
@@ -924,7 +851,7 @@
             activeShootingStars++;
         }
 
-        setInterval(createShootingStar, 2000);
+        setInterval(createShootingStar, 8000); // Reduced frequency to prevent layout issues
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
@@ -985,3 +912,4 @@
     </script>
 </body>
 </html>
+ 

@@ -1,0 +1,160 @@
+=== CONTACT FORM HTML TO SAVE ===
+
+<!-- Contact Landing Section -->
+<section class="contact-landing">
+    <div class="container">
+        <div class="contact-content">
+            <h1 class="contact-landing-title">Get In Touch</h1>
+            
+            <div class="contact-sections">
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h3 class="form-title">Drop your email</h3>
+                    
+                    <form id="visitorForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="visitorEmail">Your Email *</label>
+                            <input type="email" id="visitorEmail" name="email" required placeholder="your.email@example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="visitorMessage">Message (optional)</label>
+                            <textarea id="visitorMessage" name="message" rows="4" placeholder="Say hello or let me know what brought you here!"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Send Message</span>
+                        </button>
+                    </form>
+                    
+                    <div id="formSuccess" class="form-success" style="display: none;">
+                        <p>✅ Thanks for visiting! I'll be in touch soon.</p>
+                    </div>
+                    
+                    <div id="formError" class="form-error" style="display: none;">
+                        <p>❌ Something went wrong. Please try again or email me directly.</p>
+                    </div>
+                </div>
+                
+                <!-- Contact Links -->
+                <div class="contact-links-section">
+                    <h3 class="form-title">Information</h3>
+                    <div class="contact-links">
+                        <div class="contact-link-item">
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=deorosenfield@gmail.com" target="_blank">deorosenfield@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-link-item">
+                            <div class="contact-details">
+                                <h4>GitHub</h4>
+                                <a href="https://github.com/amedeo-rosenfield" target="_blank">amedeo-rosenfield</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-link-item">
+                            <div class="contact-details">
+                                <h4>LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/amedeo-rosenfield" target="_blank">amedeo-rosenfield</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+=== CONTACT FORM JAVASCRIPT TO SAVE ===
+
+<script>
+    // Handle visitor contact form
+    const visitorForm = document.getElementById('visitorForm');
+    const formSuccess = document.getElementById('formSuccess');
+    const formError = document.getElementById('formError');
+    
+    if (visitorForm) {
+        visitorForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(visitorForm);
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Show loading state
+            const submitBtn = visitorForm.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="btn-text">Sending...</span>';
+            submitBtn.disabled = true;
+            
+            // Submit to Formspree using fetch
+            fetch('https://formspree.io/f/xzzvldvd', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    message: message
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Add success class to form container
+                    const formContainer = visitorForm.closest('.contact-form-section');
+                    formContainer.classList.add('success');
+                    
+                    // Change title to "Sent"
+                    const title = formContainer.querySelector('h3');
+                    title.textContent = 'Sent';
+                    
+                    // Hide form and show success message
+                    visitorForm.style.display = 'none';
+                    formSuccess.style.display = 'block';
+                    visitorForm.reset();
+                    
+                    // Reset after 3 seconds
+                    setTimeout(() => {
+                        formContainer.classList.remove('success');
+                        title.textContent = 'Drop your email';
+                        visitorForm.style.display = 'block';
+                        formSuccess.style.display = 'none';
+                    }, 3000);
+                } else {
+                    // Show error message
+                    formError.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                // Show error message
+                formError.style.display = 'block';
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    }
+</script>
+
+=== IMPORTANT CSS CLASSES TO SAVE ===
+
+These CSS classes need to be preserved in styles.css:
+- .contact-landing
+- .contact-content  
+- .contact-sections
+- .contact-form-section
+- .contact-links-section
+- .contact-form
+- .form-group
+- .submit-btn
+- .form-success
+- .form-error
+- .contact-links
+- .contact-link-item
+- .contact-details
+- .form-title

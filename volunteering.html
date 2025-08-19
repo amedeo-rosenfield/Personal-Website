@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Volunteering - Amedeo Rosenfield</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="theme.js"></script>
+    <link rel="stylesheet" href="styles.css?v=3">
+    <script src="theme.js?v=3"></script>
 </head>
 <body>
     <canvas id="dustCanvas"></canvas>
@@ -57,14 +57,12 @@
                     <div class="volunteer-preview">
                         <div class="volunteer-header">
                             <h4 class="volunteer-title">Youth Sports Instructor</h4>
-                            <span class="volunteer-date">July 2021 – Present</span>
                         </div>
                         <div class="volunteer-organization">
-                            <strong>Organization:</strong> Open Door Sports Inc. — Rockville, MD
+                            Open Door Sports Inc. | Rockville, MD
                         </div>
                         
                         <div class="volunteer-section">
-                            <h5 class="volunteer-subheading">Role & Impact</h5>
                             <p>
                                 Coach a diverse group of 15 to 20 young athletes from low-income families and those with disabilities, providing a supportive environment where they can develop and improve their technical skills in soccer, basketball, and tennis.
                             </p>
@@ -120,14 +118,12 @@
                     <div class="volunteer-preview">
                         <div class="volunteer-header">
                             <h4 class="volunteer-title">Charity Bike Ride Organizer</h4>
-                            <span class="volunteer-date">2024</span>
                         </div>
                         <div class="volunteer-organization">
-                            <strong>Organization:</strong> Open Door Sports
+                            Open Door Sports Inc. | Rockville, MD
                         </div>
                         
                         <div class="volunteer-section">
-                            <h5 class="volunteer-subheading">What?</h5>
                             <p>
                                 Raised funds for children with special needs through social media outreach, fundraiser events, and promoting a charity bike ride from Washington D.C. to Montreal.
                             </p>
@@ -230,14 +226,12 @@
             // Get volunteer header info
             const volunteerCard = document.querySelector(`[data-volunteer="${volunteerId}"]`);
             const volunteerTitle = volunteerCard.querySelector('.volunteer-title').textContent;
-            const volunteerDate = volunteerCard.querySelector('.volunteer-date').textContent;
-            const volunteerOrg = volunteerCard.querySelector('.volunteer-organization').innerHTML;
+            const volunteerOrg = volunteerCard.querySelector('.volunteer-organization').textContent;
 
             modal.innerHTML = `
                 <div class="volunteer-modal-content">
                     <div class="volunteer-modal-header">
                         <h3 class="volunteer-modal-title">${volunteerTitle}</h3>
-                        <p class="volunteer-modal-date">${volunteerDate}</p>
                         <p class="volunteer-modal-organization">${volunteerOrg}</p>
                         <button class="volunteer-modal-close" onclick="closeVolunteerModal()">&times;</button>
                     </div>
@@ -327,7 +321,7 @@
             height = canvas.height = window.innerHeight;
         });
 
-        const numParticles = 20000;
+        const numParticles = 5000; // Reduced to prevent layout issues
         const particles = [];
             let activeShootingStars = 0;
     const maxShootingStars = 15;
@@ -378,7 +372,7 @@
             activeShootingStars++;
         }
 
-        setInterval(createShootingStar, 2000);
+        setInterval(createShootingStar, 8000); // Reduced frequency to prevent layout issues
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
