@@ -15,7 +15,10 @@
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
-            <h1 class="nav-logo"></h1>
+            <div class="nav-left">
+                <h1 class="nav-logo"></h1>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">Dark Mode</button>
+            </div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link active">Home</a></li>
                 <li><a href="bio.html" class="nav-link">Bio</a></li>
@@ -95,7 +98,6 @@
         <!-- Bottom action buttons -->
         <div class="bottom-actions">
             <a href="bio.html" class="hero-btn secondary">Learn About Me</a>
-            <button id="theme-toggle" class="hero-btn secondary">Dark Mode</button>
             <a href="engineering.html" class="hero-btn secondary">View My Work</a>
         </div>
     </main>
@@ -167,8 +169,8 @@
                             // Create particles
        const numParticles = 20000; // 100x more particles (original was 200)
        const particles = [];
-       let activeShootingStars = 0;
-       const maxShootingStars = 5;
+           let activeShootingStars = 0;
+    const maxShootingStars = 15;
 
        for (let i = 0; i < numParticles; i++) {
          const isMotionless = Math.random() < 0.85; // 85% chance of being motionless

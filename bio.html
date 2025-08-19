@@ -13,7 +13,9 @@
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
-            <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            <a href="index.html" class="nav-logo-link">
+                <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            </a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="bio.html" class="nav-link active">Bio</a></li>
@@ -43,6 +45,10 @@
             <div class="bio-story-container">
                 <div class="bio-photo-after-arrow">
                     <img src="images/projects/2025-08-09_RVP_Rosenfield_Family-63.jpg" alt="Amedeo Rosenfield" class="bio-photo">
+                    <div class="bio-scroll-indicator-second">
+                        <div class="scroll-arrow">↓</div>
+                        <div class="scroll-text">Read about me</div>
+                    </div>
                 </div>
                 <div class="bio-content-layout">
                     <div class="bio-story-text">
@@ -108,18 +114,46 @@
     </footer>
 
     <script>
-        // Scroll to bio content when arrow is clicked
-        function scrollToBioContent() {
-            document.querySelector('.bio-main-content').scrollIntoView({
+        // Scroll to bio image when first arrow is clicked
+        function scrollToBioImage() {
+            const photoElement = document.querySelector('.bio-photo-after-arrow');
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            const photoPosition = photoElement.offsetTop - navbarHeight - 20; // 20px extra spacing
+            
+            window.scrollTo({
+                top: photoPosition,
                 behavior: 'smooth'
             });
         }
 
-        // Add click event to scroll indicator
+        // Scroll to bio text content when second arrow is clicked
+        function scrollToBioText() {
+            const textElement = document.querySelector('.bio-story-text');
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            const textPosition = textElement.offsetTop - navbarHeight - 20; // 20px extra spacing
+            
+            window.scrollTo({
+                top: textPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        // Add click events to scroll indicators
         document.addEventListener('DOMContentLoaded', function() {
             const scrollIndicator = document.querySelector('.bio-scroll-indicator');
+            const scrollIndicatorSecond = document.querySelector('.bio-scroll-indicator-second');
+            const bioPhoto = document.querySelector('.bio-photo');
+            
             if (scrollIndicator) {
-                scrollIndicator.addEventListener('click', scrollToBioContent);
+                scrollIndicator.addEventListener('click', scrollToBioImage);
+            }
+            
+            if (scrollIndicatorSecond) {
+                scrollIndicatorSecond.addEventListener('click', scrollToBioText);
+            }
+            
+            if (bioPhoto) {
+                bioPhoto.addEventListener('click', scrollToBioText);
             }
         });
     </script>
@@ -138,8 +172,8 @@
 
         const numParticles = 20000;
         const particles = [];
-        let activeShootingStars = 0;
-        const maxShootingStars = 5;
+            let activeShootingStars = 0;
+    const maxShootingStars = 15;
 
         for (let i = 0; i < numParticles; i++) {
             const isMotionless = Math.random() < 0.85;

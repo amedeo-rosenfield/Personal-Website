@@ -108,6 +108,25 @@
         }
     });
     
+    // Navbar scroll functionality
+    function handleNavbarScroll() {
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 50) {
+                // Add scrolled class when user has scrolled down
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                // Remove scrolled class when at top
+                navbar.classList.remove('navbar-scrolled');
+            }
+        }
+    }
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', handleNavbarScroll);
+    
     // Expose toggle function globally
     window.toggleTheme = toggleTheme;
 })();

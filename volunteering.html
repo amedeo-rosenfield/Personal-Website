@@ -13,7 +13,9 @@
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
-            <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            <a href="index.html" class="nav-logo-link">
+                <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            </a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="bio.html" class="nav-link">Bio</a></li>
@@ -30,9 +32,6 @@
     <section class="volunteering-landing">
         <div class="volunteering-landing-container">
             <h1 class="volunteering-landing-title">Making a Difference</h1>
-            <p class="volunteering-landing-intro">
-                Creating impact through volunteer work, community engagement, and supporting meaningful causes
-            </p>
             
             <!-- Scroll indicator -->
             <div class="volunteering-scroll-indicator" onclick="scrollToContent()">
@@ -51,8 +50,9 @@
             <div class="volunteer-experiences">
                 <h3>Volunteer Experiences</h3>
                 
-                <!-- Main Volunteer Experience: Open Door Sports -->
-                <article class="volunteer-card-expandable main-project" data-volunteer="1" onclick="toggleVolunteer(1)">
+                <div class="volunteer-cards-grid">
+                    <!-- Main Volunteer Experience: Open Door Sports -->
+                    <article class="volunteer-card-expandable main-project" data-volunteer="1" onclick="toggleVolunteer(1)">
                     <!-- Initial Preview -->
                     <div class="volunteer-preview">
                         <div class="volunteer-header">
@@ -194,6 +194,7 @@
                         </div>
                     </div>
                 </article>
+                </div>
             </div>
 
 
@@ -235,9 +236,9 @@
             modal.innerHTML = `
                 <div class="volunteer-modal-content">
                     <div class="volunteer-modal-header">
-                        <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; color: #222222; margin: 0; margin-bottom: 8px;">${volunteerTitle}</h3>
-                        <p style="font-family: 'Inter', sans-serif; color: #6A7B8C; margin: 0; font-size: 0.9rem;">${volunteerDate}</p>
-                        <p style="font-family: 'Inter', sans-serif; color: #4B6F81; margin: 8px 0 0 0; font-size: 1rem;">${volunteerOrg}</p>
+                        <h3 class="volunteer-modal-title">${volunteerTitle}</h3>
+                        <p class="volunteer-modal-date">${volunteerDate}</p>
+                        <p class="volunteer-modal-organization">${volunteerOrg}</p>
                         <button class="volunteer-modal-close" onclick="closeVolunteerModal()">&times;</button>
                     </div>
                     <div class="volunteer-modal-body">
@@ -328,8 +329,8 @@
 
         const numParticles = 20000;
         const particles = [];
-        let activeShootingStars = 0;
-        const maxShootingStars = 5;
+            let activeShootingStars = 0;
+    const maxShootingStars = 15;
 
         for (let i = 0; i < numParticles; i++) {
             const isMotionless = Math.random() < 0.85;

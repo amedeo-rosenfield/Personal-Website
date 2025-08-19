@@ -458,6 +458,32 @@ img {
         align-items: center;
         justify-content: center;
     }
+    
+    /* iPhone-specific centering for home page content */
+    .hero-main,
+    .hero-content,
+    .hero-title,
+    .hero-subtitle,
+    .hero-description,
+    .hero-buttons {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .hero-buttons {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .hero-buttons .cta-button {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
 }
 
 /* ===== PRINT STYLES ===== */
@@ -566,6 +592,18 @@ img {
     transform: translateY(-2px);
 }
 
+.bio-scroll-indicator-second {
+    margin-top: 30px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    opacity: 0.7;
+}
+
+.bio-scroll-indicator-second:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
 .scroll-arrow {
     font-size: 2rem;
     color: var(--text-tertiary);
@@ -625,6 +663,12 @@ img {
     transition: all 0.4s ease;
     opacity: 1;
     animation: gentleFadeIn 2s ease-out 0.5s forwards;
+    cursor: pointer;
+}
+
+.bio-photo-after-arrow .bio-photo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
 }
 
 .bio-story-text {
@@ -943,6 +987,22 @@ img {
     box-sizing: border-box;
 }
 
+/* Navbar when scrolled */
+.navbar-scrolled {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border-primary);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode navbar when scrolled */
+[data-theme="dark"] .navbar-scrolled {
+    background: rgba(26, 26, 26, 0.9) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border-primary);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
 
 
 /* Navigation responsive adjustments */
@@ -966,6 +1026,13 @@ img {
     .nav-link {
         font-size: 0.9rem;
     }
+    
+    .theme-toggle-btn {
+        min-width: 70px;
+        height: 32px;
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -988,6 +1055,17 @@ img {
     .nav-link {
         font-size: 0.85rem;
     }
+    
+    .nav-left {
+        gap: 15px;
+    }
+    
+    .theme-toggle-btn {
+        min-width: 65px;
+        height: 30px;
+        font-size: 0.7rem;
+        padding: 5px 10px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1009,6 +1087,17 @@ img {
     
     .nav-link {
         font-size: 0.8rem;
+    }
+    
+    .nav-left {
+        gap: 12px;
+    }
+    
+    .theme-toggle-btn {
+        min-width: 60px;
+        height: 28px;
+        font-size: 0.65rem;
+        padding: 4px 8px;
     }
 }
 
@@ -1043,6 +1132,66 @@ img {
     align-items: center;
 }
 
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Modern Theme Toggle Button */
+.theme-toggle-btn {
+    background: var(--bg-secondary);
+    border: 2px solid var(--accent-secondary);
+    border-radius: 25px;
+    padding: 8px 16px;
+    min-width: 80px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.05);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 20px rgba(77, 166, 255, 0.3);
+}
+
+.theme-toggle-btn:active {
+    transform: scale(0.98);
+}
+
+/* Dark mode states */
+[data-theme="dark"] .theme-toggle-btn {
+    background: var(--bg-secondary);
+    border-color: var(--accent-primary);
+}
+
+/* Hover effects for theme toggle */
+.theme-toggle-btn:hover {
+    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4);
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover {
+    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4);
+}
+
+.nav-logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 .nav-logo {
     font-family: 'Poppins', sans-serif;
     font-size: 1.75rem;
@@ -1054,7 +1203,8 @@ img {
     line-height: 1.2;
     min-height: 2.1rem; /* Ensures consistent height even when empty */
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1), color var(--transition-speed) ease;
-    cursor: default;
+    cursor: pointer;
+    white-space: nowrap; /* Prevents text from wrapping to multiple lines */
 }
 
 .nav-logo:hover {
@@ -1188,10 +1338,39 @@ body.home .nav-logo {
     .hero-main {
         min-height: 100vh;
         padding: 8vh 0 4vh 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
     
     .hero-container {
         padding: 0 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .hero-name {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .hero-roles {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .bottom-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
     }
 }
 
@@ -1326,21 +1505,7 @@ body.home .nav-logo {
     transform: translateY(-2px);
 }
 
-/* Theme toggle button styles */
-button.hero-btn {
-    cursor: pointer;
-    border: none;
-    font-family: inherit;
-    background: transparent;
-    color: var(--text-primary);
-    border: 2px solid var(--accent-secondary);
-}
 
-button.hero-btn:hover {
-    background: var(--accent-secondary);
-    color: white;
-    transform: translateY(-2px);
-}
 
 /* Gentle scroll indicator */
 .scroll-indicator {
@@ -1729,6 +1894,7 @@ button.hero-btn:hover {
 .project-photos {
     display: flex;
     flex-direction: column;
+    margin-right: 20px;
 }
 
 .photos-heading {
@@ -1741,25 +1907,26 @@ button.hero-btn:hover {
 }
 
 .photos-grid {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    flex-wrap: wrap;
     width: 100%;
     box-sizing: border-box;
+    align-items: start;
 }
 
 /* Photos grid responsive adjustments */
 @media (max-width: 1023px) {
     .photos-grid {
         gap: 15px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
 }
 
 @media (max-width: 767px) {
     .photos-grid {
         gap: 12px;
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 }
 
@@ -1797,10 +1964,10 @@ button.hero-btn:hover {
     background-color: var(--bg-primary);
     position: relative;
     cursor: pointer;
-    max-width: 300px;
-    flex: 1;
     width: 100%;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Project photo container responsive adjustments */
@@ -1866,13 +2033,13 @@ button.hero-btn:hover {
 
 .project-photo-img {
     width: 100%;
-    max-width: 100%;
-    height: 150px;
+    height: 180px;
     object-fit: cover;
     display: block;
     cursor: pointer;
     transition: transform 0.5s ease;
     box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 /* Project photo image responsive adjustments */
@@ -1898,11 +2065,26 @@ button.hero-btn:hover {
     transform: scale(1.03);
 }
 
+.photo-caption {
+    padding: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: center;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-primary);
+    margin: 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Dark mode navbar background fix - REMOVED: Using data-theme attribute instead */
 
 /* ===== CONTACT PAGE LANDING ===== */
         .contact-landing {
-            min-height: 67vh; /* Set to 67vh as requested */
+            min-height: 100vh; /* Full page height */
             display: block;
             position: relative;
             background: var(--bg-primary);
@@ -1915,7 +2097,7 @@ button.hero-btn:hover {
 /* Contact landing responsive adjustments */
 @media (max-width: 1023px) {
     .contact-landing {
-        min-height: 60vh;
+        min-height: 100vh;
         padding-top: 90px;
         margin-top: -90px;
         display: block;
@@ -1924,7 +2106,7 @@ button.hero-btn:hover {
 
 @media (max-width: 767px) {
     .contact-landing {
-        min-height: 55vh;
+        min-height: 100vh;
         padding-top: 80px;
         margin-top: -80px;
         display: block;
@@ -1933,7 +2115,7 @@ button.hero-btn:hover {
 
 @media (max-width: 480px) {
     .contact-landing {
-        min-height: 50vh;
+        min-height: 100vh;
         padding-top: 70px;
         margin-top: -70px;
         display: block;
@@ -1950,8 +2132,8 @@ button.hero-btn:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 67vh;
+    justify-content: flex-start;
+    min-height: 100vh;
     padding-top: 100px;
 }
 
@@ -1959,7 +2141,7 @@ button.hero-btn:hover {
 @media (max-width: 1023px) {
     .contact-landing-content {
         padding: 0 20px;
-        min-height: 60vh;
+        min-height: 100vh;
         padding-top: 90px;
     }
 }
@@ -1967,7 +2149,7 @@ button.hero-btn:hover {
 @media (max-width: 767px) {
     .contact-landing-content {
         padding: 0 16px;
-        min-height: 55vh;
+        min-height: 100vh;
         padding-top: 80px;
     }
 }
@@ -1975,7 +2157,7 @@ button.hero-btn:hover {
 @media (max-width: 480px) {
     .contact-landing-content {
         padding: 0 12px;
-        min-height: 50vh;
+        min-height: 100vh;
         padding-top: 70px;
     }
 }
@@ -2725,6 +2907,8 @@ button.hero-btn:hover {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    align-items: start;
+    grid-auto-rows: 1fr;
 }
 
 .photo-item {
@@ -3134,7 +3318,7 @@ button.hero-btn:hover {
 .bio-main-content {
     min-height: 100vh;
     padding: 6rem 0;
-    background: white;
+    background: transparent;
 }
 
 .bio-story-section {
@@ -3475,6 +3659,13 @@ button.hero-btn:hover {
     .photo-gallery {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
+        align-items: start;
+        grid-auto-rows: 1fr;
+    }
+    
+    .photo-project-item {
+        height: 450px;
+        width: 100%;
     }
     
     .contact-links {
@@ -3554,6 +3745,13 @@ button.hero-btn:hover {
     .photo-gallery {
         grid-template-columns: 1fr;
         gap: 15px;
+        align-items: start;
+        grid-auto-rows: 1fr;
+    }
+    
+    .photo-project-item {
+        height: 450px;
+        width: 100%;
     }
     
     .contact-links {
@@ -3709,7 +3907,7 @@ button.hero-btn:hover {
     font-family: 'Poppins', sans-serif;
     font-size: 2.2rem;
     font-weight: 600;
-    color: #222222;
+    color: var(--text-primary);
     margin-bottom: 15px;
     letter-spacing: -0.02em;
 }
@@ -3724,7 +3922,7 @@ button.hero-btn:hover {
 
 /* Photo Project Item */
 .photo-project-item {
-    background: white;
+    background: var(--bg-secondary);
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     overflow: hidden;
@@ -3736,12 +3934,19 @@ button.hero-btn:hover {
     height: 450px; /* Fixed height for consistent dimensions */
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .photo-project-item:hover {
     transform: translateY(-4px) scale(1.05);
     border: 2px solid rgba(0, 123, 255, 0.6);
     box-shadow: 0 0 25px rgba(0, 123, 255, 0.4), 0 0 50px rgba(0, 123, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+}
+
+/* Dark mode: ensure cards are grey */
+[data-theme="dark"] .photo-project-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
 }
 
 .photo-project-main {
@@ -3765,17 +3970,17 @@ button.hero-btn:hover {
     flex: 1; /* Take up remaining space */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distribute content evenly */
-    min-height: 150px; /* Ensure minimum height for consistent spacing */
-    height: 150px; /* Force exact height for all cards */
-    position: relative; /* For absolute positioning of button */
+    justify-content: center;
+    min-height: 150px;
+    height: 150px;
+    position: relative;
 }
 
 .photo-project-title {
     font-family: 'Poppins', sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
-    color: #222222;
+    color: var(--text-primary);
     margin-bottom: 10px;
     letter-spacing: -0.02em;
     text-align: center;
@@ -4261,7 +4466,8 @@ button.hero-btn:hover {
 }
 
 .service-card {
-    background: white;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     padding: 30px;
@@ -4280,7 +4486,7 @@ button.hero-btn:hover {
     font-family: 'Poppins', sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
-    color: #222222;
+    color: var(--text-primary);
     margin-bottom: 15px;
     letter-spacing: -0.02em;
 }
@@ -4318,7 +4524,7 @@ button.hero-btn:hover {
     right: auto;
     margin-top: 20px;
     justify-content: center;
-    color: rgb(0, 123, 255);
+    color: var(--accent-primary);
     border: none;
     background: none;
     padding: 0;
@@ -4611,6 +4817,7 @@ button.hero-btn:hover {
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
+    margin-top: 60px;
 }
 
 .contact-info h3,
@@ -4691,7 +4898,7 @@ button.hero-btn:hover {
 
 .contact-link-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
 }
 
 .contact-link-item .contact-icon {
@@ -5053,6 +5260,16 @@ button.hero-btn:hover {
     .volunteering-landing-container {
         padding: 1.5rem;
     }
+    
+    .volunteer-experiences {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .volunteer-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
 }
 
 .volunteer-experiences {
@@ -5069,6 +5286,13 @@ button.hero-btn:hover {
     margin-bottom: 40px;
     text-align: center;
     letter-spacing: -0.02em;
+}
+
+.volunteer-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 20px;
 }
 
 .volunteer-card {
@@ -5170,7 +5394,7 @@ button.hero-btn:hover {
 .volunteer-list {
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
-    color: #555555;
+    color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
     padding-left: 20px;
@@ -5188,7 +5412,7 @@ button.hero-btn:hover {
 .volunteer-links {
     margin-top: 25px;
     padding-top: 20px;
-    border-top: 1px solid #e9ecef;
+    border-top: 1px solid var(--border-primary);
 }
 
 .volunteer-link {
@@ -5197,18 +5421,18 @@ button.hero-btn:hover {
     gap: 8px;
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
-    color: #4B6F81;
+    color: var(--accent-secondary);
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
     padding: 8px 15px;
     border-radius: 8px;
-    background: #f8f9fa;
+    background: var(--bg-tertiary);
 }
 
 .volunteer-link:hover {
-    color: #222222;
-    background: #e9ecef;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
     transform: translateX(3px);
 }
 
@@ -5217,7 +5441,7 @@ button.hero-btn:hover {
 }
 
 .main-project {
-    border-left: 4px solid #4B6F81;
+    border-left: 4px solid var(--accent-secondary);
     position: relative;
 }
 
@@ -5232,12 +5456,13 @@ button.hero-btn:hover {
     transition: all 0.3s ease;
     transform-origin: center;
     cursor: pointer;
+    backdrop-filter: blur(10px);
 }
 
 .volunteer-card-expandable:hover {
     transform: translateY(-4px) scale(1.05);
-    border: 2px solid rgba(0, 123, 255, 0.6);
-    box-shadow: 0 0 25px rgba(0, 123, 255, 0.4), 0 0 50px rgba(0, 123, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
 }
 
 .volunteer-preview {
@@ -5468,10 +5693,12 @@ button.hero-btn:hover {
     .hero-main {
         position: relative;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         min-height: 100vh;
         padding: 15vh 0 10vh 0;
+        text-align: center;
     }
     
     /* Ensure hero content is visible and scrollable */
@@ -5481,22 +5708,31 @@ button.hero-btn:hover {
         width: 100%;
         max-width: 100%;
         padding: 0 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
     
-    /* Make sure text is readable on mobile */
+    /* Make sure text is readable and centered on mobile */
     .hero-name {
         font-size: 2rem;
         line-height: 1.2;
         margin-bottom: 12px;
+        text-align: center;
+        width: 100%;
     }
     
     .hero-roles {
         font-size: 0.9rem;
         line-height: 1.4;
         margin-bottom: 20px;
+        text-align: center;
+        width: 100%;
     }
     
-    /* Ensure bottom actions are accessible */
+    /* Ensure bottom actions are accessible and centered */
     .bottom-actions {
         position: relative;
         z-index: 10;
@@ -5505,6 +5741,8 @@ button.hero-btn:hover {
         flex-direction: column;
         gap: 12px;
         align-items: center;
+        justify-content: center;
+        width: 100%;
     }
     
     .hero-btn {
@@ -5512,6 +5750,7 @@ button.hero-btn:hover {
         max-width: 200px;
         padding: 12px 20px;
         font-size: 0.9rem;
+        text-align: center;
     }
 }
 
@@ -5835,4 +6074,320 @@ button.hero-btn:hover {
 /* Also hide dust when theme toggle is not dark */
 html:not([data-theme="dark"]) #dustCanvas {
     display: none;
+}
+
+/* Dark mode settings for bio section background */
+[data-theme="dark"] .bio-section {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border-primary);
+}
+
+[data-theme="dark"] .bio-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Dark mode settings for volunteer projects (same as engineering projects) */
+[data-theme="dark"] .volunteer-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+}
+
+[data-theme="dark"] .volunteer-card:hover {
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+}
+
+/* Dark mode settings for contact form */
+[data-theme="dark"] .contact-form {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+}
+
+[data-theme="dark"] .contact-form h3 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .contact-form label {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .contact-form input,
+[data-theme="dark"] .contact-form textarea {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .contact-form input:focus,
+[data-theme="dark"] .contact-form textarea:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.2);
+}
+
+/* Dark mode settings for contact boxes (grey instead of white) */
+[data-theme="dark"] .contact-item,
+[data-theme="dark"] .contact-link-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+}
+
+[data-theme="dark"] .contact-item:hover,
+[data-theme="dark"] .contact-link-item:hover {
+    background: var(--bg-primary);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+}
+
+/* Dark mode settings for "Send me a message" text */
+[data-theme="dark"] .contact-form-container h3,
+[data-theme="dark"] .contact-info h3 {
+    color: var(--text-primary);
+}
+
+/* Dark mode settings for contact details text */
+[data-theme="dark"] .contact-details h4,
+[data-theme="dark"] .contact-details a {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .contact-details a:hover {
+    color: var(--accent-primary);
+}
+
+/* Prevent text wrapping for contact links */
+.contact-details a {
+    white-space: nowrap;
+}
+
+/* Dark mode settings for Volunteer Experiences title */
+[data-theme="dark"] .volunteer-experiences h3 {
+    color: var(--text-primary);
+}
+
+/* DJ blocks grey styling (same as contact boxes) */
+.dj-cta {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 12px;
+    padding: 30px;
+    margin: 40px 0;
+    transition: all 0.3s ease;
+}
+
+.dj-cta:hover {
+    background: var(--bg-primary);
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .dj-cta {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+}
+
+[data-theme="dark"] .dj-cta:hover {
+    background: var(--bg-primary);
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 25px rgba(77, 166, 255, 0.2);
+}
+
+/* Dark mode settings for Volunteer Experiences title */
+[data-theme="dark"] .volunteer-experiences h3 {
+    color: var(--text-primary);
+}
+
+/* Dark mode settings for volunteer expanded content */
+[data-theme="dark"] .volunteer-expanded {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-primary);
+}
+
+[data-theme="dark"] .volunteer-content-full {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .volunteer-main-content {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .volunteer-details {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .volunteer-section {
+    background: transparent;
+}
+
+[data-theme="dark"] .volunteer-subheading {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .volunteer-list {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .volunteer-list li {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .volunteer-links {
+    border-top: 1px solid var(--border-primary);
+}
+
+[data-theme="dark"] .volunteer-link {
+    color: var(--text-primary);
+    background: var(--bg-primary);
+}
+
+[data-theme="dark"] .volunteer-link:hover {
+    color: var(--accent-primary);
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .volunteer-expanded p {
+    color: var(--text-primary);
+}
+
+/* Dark mode settings for volunteer preview elements */
+[data-theme="dark"] .volunteer-preview .volunteer-title {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .volunteer-preview .volunteer-date {
+    color: var(--text-tertiary);
+}
+
+[data-theme="dark"] .volunteer-preview .volunteer-organization {
+    color: var(--accent-secondary);
+}
+
+[data-theme="dark"] .volunteer-preview .volunteer-organization strong {
+    color: var(--accent-secondary);
+}
+
+[data-theme="dark"] .volunteer-preview .volunteer-subheading {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .volunteer-preview p {
+    color: var(--text-secondary);
+}
+
+/* Make Charity Bike Ride Organizer title white in dark mode */
+[data-theme="dark"] .volunteer-card-expandable[data-volunteer="2"] .volunteer-title {
+    color: #ffffff !important;
+}
+
+/* Dark mode settings for volunteering main content background */
+[data-theme="dark"] .volunteering-main-content {
+    background: var(--bg-primary);
+}
+
+/* Dark mode settings for volunteer modal */
+[data-theme="dark"] .volunteer-modal {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .volunteer-modal-content {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+}
+
+[data-theme="dark"] .volunteer-modal-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-primary);
+}
+
+[data-theme="dark"] .volunteer-modal-header h3 {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .volunteer-modal-header p {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .volunteer-modal-close {
+    color: var(--text-primary);
+    background: var(--bg-primary);
+}
+
+[data-theme="dark"] .volunteer-modal-close:hover {
+    background: var(--bg-secondary);
+    color: var(--accent-primary);
+}
+
+[data-theme="dark"] .volunteer-modal-body {
+    background: var(--bg-secondary);
+}
+
+/* Dark mode settings for volunteer card expandable */
+[data-theme="dark"] .volunteer-card-expandable {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+}
+
+[data-theme="dark"] .volunteer-card-expandable:hover {
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+}
+
+/* Dark mode settings for volunteer list in modal */
+[data-theme="dark"] .volunteer-modal .volunteer-list {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .volunteer-modal .volunteer-list li {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .volunteer-modal .volunteer-subheading {
+    color: var(--text-primary);
+}
+
+/* Dark mode settings for volunteer links in modal */
+[data-theme="dark"] .volunteer-modal .volunteer-links {
+    border-top: 1px solid var(--border-primary);
+}
+
+[data-theme="dark"] .volunteer-modal .volunteer-link {
+    color: var(--text-primary);
+    background: var(--bg-primary);
+}
+
+[data-theme="dark"] .volunteer-modal .volunteer-link:hover {
+    color: var(--accent-primary);
+    background: var(--bg-secondary);
+}
+
+/* Dark mode settings for volunteer links in modal */
+[data-theme="dark"] .volunteer-modal .volunteer-link:hover {
+    color: var(--accent-primary);
+    background: var(--bg-secondary);
+}
+
+/* Volunteer modal header element styles */
+.volunteer-modal-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+.volunteer-modal-date {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-tertiary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.volunteer-modal-organization {
+    font-family: 'Inter', sans-serif;
+    color: var(--accent-secondary);
+    margin: 8px 0 0 0;
+    font-size: 1rem;
 }

@@ -13,7 +13,9 @@
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
-            <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            <a href="index.html" class="nav-logo-link">
+                <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            </a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="bio.html" class="nav-link">Bio</a></li>
@@ -30,9 +32,6 @@
     <section class="dj-landing">
         <div class="dj-landing-container">
             <h1 class="dj-landing-title">DJ DEO</h1>
-            <p class="dj-landing-intro">
-                Bring the perfect energy and atmosphere to every event with professional DJ services
-            </p>
             
             <!-- Scroll indicator -->
             <div class="dj-scroll-indicator" onclick="scrollToContent()">
@@ -279,8 +278,8 @@
 
         const numParticles = 20000;
         const particles = [];
-        let activeShootingStars = 0;
-        const maxShootingStars = 5;
+            let activeShootingStars = 0;
+    const maxShootingStars = 15;
 
         for (let i = 0; i < numParticles; i++) {
             const isMotionless = Math.random() < 0.85;

@@ -53,7 +53,9 @@
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
-            <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            <a href="index.html" class="nav-logo-link">
+                <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            </a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="bio.html" class="nav-link">Bio</a></li>
@@ -73,17 +75,7 @@
             <div class="container">
                 <div class="contact-landing-content">
                     <h1 class="contact-landing-title">Get In Touch</h1>
-                    <p class="contact-landing-intro">
-                        Let's connect, visualize the future, and make it happen.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Details Section -->
-        <section class="section">
-            <div class="container">
-                <div class="contact-content">
+                    
                     <!-- Contact Information -->
                     <div class="contact-info">
                         <h3>Send me a message</h3>
@@ -151,8 +143,8 @@
 
         const numParticles = 20000;
         const particles = [];
-        let activeShootingStars = 0;
-        const maxShootingStars = 5;
+            let activeShootingStars = 0;
+    const maxShootingStars = 15;
 
         for (let i = 0; i < numParticles; i++) {
             const isMotionless = Math.random() < 0.85;

@@ -13,7 +13,9 @@
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
-            <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            <a href="index.html" class="nav-logo-link">
+                <h1 class="nav-logo">Amedeo Rosenfield</h1>
+            </a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="bio.html" class="nav-link">Bio</a></li>
@@ -30,9 +32,6 @@
     <section class="photography-landing">
         <div class="photography-landing-container">
             <h1 class="photography-landing-title">Photography</h1>
-            <p class="photography-landing-intro">
-                Freezing moments in time, so they live forever
-            </p>
             
             <!-- Scroll indicator -->
             <div class="photography-scroll-indicator" onclick="scrollToGallery()">
@@ -141,7 +140,7 @@
                     <!-- 50th Birthday Party Project -->
                     <div class="photo-project-item" onclick="openBirthdayGallery()">
                         <div class="photo-project-main">
-                            <img src="images/projects/Elena_50th-8950.jpg" alt="50th Birthday Party" class="project-hero-image">
+                            <img src="images/projects/Elena_50th-9046 (1).jpg" alt="50th Birthday Party" class="project-hero-image">
                         </div>
                         <div class="photo-project-info">
                             <h4 class="photo-project-title">50th Birthday Party</h4>
@@ -551,7 +550,7 @@
 
         function openBirthdayGallery() {
             const modal = document.getElementById('birthday-gallery-modal');
-            currentBirthdayImageIndex = 0;
+            currentBirthdayImageIndex = 7; // Start at the 8th photo
             showCurrentBirthdayImage();
             
             modal.style.display = 'flex';
@@ -666,8 +665,8 @@
 
         const numParticles = 20000;
         const particles = [];
-        let activeShootingStars = 0;
-        const maxShootingStars = 5;
+            let activeShootingStars = 0;
+    const maxShootingStars = 15;
 
         for (let i = 0; i < numParticles; i++) {
             const isMotionless = Math.random() < 0.85;
