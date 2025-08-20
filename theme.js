@@ -129,4 +129,23 @@
     
     // Expose toggle function globally
     window.toggleTheme = toggleTheme;
+    
+    // Diagnostic function for dust particles
+    window.diagnoseDustParticles = function() {
+        console.log('=== Dust Particle Diagnosis ===');
+        console.log('Canvas element:', document.getElementById('dustCanvas'));
+        console.log('Canvas context:', document.getElementById('dustCanvas') ? document.getElementById('dustCanvas').getContext('2d') : 'No canvas');
+        console.log('Current theme:', document.documentElement.getAttribute('data-theme'));
+        console.log('Canvas display style:', document.getElementById('dustCanvas') ? getComputedStyle(document.getElementById('dustCanvas')).display : 'No canvas');
+        console.log('Window size:', window.innerWidth, 'x', window.innerHeight);
+        console.log('Browser:', navigator.userAgent);
+        console.log('==============================');
+    };
+    
+    // Run diagnosis on load
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            window.diagnoseDustParticles();
+        }, 2000); // Wait 2 seconds for everything to load
+    });
 })();

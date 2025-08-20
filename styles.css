@@ -131,7 +131,7 @@ body {
     /* Ensure proper scrolling on iOS */
     -webkit-overflow-scrolling: touch;
     position: relative;
-    overflow-y: scroll; /* Use scroll to ensure consistent scrollbar */
+    overflow-y: auto; /* Use auto to prevent multiple scrollbars */
     box-sizing: border-box;
 }
 
@@ -1275,6 +1275,7 @@ body.home .nav-logo {
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: visible; /* Let body handle scrolling */
+    min-height: 100vh;
 }
 
 /* Main content responsive adjustments */
@@ -2127,7 +2128,7 @@ body.home .nav-logo {
     padding-top: 100px;
     width: 100%;
     box-sizing: border-box;
-    overflow: hidden; /* Prevent additional scrollbars */
+    overflow: visible; /* Allow natural scrolling */
 }
 
 /* Contact landing responsive adjustments */
@@ -2973,9 +2974,10 @@ body.home .nav-logo {
     background-color: #2c3e50;
     color: white;
     text-align: center;
-    padding: 30px 0;
+    padding: 40px 0;
     width: 100%;
     box-sizing: border-box;
+    margin-top: 60px;
 }
 
 .footer p {
@@ -4898,13 +4900,13 @@ body.home .nav-logo {
     margin-bottom: 5px;
 }
 
-.contact-details a {
+.contact-details span {
     color: #3498db;
     text-decoration: none;
     font-weight: 500;
 }
 
-.contact-details a:hover {
+.contact-link-item:hover .contact-details span {
     color: #2980b9;
 }
 
@@ -4943,6 +4945,8 @@ body.home .nav-logo {
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     min-width: 200px;
+    text-decoration: none;
+    color: inherit;
 }
 
 .contact-link-item:hover {
@@ -4961,14 +4965,14 @@ body.home .nav-logo {
     margin-bottom: 5px;
 }
 
-.contact-link-item .contact-details a {
+.contact-link-item .contact-details span {
     color: #3498db;
     text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
 }
 
-.contact-link-item .contact-details a:hover {
+.contact-link-item:hover .contact-details span {
     color: #2980b9;
 }
 
@@ -5021,6 +5025,20 @@ body.home .nav-logo {
 
 .submit-btn:hover {
     background-color: var(--accent-tertiary);
+}
+
+.form-note {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--bg-tertiary);
+    border-left: 4px solid var(--accent-primary);
+    border-radius: 5px;
+}
+
+.form-note p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
 .form-note {
@@ -6150,6 +6168,7 @@ body.home .nav-logo {
     z-index: 1; /* Behind everything but visible through transparent navbar */
     overflow: hidden;
     contain: strict; /* Prevent layout interference */
+    will-change: transform; /* Optimize for animations */
 }
 
 /* Only show dust particles in dark mode */
@@ -6162,6 +6181,22 @@ body.home .nav-logo {
 /* Also hide dust when theme toggle is not dark */
 html:not([data-theme="dark"]) #dustCanvas {
     display: none;
+}
+
+/* Fallback for older browsers - ensure canvas is visible in dark mode */
+[data-theme="dark"] #dustCanvas {
+    display: block !important;
+}
+
+/* Ensure canvas is properly positioned even if JavaScript fails */
+#dustCanvas {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
 }
 
 /* Dark mode settings for bio section background */
@@ -6486,36 +6521,37 @@ html:not([data-theme="dark"]) #dustCanvas {
 .contact-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
-    overflow: hidden; /* Prevent additional scrollbars */
+    padding: 60px 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .contact-sections {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    margin-top: 40px;
+    gap: 40px;
+    margin: 40px 0;
     width: 100%;
     box-sizing: border-box;
 }
 
-/* Contact form section */
+/* Contact form section - Redesigned */
 .contact-form-section {
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 40px;
-    box-shadow: 0 4px 20px var(--shadow-primary);
+    box-shadow: 0 8px 32px var(--shadow-primary);
     transition: all 0.3s ease;
-    height: 500px; /* Fixed height for consistent sizing */
+    min-height: 480px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Start content from top */
+    position: relative;
 }
 
 .contact-form-section:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px var(--shadow-primary);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px var(--shadow-primary);
 }
 
 .contact-form-section h3.form-title {
@@ -6524,18 +6560,52 @@ html:not([data-theme="dark"]) #dustCanvas {
     font-weight: 600;
     color: var(--text-primary);
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     letter-spacing: -0.01em;
     flex-shrink: 0;
 }
 
-/* Contact form styling */
+/* Contact form styling - Improved */
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
     flex: 1;
-    justify-content: space-between; /* Distribute content evenly */
+    justify-content: flex-start;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ecf0f1;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
 }
 
 .form-group {
@@ -6546,21 +6616,23 @@ html:not([data-theme="dark"]) #dustCanvas {
 
 .form-group label {
     font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--text-primary);
+    margin-bottom: 4px;
 }
 
 .form-group input,
 .form-group textarea {
-    padding: 12px 16px;
+    padding: 14px 16px;
     border: 2px solid var(--border-primary);
-    border-radius: 8px;
+    border-radius: 12px;
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     background: var(--bg-primary);
     color: var(--text-primary);
     transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -6573,26 +6645,29 @@ html:not([data-theme="dark"]) #dustCanvas {
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
+    max-height: 200px;
 }
 
-/* Submit button */
+/* Submit button - Enhanced */
 .submit-btn {
     background: var(--accent-primary);
     color: white;
     border: none;
-    border-radius: 8px;
-    padding: 14px 24px;
+    border-radius: 12px;
+    padding: 16px 28px;
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 10px;
+    margin-top: 20px;
+    align-self: flex-start;
 }
 
 .submit-btn:hover {
     background: var(--accent-tertiary);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(77, 166, 255, 0.3);
 }
 
 .submit-btn:disabled {
@@ -6601,13 +6676,14 @@ html:not([data-theme="dark"]) #dustCanvas {
     transform: none;
 }
 
-/* Success and error states */
+/* Success and error states - Improved */
 .form-success,
 .form-error {
     padding: 16px;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-top: 20px;
     text-align: center;
+    font-weight: 500;
 }
 
 .form-success {
@@ -6622,23 +6698,23 @@ html:not([data-theme="dark"]) #dustCanvas {
     color: #dc2626;
 }
 
-/* Contact links section */
+/* Contact links section - Redesigned */
 .contact-links-section {
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 40px;
-    box-shadow: 0 4px 20px var(--shadow-primary);
+    box-shadow: 0 8px 32px var(--shadow-primary);
     transition: all 0.3s ease;
-    height: 500px; /* Fixed height for consistent sizing */
+    min-height: 480px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Start content from top */
+    position: relative;
 }
 
 .contact-links-section:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px var(--shadow-primary);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px var(--shadow-primary);
 }
 
 .contact-links-section h3.form-title {
@@ -6647,7 +6723,7 @@ html:not([data-theme="dark"]) #dustCanvas {
     font-weight: 600;
     color: var(--text-primary);
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     letter-spacing: -0.01em;
     flex-shrink: 0;
 }
@@ -6655,24 +6731,30 @@ html:not([data-theme="dark"]) #dustCanvas {
 .contact-links {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
     flex: 1;
-    justify-content: space-between; /* Distribute content evenly */
+    justify-content: flex-start;
 }
 
 .contact-link-item {
     background: var(--bg-primary);
     border: 1px solid var(--border-primary);
-    border-radius: 12px;
-    padding: 20px;
+    border-radius: 16px;
+    padding: 24px;
     transition: all 0.3s ease;
     flex: 1;
+    display: flex;
+    align-items: center;
 }
 
 .contact-link-item:hover {
     border-color: var(--accent-primary);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px var(--shadow-primary);
+    box-shadow: 0 8px 24px var(--shadow-primary);
+}
+
+.contact-details {
+    width: 100%;
 }
 
 .contact-details h4 {
@@ -6690,6 +6772,7 @@ html:not([data-theme="dark"]) #dustCanvas {
     text-decoration: none;
     transition: color 0.3s ease;
     white-space: nowrap;
+    word-break: break-all;
 }
 
 .contact-details a:hover {
@@ -6699,41 +6782,64 @@ html:not([data-theme="dark"]) #dustCanvas {
 /* Success state for form */
 .contact-form-section.success {
     border-color: #16a34a;
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
 }
 
-/* Responsive design */
+/* Responsive design - Improved */
 @media (max-width: 768px) {
     .contact-sections {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 30px;
     }
     
     .contact-form-section,
-    .contact-links-section {
-        padding: 30px 20px;
-        height: 500px; /* Keep consistent height */
-    }
+                .contact-links-section {
+                padding: 30px 20px;
+                min-height: 420px;
+            }
+            
+            .contact-links-section {
+                padding-top: 15px; /* Maintain alignment on mobile */
+            }
+    
+
     
     .contact-form-section h3.form-title,
     .contact-links-section h3.form-title {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+    
+    .contact-content {
+        padding: 40px 15px;
     }
 }
 
 @media (max-width: 480px) {
     .contact-content {
-        padding: 20px 15px;
+        padding: 30px 10px;
     }
     
     .contact-form-section,
-    .contact-links-section {
-        padding: 25px 15px;
-        height: 500px; /* Keep consistent height */
-    }
+                .contact-links-section {
+                padding: 25px 15px;
+                min-height: 400px;
+            }
+            
+            .contact-links-section {
+                padding-top: 12px; /* Maintain alignment on smaller mobile */
+            }
+    
+
     
     .contact-form-section h3.form-title,
     .contact-links-section h3.form-title {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+    
+    .contact-sections {
+        gap: 25px;
+        margin: 30px 0;
     }
 }
