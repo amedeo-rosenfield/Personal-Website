@@ -4736,8 +4736,8 @@ html,
 html[data-theme="dark"],
 html:not([data-theme="light"]) .contact-form-section {
     background: transparent !important; /* Transparent background */
-    border: 1px solid var(--border-primary); /* Subtle border matching dark theme */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow without neon glow */
+    border: 2px solid #00bfff; /* Neon blue border */
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.3); /* Neon blue glow */
     z-index: 15; /* Above particles but below images, same as bio cards */
 }
 
@@ -4746,8 +4746,8 @@ html,
 html[data-theme="dark"],
 html:not([data-theme="light"]) .contact-links-section {
     background: transparent !important; /* Transparent background */
-    border: 1px solid var(--border-primary); /* Subtle border matching dark theme */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow without neon glow */
+    border: 2px solid #00bfff; /* Neon blue border */
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.3); /* Neon blue glow */
     z-index: 15; /* Above particles but below images, same as bio cards */
 }
 
@@ -6699,10 +6699,10 @@ html:not([data-theme="dark"]) #dustCanvas {
 /* Contact form section - Redesigned */
 .contact-form-section {
     background: transparent !important; /* Transparent background */
-    border: 1px solid var(--border-primary); /* Subtle border matching dark theme */
+    border: 2px solid #00bfff; /* Neon blue border */
     border-radius: 20px;
     padding: 60px; /* Increased for more breathing room */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow without neon glow */
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.3); /* Neon blue glow */
     transition: all 0.3s ease;
     min-height: 520px; /* Increased to match contact links */
     display: flex;
@@ -6850,10 +6850,10 @@ html:not([data-theme="dark"]) #dustCanvas {
 /* Contact links section - Redesigned */
 .contact-links-section {
     background: transparent !important; /* Transparent background */
-    border: 1px solid var(--border-primary); /* Subtle border matching dark theme */
+    border: 2px solid #00bfff; /* Neon blue border */
     border-radius: 20px;
     padding: 60px; /* Increased to match contact form */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow without neon glow */
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.3); /* Neon blue glow */
     transition: all 0.3s ease;
     min-height: 520px; /* Increased to match contact form */
     display: flex;
