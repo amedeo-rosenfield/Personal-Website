@@ -35,17 +35,16 @@
     --transition-speed: 0.3s;
     
     /* Add smooth transitions for theme switching */
-    transition: background-color var(--transition-speed) ease, 
-                color var(--transition-speed) ease, 
+    transition: color var(--transition-speed) ease, 
                 border-color var(--transition-speed) ease, 
                 box-shadow var(--transition-speed) ease;
 }
 
 /* Dark mode colors */
 [data-theme="dark"] {
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #2d2d2d;
-    --bg-tertiary: #3a3a3a;
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #2d2d2d;
     --bg-pattern: rgba(255, 255, 255, 0.02);
     
     --text-primary: #ffffff;
@@ -70,10 +69,15 @@
     --gradient-accent: radial-gradient(circle at center, rgba(77, 166, 255, 0.05) 0%, rgba(77, 166, 255, 0.02) 70%, #1a1a1a 100%);
     
     /* Add smooth transitions for theme switching */
-    transition: background-color var(--transition-speed) ease, 
-                color var(--transition-speed) ease, 
+    transition: color var(--transition-speed) ease, 
                 border-color var(--transition-speed) ease, 
                 box-shadow var(--transition-speed) ease;
+}
+
+[data-theme="dark"] html,
+[data-theme="dark"] body {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
 }
 
 [data-theme="dark"] .navbar {
@@ -82,11 +86,11 @@
 }
 
 [data-theme="dark"] .engineering-landing {
-    background: var(--gradient-accent);
+    background: var(--bg-primary);
 }
 
 [data-theme="dark"] .volunteering-landing {
-    background: var(--gradient-accent);
+    background: var(--bg-primary);
 }
 
 [data-theme="dark"] .project-card-expandable {
@@ -111,6 +115,7 @@ html {
     /* iOS Safari improvements */
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    background: var(--bg-primary);
 }
 
 body {
@@ -118,7 +123,7 @@ body {
     line-height: 1.8;
     color: var(--text-secondary);
     background: var(--bg-primary);
-    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    transition: color var(--transition-speed) ease;
     /* Remove pattern for uniform white background */
     background-image: none;
     background-size: auto;
@@ -127,7 +132,6 @@ body {
     overflow-x: hidden; /* Prevent horizontal scroll */
     width: 100%;
     min-height: 100vh;
-    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
     /* Ensure proper scrolling on iOS */
     -webkit-overflow-scrolling: touch;
     position: relative;
@@ -524,7 +528,7 @@ img {
     padding: 120px 0 80px;
     width: 100%;
     box-sizing: border-box;
-    transition: background-color var(--transition-speed) ease;
+    transition: color var(--transition-speed) ease;
 }
 
 .bio-landing-container {
@@ -985,7 +989,7 @@ img {
     border-bottom: 1px solid var(--border-primary);
     z-index: 1000;
     padding: 20px 0;
-    transition: all 0.4s ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    transition: all 0.4s ease, border-color var(--transition-speed) ease;
     width: 100%;
     box-sizing: border-box;
 }
@@ -1000,7 +1004,7 @@ img {
 
 /* Dark mode navbar when scrolled */
 [data-theme="dark"] .navbar-scrolled {
-    background: rgba(26, 26, 26, 0.9) !important;
+    background: rgba(10, 10, 10, 0.9) !important;
     backdrop-filter: blur(20px) saturate(180%);
     border-bottom: 1px solid var(--border-primary);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
@@ -1307,7 +1311,7 @@ body.home .nav-logo {
     background: var(--bg-primary);
     overflow: visible;
     padding: 20vh 0 10vh 0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color var(--transition-speed) ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
     box-sizing: border-box;
 }
@@ -2288,7 +2292,7 @@ body.home .nav-logo {
     border-radius: 16px;
     padding: 40px;
     box-shadow: 0 8px 32px var(--shadow-primary);
-    transition: all 0.5s ease, background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    transition: all 0.5s ease, box-shadow var(--transition-speed) ease;
     border: 2px solid transparent;
     overflow: hidden;
     backdrop-filter: blur(10px);
@@ -2353,7 +2357,7 @@ body.home .nav-logo {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    transition: background-color var(--transition-speed) ease;
+    transition: color var(--transition-speed) ease;
 }
 
 /* Modal responsive adjustments */
@@ -3012,7 +3016,7 @@ body.home .nav-logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--gradient-accent);
+    background: var(--bg-primary);
     position: relative;
 }
 
@@ -3125,9 +3129,9 @@ body.home .nav-logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(106, 123, 140, 0.05) 0%, var(--bg-primary) 100%);
+    background: var(--bg-primary);
     position: relative;
-    transition: background var(--transition-speed) ease;
+    transition: color var(--transition-speed) ease;
 }
 
 .engineering-landing-container {
@@ -3199,7 +3203,7 @@ body.home .nav-logo {
     min-height: 100vh;
     padding: 6rem 0;
     background: var(--bg-primary);
-    transition: background-color var(--transition-speed) ease;
+    transition: color var(--transition-speed) ease;
 }
 
 .projects-section {

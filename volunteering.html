@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Volunteering - Amedeo Rosenfield</title>
-    <link rel="stylesheet" href="styles.css?v=3">
-    <script src="theme.js?v=3"></script>
+    <style>
+        /* Prevent white flash on page load */
+        html, body {
+            background-color: #0a0a0a !important;
+            color: #ffffff !important;
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css?v=16">
+    <script src="theme.js?v=9"></script>
 </head>
 <body>
     <canvas id="dustCanvas"></canvas>
@@ -309,127 +316,192 @@
         });
     </script>
 
-    <!-- Dust particles JavaScript for dark mode -->
+    <!-- Dust particles JavaScript -->
     <script>
-        const canvas = document.getElementById('dustCanvas');
-        const ctx = canvas.getContext('2d');
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
-
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        });
-
-        const numParticles = 3000; // Further reduced for older computers
-        const particles = [];
-            let activeShootingStars = 0;
-                    const maxShootingStars = 25; // Increased for more shooting stars
-
-        for (let i = 0; i < numParticles; i++) {
-            const isMotionless = Math.random() < 0.85;
-            const isMicroscopic = Math.random() < 0.8;
-            const isShootingStar = false;
-
-            let speedX = 0;
-            let speedY = 0;
-            let radius = isMicroscopic ? Math.random() * 0.1 : Math.random() * 0.5;
-            let alpha = isMicroscopic ? Math.random() * 0.3 : Math.random() * 0.6;
-
-            if (!isMotionless) {
-                speedX = (Math.random() - 0.5) * 0.1;
-                speedY = (Math.random() - 0.5) * 0.1;
+        // Simplified, consistent dust particles system
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('dustCanvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+            
+            // Set canvas size
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
             }
-
-            particles.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                radius,
-                alpha,
-                speedX,
-                speedY,
-                isShootingStar,
-                trail: null,
-                createdAt: Date.now()
-            });
-        }
-
-        function createShootingStar() {
-            if (activeShootingStars >= maxShootingStars) return;
-            const shootingStar = {
-                x: Math.random() * width,
-                y: Math.random() * height,
-                radius: Math.random() * 1.5 + 0.5,
-                alpha: Math.random() * 0.8 + 0.2,
-                speedX: (Math.random() - 0.5) * 3,
-                speedY: (Math.random() - 0.5) * 2,
-                isShootingStar: true,
-                trail: [],
-                createdAt: Date.now(),
-                lifespan: 3000
-            };
-            particles.push(shootingStar);
-            activeShootingStars++;
-        }
-
-        setInterval(createShootingStar, 3000); // More frequent shooting stars
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            const currentTime = Date.now();
-
-            const validParticles = particles.filter(p => {
-                if (p.isShootingStar) {
-                    const age = currentTime - p.createdAt;
-                    if (age > p.lifespan) {
-                        activeShootingStars--;
-                        return false;
-                    }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Consistent particle configuration across all browsers
+            const numParticles = 5000; // Bright particles
+            const numLessBrightParticles = 5000; // Less bright particles
+            const maxShootingStars = 15; // Always 15 shooting stars on screen
+            
+            const particles = [];
+            let activeShootingStars = 0;
+            
+            // Create bright particles
+            for (let i = 0; i < numParticles; i++) {
+                const isMotionless = Math.random() < 0.95; // 95% static for consistency
+                
+                let speedX = 0;
+                let speedY = 0;
+                let radius = Math.random() * 0.4 + 0.08; // Slightly larger for more visibility
+                let alpha = Math.random() * 0.8 + 0.4; // Brighter particles for Milky Way effect
+                
+                if (!isMotionless) {
+                    // Very slow, consistent movement
+                    speedX = (Math.random() - 0.5) * 0.05;
+                    speedY = (Math.random() - 0.5) * 0.05;
                 }
-                return true;
-            });
-            particles.length = 0;
-            particles.push(...validParticles);
-
-            particles.forEach(p => {
-                if (p.isShootingStar) {
-                    const age = currentTime - p.createdAt;
-                    const fadeOut = Math.max(0, 1 - (age / p.lifespan));
-                    if (p.trail.length > 0) {
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        for (let i = p.trail.length - 1; i >= 0; i--) {
-                            const t = p.trail[i];
-                            ctx.lineTo(t.x, t.y);
+                
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: radius,
+                    alpha: alpha,
+                    speedX: speedX,
+                    speedY: speedY,
+                    isShootingStar: false,
+                    trail: null,
+                    createdAt: Date.now()
+                });
+            }
+            
+            // Create less bright particles
+            for (let i = 0; i < numLessBrightParticles; i++) {
+                const isMotionless = Math.random() < 0.95; // 95% static for consistency
+                
+                let speedX = 0;
+                let speedY = 0;
+                let radius = Math.random() * 0.3 + 0.05; // Smaller for subtle effect
+                let alpha = Math.random() * 0.2 + 0.05; // Much less bright for depth
+                
+                if (!isMotionless) {
+                    // Very slow, consistent movement
+                    speedX = (Math.random() - 0.5) * 0.05;
+                    speedY = (Math.random() - 0.5) * 0.05;
+                }
+                
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: radius,
+                    alpha: alpha,
+                    speedX: speedX,
+                    speedY: speedY,
+                    isShootingStar: false,
+                    trail: null,
+                    createdAt: Date.now()
+                });
+            }
+            
+            // Simplified shooting star creation
+            function createShootingStar() {
+                if (activeShootingStars >= maxShootingStars) return;
+                
+                const shootingStar = {
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.5 + 0.4, // Larger shooting stars
+                    alpha: Math.random() * 1.0 + 0.6, // Much brighter shooting stars
+                    speedX: (Math.random() - 0.5) * 2.5, // Faster horizontal movement
+                    speedY: (Math.random() - 0.5) * 1.8, // Faster vertical movement
+                    isShootingStar: true,
+                    trail: [],
+                    createdAt: Date.now(),
+                    lifespan: 3000 // 3 seconds
+                };
+                
+                particles.push(shootingStar);
+                activeShootingStars++;
+            }
+            
+            // Create shooting stars to maintain 15 on screen
+            function maintainShootingStars() {
+                if (activeShootingStars < maxShootingStars) {
+                    createShootingStar();
+                }
+            }
+            
+            // Check every 3 seconds to maintain 15 shooting stars
+            setInterval(maintainShootingStars, 3000);
+            
+            // Simplified animation loop
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                
+                const currentTime = Date.now();
+                
+                // Update and draw particles
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const p = particles[i];
+                    
+                    if (p.isShootingStar) {
+                        const age = currentTime - p.createdAt;
+                        if (age > p.lifespan) {
+                            particles.splice(i, 1);
+                            activeShootingStars--;
+                            continue;
                         }
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${p.alpha * 0.3 * fadeOut})`;
-                        ctx.lineWidth = p.radius * 0.5;
-                        ctx.stroke();
+                        
+                        const fadeOut = Math.max(0, 1 - (age / p.lifespan));
+                        
+                        // Draw shooting star trail
+                        if (p.trail.length > 0) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            for (let j = p.trail.length - 1; j >= 0; j--) {
+                                const trailPoint = p.trail[j];
+                                ctx.lineTo(trailPoint.x, trailPoint.y);
+                            }
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${p.alpha * 0.5 * fadeOut})`;
+                            ctx.lineWidth = p.radius * 0.8;
+                            ctx.stroke();
+                        }
+                        
+                        // Draw shooting star
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * fadeOut})`;
+                        ctx.fill();
+                        
+                        // Update trail
+                        p.trail.push({x: p.x, y: p.y});
+                        if (p.trail.length > 6) {
+                            p.trail.shift();
+                        }
+                    } else {
+                        // Regular particle - no flashing or twinkling
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+                        ctx.fill();
                     }
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * fadeOut})`;
-                    ctx.fill();
-                    p.trail.push({ x: p.x, y: p.y });
-                    if (p.trail.length > 10) p.trail.shift();
-                } else {
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
-                    ctx.fill();
+                    
+                    // Update position
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    
+                    // Wrap around screen
+                    if (p.x < 0) p.x = width;
+                    if (p.x > width) p.x = 0;
+                    if (p.y < 0) p.y = height;
+                    if (p.y > height) p.y = 0;
                 }
-
-                p.x += p.speedX;
-                p.y += p.speedY;
-                if (p.x < 0) p.x = width;
-                if (p.x > width) p.x = 0;
-                if (p.y < 0) p.y = height;
-                if (p.y > height) p.y = 0;
-            });
-            requestAnimationFrame(animate);
-        }
-
-        animate();
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Start animation
+            animate();
+        });
     </script>
 </body>
 </html>

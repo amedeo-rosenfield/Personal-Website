@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>About Me - Amedeo Rosenfield</title>
-    <link rel="stylesheet" href="styles.css?v=3">
-    <script src="theme.js?v=3"></script>
+    <style>
+        /* Prevent white flash on page load */
+        html, body {
+            background-color: #0a0a0a !important;
+            color: #ffffff !important;
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css?v=16">
+    <script src="theme.js?v=9"></script>
 </head>
 <body>
     <canvas id="dustCanvas"></canvas>
@@ -158,177 +165,192 @@
         });
     </script>
 
-    <!-- Dust particles JavaScript for dark mode -->
+    <!-- Dust particles JavaScript -->
     <script>
-        // Check if canvas is supported
-        if (!document.getElementById('dustCanvas')) {
-            console.warn('Dust canvas element not found');
-        } else {
-            try {
-                const canvas = document.getElementById('dustCanvas');
-                const ctx = canvas.getContext('2d');
-                
-                if (!ctx) {
-                    console.warn('Canvas 2D context not supported');
-                } else {
-                    let width = canvas.width = window.innerWidth;
-                    let height = canvas.height = window.innerHeight;
-
-                    window.addEventListener('resize', () => {
-                        width = canvas.width = window.innerWidth;
-                        height = canvas.height = window.innerHeight;
-                    });
-
-                    // Create particles with reduced count for better performance
-                    const numParticles = 3000; // Further reduced for older computers
-                    const particles = [];
-                    let activeShootingStars = 0;
-                    const maxShootingStars = 25; // Increased for more shooting stars
-
-                    for (let i = 0; i < numParticles; i++) {
-                        const isMotionless = Math.random() < 0.9; // 90% chance of being motionless for better performance
-                        const isMicroscopic = Math.random() < 0.85; // 85% chance of being microscopically small
-
-                        let speedX = 0;
-                        let speedY = 0;
-                        let radius = isMicroscopic ? Math.random() * 0.08 : Math.random() * 0.4; // Smaller particles
-                        let alpha = isMicroscopic ? Math.random() * 0.25 : Math.random() * 0.5; // Lower alpha
-
-                        if (!isMotionless) {
-                            // Regular moving particles with reduced speed
-                            speedX = (Math.random() - 0.5) * 0.08;
-                            speedY = (Math.random() - 0.5) * 0.08;
-                        }
-
-                        particles.push({
-                            x: Math.random() * width,
-                            y: Math.random() * height,
-                            radius: radius,
-                            alpha: alpha,
-                            speedX: speedX,
-                            speedY: speedY,
-                            isShootingStar: false,
-                            trail: null,
-                            createdAt: Date.now()
-                        });
-                    }
-
-                    // Function to create a new shooting star
-                    function createShootingStar() {
-                        if (activeShootingStars >= maxShootingStars) return;
-
-                        const shootingStar = {
-                            x: Math.random() * width,
-                            y: Math.random() * height,
-                            radius: Math.random() * 1.2 + 0.3, // Smaller shooting stars
-                            alpha: Math.random() * 0.6 + 0.2,
-                            speedX: (Math.random() - 0.5) * 2.5,
-                            speedY: (Math.random() - 0.5) * 1.5,
-                            isShootingStar: true,
-                            trail: [],
-                            createdAt: Date.now(),
-                            lifespan: 2500 // 2.5 seconds
-                        };
-
-                        particles.push(shootingStar);
-                        activeShootingStars++;
-                    }
-
-                                    // Create shooting stars more frequently
-                setInterval(createShootingStar, 3000); // 3 seconds between shooting stars
-
-                    function animate() {
-                        try {
-                            ctx.clearRect(0, 0, width, height);
-                            const currentTime = Date.now();
-                            
-                            // Filter out expired shooting stars and update active count
-                            const validParticles = particles.filter(p => {
-                                if (p.isShootingStar) {
-                                    const age = currentTime - p.createdAt;
-                                    if (age > p.lifespan) {
-                                        activeShootingStars--;
-                                        return false; // Remove expired shooting star
-                                    }
-                                }
-                                return true;
-                            });
-                            
-                            // Update particles array
-                            particles.length = 0;
-                            particles.push(...validParticles);
-                            
-                            particles.forEach(p => {
-                                if (p.isShootingStar) {
-                                    const age = currentTime - p.createdAt;
-                                    const fadeOut = Math.max(0, 1 - (age / p.lifespan)); // Fade out over lifespan
-                                    
-                                    // Draw shooting star trail
-                                    if (p.trail.length > 0) {
-                                        ctx.beginPath();
-                                        ctx.moveTo(p.x, p.y);
-                                        for (let i = p.trail.length - 1; i >= 0; i--) {
-                                            const trailPoint = p.trail[i];
-                                            ctx.lineTo(trailPoint.x, trailPoint.y);
-                                        }
-                                        ctx.strokeStyle = `rgba(255, 255, 255, ${p.alpha * 0.3 * fadeOut})`;
-                                        ctx.lineWidth = p.radius * 0.5;
-                                        ctx.stroke();
-                                    }
-
-                                    // Draw shooting star
-                                    ctx.beginPath();
-                                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                                    ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * fadeOut})`;
-                                    ctx.fill();
-
-                                    // Update trail
-                                    p.trail.push({x: p.x, y: p.y});
-                                    if (p.trail.length > 8) { // Shorter trail for performance
-                                        p.trail.shift();
-                                    }
-                                } else {
-                                    // Regular particle
-                                    ctx.beginPath();
-                                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                                    ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
-                                    ctx.fill();
-                                }
-
-                                p.x += p.speedX;
-                                p.y += p.speedY;
-
-                                // Wrap around screen
-                                if (p.x < 0) p.x = width;
-                                if (p.x > width) p.x = 0;
-                                if (p.y < 0) p.y = height;
-                                if (p.y > height) p.y = 0;
-                            });
-                            
-                            // Use requestAnimationFrame with fallback
-                            if (window.requestAnimationFrame) {
-                                requestAnimationFrame(animate);
-                            } else {
-                                setTimeout(animate, 16); // ~60fps fallback
-                            }
-                        } catch (error) {
-                            console.error('Error in dust animation:', error);
-                            // Stop animation on error
-                        }
-                    }
-
-                    // Start animation with error handling
-                    try {
-                        animate();
-                        console.log('Dust particles initialized successfully');
-                    } catch (error) {
-                        console.error('Failed to initialize dust particles:', error);
-                    }
-                }
-            } catch (error) {
-                console.error('Error setting up dust particles:', error);
+        // Simplified, consistent dust particles system
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('dustCanvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+            
+            // Set canvas size
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
             }
-        }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Consistent particle configuration across all browsers
+            const numParticles = 5000; // Bright particles
+            const numLessBrightParticles = 5000; // Less bright particles
+            const maxShootingStars = 15; // Always 15 shooting stars on screen
+            
+            const particles = [];
+            let activeShootingStars = 0;
+            
+            // Create bright particles
+            for (let i = 0; i < numParticles; i++) {
+                const isMotionless = Math.random() < 0.95; // 95% static for consistency
+                
+                let speedX = 0;
+                let speedY = 0;
+                let radius = Math.random() * 0.4 + 0.08; // Slightly larger for more visibility
+                let alpha = Math.random() * 0.8 + 0.4; // Brighter particles for Milky Way effect
+                
+                if (!isMotionless) {
+                    // Very slow, consistent movement
+                    speedX = (Math.random() - 0.5) * 0.05;
+                    speedY = (Math.random() - 0.5) * 0.05;
+                }
+                
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: radius,
+                    alpha: alpha,
+                    speedX: speedX,
+                    speedY: speedY,
+                    isShootingStar: false,
+                    trail: null,
+                    createdAt: Date.now()
+                });
+            }
+            
+            // Create less bright particles
+            for (let i = 0; i < numLessBrightParticles; i++) {
+                const isMotionless = Math.random() < 0.95; // 95% static for consistency
+                
+                let speedX = 0;
+                let speedY = 0;
+                let radius = Math.random() * 0.3 + 0.05; // Smaller for subtle effect
+                let alpha = Math.random() * 0.2 + 0.05; // Much less bright for depth
+                
+                if (!isMotionless) {
+                    // Very slow, consistent movement
+                    speedX = (Math.random() - 0.5) * 0.05;
+                    speedY = (Math.random() - 0.5) * 0.05;
+                }
+                
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: radius,
+                    alpha: alpha,
+                    speedX: speedX,
+                    speedY: speedY,
+                    isShootingStar: false,
+                    trail: null,
+                    createdAt: Date.now()
+                });
+            }
+            
+            // Simplified shooting star creation
+            function createShootingStar() {
+                if (activeShootingStars >= maxShootingStars) return;
+                
+                const shootingStar = {
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.5 + 0.4, // Larger shooting stars
+                    alpha: Math.random() * 1.0 + 0.6, // Much brighter shooting stars
+                    speedX: (Math.random() - 0.5) * 2.5, // Faster horizontal movement
+                    speedY: (Math.random() - 0.5) * 1.8, // Faster vertical movement
+                    isShootingStar: true,
+                    trail: [],
+                    createdAt: Date.now(),
+                    lifespan: 3000 // 3 seconds
+                };
+                
+                particles.push(shootingStar);
+                activeShootingStars++;
+            }
+            
+            // Create shooting stars to maintain 15 on screen
+            function maintainShootingStars() {
+                if (activeShootingStars < maxShootingStars) {
+                    createShootingStar();
+                }
+            }
+            
+            // Check every 3 seconds to maintain 15 shooting stars
+            setInterval(maintainShootingStars, 3000);
+            
+            // Simplified animation loop
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                
+                const currentTime = Date.now();
+                
+                // Update and draw particles
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const p = particles[i];
+                    
+                    if (p.isShootingStar) {
+                        const age = currentTime - p.createdAt;
+                        if (age > p.lifespan) {
+                            particles.splice(i, 1);
+                            activeShootingStars--;
+                            continue;
+                        }
+                        
+                        const fadeOut = Math.max(0, 1 - (age / p.lifespan));
+                        
+                        // Draw shooting star trail
+                        if (p.trail.length > 0) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            for (let j = p.trail.length - 1; j >= 0; j--) {
+                                const trailPoint = p.trail[j];
+                                ctx.lineTo(trailPoint.x, trailPoint.y);
+                            }
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${p.alpha * 0.5 * fadeOut})`;
+                            ctx.lineWidth = p.radius * 0.8;
+                            ctx.stroke();
+                        }
+                        
+                        // Draw shooting star
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * fadeOut})`;
+                        ctx.fill();
+                        
+                        // Update trail
+                        p.trail.push({x: p.x, y: p.y});
+                        if (p.trail.length > 6) {
+                            p.trail.shift();
+                        }
+                    } else {
+                        // Regular particle - no flashing or twinkling
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+                        ctx.fill();
+                    }
+                    
+                    // Update position
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    
+                    // Wrap around screen
+                    if (p.x < 0) p.x = width;
+                    if (p.x > width) p.x = 0;
+                    if (p.y < 0) p.y = height;
+                    if (p.y > height) p.y = 0;
+                }
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Start animation
+            animate();
+        });
     </script>
 
 </body>

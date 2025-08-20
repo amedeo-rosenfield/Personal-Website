@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     
-    let currentTheme = 'dark'; // 'auto', 'light', or 'dark'
+    let currentTheme = 'dark'; // Always default to dark
     
     // Function to apply theme
     function applyTheme(theme = null) {
@@ -10,17 +10,12 @@
             currentTheme = theme;
             localStorage.setItem('theme', theme);
         } else {
-            // Default to dark mode immediately, then check localStorage
+            // Always default to dark mode, only check localStorage for user preference
             currentTheme = localStorage.getItem('theme') || 'dark';
         }
         
-        let isDark = false;
-        
-        if (currentTheme === 'auto') {
-            isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        } else {
-            isDark = currentTheme === 'dark';
-        }
+        // Force dark mode unless user explicitly chose light
+        const isDark = currentTheme !== 'light';
         
         document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
         
@@ -39,19 +34,11 @@
     // Function to toggle theme
     function toggleTheme() {
         console.log('Toggle theme called, current theme:', currentTheme);
-        console.log('Current data-theme attribute:', document.documentElement.getAttribute('data-theme'));
         
-        if (currentTheme === 'auto') {
-            // If auto, switch to opposite of current system preference
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            console.log('Auto mode - system prefers dark:', prefersDark);
-            applyTheme(prefersDark ? 'light' : 'dark');
-        } else {
-            // If manual, switch to opposite
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            console.log('Manual mode - switching from', currentTheme, 'to', newTheme);
-            applyTheme(newTheme);
-        }
+        // Simple toggle between light and dark
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        console.log('Switching from', currentTheme, 'to', newTheme);
+        applyTheme(newTheme);
     }
     
     // Function to update theme button text
@@ -64,15 +51,6 @@
             console.log('Button text updated to:', newText, 'isDark:', isDark);
         } else {
             console.log('Theme button not found');
-        }
-    }
-    
-    // Function to handle system theme changes (only when in auto mode)
-    function handleThemeChange(e) {
-        if (currentTheme === 'auto') {
-            const prefersDark = e.matches;
-            document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-            updateThemeButton();
         }
     }
     
@@ -93,10 +71,6 @@
     // Also listen for DOMContentLoaded for additional initialization
     document.addEventListener('DOMContentLoaded', function() {
         console.log('DOM loaded, ensuring theme is applied');
-        
-        // Listen for system theme changes
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        mediaQuery.addEventListener('change', handleThemeChange);
         
         // Add click handler for theme toggle button
         const themeButton = document.getElementById('theme-toggle');
