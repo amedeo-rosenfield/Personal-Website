@@ -3,6 +3,15 @@
 /* Import fonts - Calm, refined typography */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap');
 
+/* ===== ENFORCE DARK MODE BY DEFAULT ===== */
+:root {
+    color-scheme: dark;
+}
+
+html {
+    color-scheme: dark;
+}
+
 /* ===== LIGHT/DARK MODE CSS VARIABLES ===== */
 :root {
     /* Light mode colors */
@@ -40,8 +49,10 @@
                 box-shadow var(--transition-speed) ease;
 }
 
-/* Dark mode colors */
-[data-theme="dark"] {
+/* Dark mode colors - ALWAYS APPLIED BY DEFAULT */
+html,
+html[data-theme="dark"],
+html:not([data-theme="light"]) {
     --bg-primary: #0a0a0a;
     --bg-secondary: #1a1a1a;
     --bg-tertiary: #2d2d2d;
@@ -74,27 +85,40 @@
                 box-shadow var(--transition-speed) ease;
 }
 
-[data-theme="dark"] html,
-[data-theme="dark"] body {
+/* Force dark mode on all elements */
+html,
+html[data-theme="dark"],
+html:not([data-theme="light"]),
+body {
     background: #0a0a0a !important;
     background-color: #0a0a0a !important;
+    color: #ffffff !important;
 }
 
-[data-theme="dark"] .navbar {
+/* Dark mode navbar */
+html,
+html[data-theme="dark"],
+html:not([data-theme="light"]) .navbar {
     background: transparent !important;
     border-bottom: 1px solid var(--border-primary);
 }
 
-[data-theme="dark"] .engineering-landing {
+html,
+html[data-theme="dark"],
+html:not([data-theme="light"]) .engineering-landing {
     background: var(--bg-primary);
 }
 
-[data-theme="dark"] .volunteering-landing {
+html,
+html[data-theme="dark"],
+html:not([data-theme="light"]) .volunteering-landing {
     background: var(--bg-primary);
 }
 
-[data-theme="dark"] .project-card-expandable {
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards */
+html,
+html[data-theme="dark"],
+html:not([data-theme="light"]) .project-card-expandable {
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
     border-radius: 12px; /* Rounded corners like bio cards */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
     border: 2px solid #00bfff; /* Neon blue border like bio cards */
@@ -1214,6 +1238,7 @@ img {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .nav-left {
@@ -1231,6 +1256,7 @@ img {
     align-items: center;
     margin-left: auto;
     margin-right: 0;
+    flex-shrink: 0;
 }
 
 /* Modern Theme Toggle Button */
@@ -1312,6 +1338,19 @@ img {
 body.home .nav-logo {
     opacity: 0;
     animation: none;
+    visibility: hidden;
+}
+
+/* Show theme toggle button only on home page */
+body:not(.home) .theme-toggle-btn {
+    display: none !important;
+}
+
+/* Show nav logo only on non-home pages */
+body:not(.home) .nav-logo {
+    opacity: 1;
+    visibility: visible;
+    animation: gentleFadeIn 2s ease-out 0.5s forwards;
 }
 
 .nav-link {
@@ -4693,20 +4732,24 @@ body.home .nav-logo {
 }
             
             /* Dark mode override for contact form section */
-            [data-theme="dark"] .contact-form-section {
-                background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
-                border: 2px solid #00bfff; /* Neon blue border like bio cards */
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
-                z-index: 15; /* Above particles but below images, same as bio cards */
-            }
-            
-            /* Dark mode override for contact links section */
-            [data-theme="dark"] .contact-links-section {
-                background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
-                border: 2px solid #00bfff; /* Neon blue border like bio cards */
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
-                z-index: 15; /* Above particles but below images, same as bio cards */
-            }
+html,
+html[data-theme="dark"],
+html:not([data-theme="light"]) .contact-form-section {
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+    border: 1px solid var(--border-primary); /* Subtle border matching dark theme */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow without neon glow */
+    z-index: 15; /* Above particles but below images, same as bio cards */
+}
+
+/* Dark mode override for contact links section */
+html,
+html[data-theme="dark"],
+html:not([data-theme="light"]) .contact-links-section {
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+    border: 1px solid var(--border-primary); /* Subtle border matching dark theme */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow without neon glow */
+    z-index: 15; /* Above particles but below images, same as bio cards */
+}
 
 /* Service Modal */
 .service-modal {
@@ -6656,10 +6699,10 @@ html:not([data-theme="dark"]) #dustCanvas {
 /* Contact form section - Redesigned */
 .contact-form-section {
     background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
-    border: 2px solid #00bfff; /* Neon blue border like bio cards */
+    border: 1px solid var(--border-primary); /* Subtle border matching dark theme */
     border-radius: 20px;
     padding: 60px; /* Increased for more breathing room */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow without neon glow */
     transition: all 0.3s ease;
     min-height: 520px; /* Increased to match contact links */
     display: flex;
@@ -6807,10 +6850,10 @@ html:not([data-theme="dark"]) #dustCanvas {
 /* Contact links section - Redesigned */
 .contact-links-section {
     background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
-    border: 2px solid #00bfff; /* Neon blue border like bio cards */
+    border: 1px solid var(--border-primary); /* Subtle border matching dark theme */
     border-radius: 20px;
     padding: 60px; /* Increased to match contact form */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow without neon glow */
     transition: all 0.3s ease;
     min-height: 520px; /* Increased to match contact form */
     display: flex;

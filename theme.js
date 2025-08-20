@@ -6,18 +6,26 @@
     
     // Function to apply theme
     function applyTheme(theme = null) {
-        if (theme) {
-            currentTheme = theme;
-            localStorage.setItem('theme', theme);
+        // Always default to dark mode, only check localStorage for user preference
+        if (theme && theme === 'light') {
+            currentTheme = 'light';
+            localStorage.setItem('theme', 'light');
         } else {
-            // Always default to dark mode, only check localStorage for user preference
-            currentTheme = localStorage.getItem('theme') || 'dark';
+            currentTheme = 'dark';
+            localStorage.setItem('theme', 'dark');
         }
         
         // Force dark mode unless user explicitly chose light
         const isDark = currentTheme !== 'light';
         
         document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        
+        // Force dark mode on html element
+        if (isDark) {
+            document.documentElement.style.colorScheme = 'dark';
+            document.documentElement.style.backgroundColor = '#0a0a0a';
+            document.documentElement.style.color = '#ffffff';
+        }
         
         // Debug logging
         console.log('Theme applied:', {
@@ -58,7 +66,18 @@
     function initializeTheme() {
         console.log('Initializing theme, DOM ready state:', document.readyState);
         console.log('Stored theme in localStorage:', localStorage.getItem('theme'));
+        
+        // Force dark mode by default
         applyTheme();
+        
+        // Ensure dark mode is applied even if other scripts try to override
+        setTimeout(() => {
+            const currentDataTheme = document.documentElement.getAttribute('data-theme');
+            if (currentDataTheme !== 'dark' && currentTheme === 'dark') {
+                console.log('Forcing dark mode after initialization');
+                applyTheme('dark');
+            }
+        }, 100);
     }
     
     // Apply theme immediately if DOM is already loaded
@@ -80,6 +99,14 @@
         } else {
             console.log('Theme button not found during initialization');
         }
+        
+        // Double-check dark mode is applied
+        setTimeout(() => {
+            if (currentTheme === 'dark' && document.documentElement.getAttribute('data-theme') !== 'dark') {
+                console.log('Re-applying dark mode after DOM load');
+                applyTheme('dark');
+            }
+        }, 200);
     });
     
     // Navbar scroll functionality

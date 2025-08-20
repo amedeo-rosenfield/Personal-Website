@@ -1,0 +1,10 @@
+[33m07fdadc[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Make element three (modern spacecraft) brighter red - change stroke color from #8B0000 to #FF0000 and update drop-shadow filter
+[33m171a8b8[m Fix background color consistency across all pages - Standardize landing sections to use var(--bg-primary) instead of gradients - Remove background transitions that were causing color changes on scroll - Update cache busting to v=16 to ensure changes are loaded - Ensures consistent #0a0a0a background across bio, engineer, volunteer, and photography pages
+[33m6daaccc[m Improve contact form spacing and alignment - Add top padding to contact form to lower content from top - Add right padding to form content for better spacing - Update cache-busting version to v=16 - Ensure professional, modern, clean appearance with proper breathing room
+[33md2d625c[m Fix browser compatibility issues with dust particles
+[33me74b5a5[m Enhanced space environment with massive particle system and improved theme loading
+[33m4c909d3[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Set dark mode as default theme for new visitors
+[33m8681884[m Update contact page with clickable blocks and improve navigation
+[33m643dc92[m Fix scrollbar issues, contact card sizing, rocket animation timing, and maintenance checklist display
+[33m5351a32[m Update photography tabs and rocket styling - Fixed mobile centering issues for home page content on iPhone - Updated volunteer experiences to single column layout on mobile - Changed photography tab styling: selected tabs now have transparent/white background - Updated element-3 rocket from purple to deep red glow - Made element-2 rocket larger for 3D effect and changed to lighter orange color
+[33m6fdae0e[m Fix mobile centering issues on iPhone - Enhanced mobile responsive styles for proper content centering - Added explicit margin controls and box-sizing for all hero elements - Fixed bottom actions positioning and centering on mobile devices - Ensured all text and buttons are properly centered on iPhone screens
