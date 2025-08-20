@@ -12,7 +12,7 @@
             color: #ffffff !important;
         }
     </style>
-    <link rel="stylesheet" href="styles.css?v=16">
+    <link rel="stylesheet" href="styles.css?v=104">
     <script src="theme.js?v=9"></script>
 </head>
 <body>
@@ -52,10 +52,10 @@
             <div class="bio-story-container">
                 <div class="bio-photo-after-arrow">
                     <img src="images/projects/2025-08-09_RVP_Rosenfield_Family-63.jpg" alt="Amedeo Rosenfield" class="bio-photo">
-                    <div class="bio-scroll-indicator-second">
-                        <div class="scroll-arrow">↓</div>
-                        <div class="scroll-text">Read about me</div>
-                    </div>
+                </div>
+                <div class="bio-scroll-indicator-second">
+                    <div class="scroll-arrow">↓</div>
+                    <div class="scroll-text">Read about me</div>
                 </div>
                 <div class="bio-content-layout">
                     <div class="bio-story-text">
@@ -282,6 +282,26 @@
             // Check every 3 seconds to maintain 15 shooting stars
             setInterval(maintainShootingStars, 3000);
             
+            // Function to check if particle is behind text elements
+            function isBehindText(x, y) {
+                const textElements = document.querySelectorAll('.bio-story-text, .bio-section');
+                for (let element of textElements) {
+                    const rect = element.getBoundingClientRect();
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+                    
+                    const elementTop = rect.top + scrollTop;
+                    const elementLeft = rect.left + scrollLeft;
+                    const elementBottom = elementTop + rect.height;
+                    const elementRight = elementLeft + rect.width;
+                    
+                    if (x >= elementLeft && x <= elementRight && y >= elementTop && y <= elementBottom) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            
             // Simplified animation loop
             function animate() {
                 ctx.clearRect(0, 0, width, height);
@@ -291,6 +311,10 @@
                 // Update and draw particles
                 for (let i = particles.length - 1; i >= 0; i--) {
                     const p = particles[i];
+                    
+                    // Check if particle is behind text and reduce opacity
+                    const behindText = isBehindText(p.x, p.y);
+                    const opacityMultiplier = behindText ? 0.2 : 1; // Reduce opacity to 20% behind text
                     
                     if (p.isShootingStar) {
                         const age = currentTime - p.createdAt;
@@ -310,7 +334,7 @@
                                 const trailPoint = p.trail[j];
                                 ctx.lineTo(trailPoint.x, trailPoint.y);
                             }
-                            ctx.strokeStyle = `rgba(255, 255, 255, ${p.alpha * 0.5 * fadeOut})`;
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${p.alpha * 0.5 * fadeOut * opacityMultiplier})`;
                             ctx.lineWidth = p.radius * 0.8;
                             ctx.stroke();
                         }
@@ -318,7 +342,7 @@
                         // Draw shooting star
                         ctx.beginPath();
                         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * fadeOut})`;
+                        ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * fadeOut * opacityMultiplier})`;
                         ctx.fill();
                         
                         // Update trail
@@ -330,7 +354,7 @@
                         // Regular particle - no flashing or twinkling
                         ctx.beginPath();
                         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+                        ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * opacityMultiplier})`;
                         ctx.fill();
                     }
                     

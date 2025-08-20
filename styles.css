@@ -94,7 +94,11 @@
 }
 
 [data-theme="dark"] .project-card-expandable {
-    background: var(--bg-secondary);
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards */
+    border-radius: 12px; /* Rounded corners like bio cards */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
+    border: 2px solid #00bfff; /* Neon blue border like bio cards */
+    z-index: 15; /* Above particles but below images, same as bio cards */
 }
 
 /* ===== UNIVERSAL RESPONSIVE DESIGN ===== */
@@ -570,6 +574,8 @@ img {
     width: 100%;
     max-width: 400px;
     box-sizing: border-box;
+    position: relative;
+    z-index: 20; /* Higher z-index to be above particles */
 }
 
 .bio-photo {
@@ -578,8 +584,9 @@ img {
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(106, 123, 140, 0.15);
     transition: all 0.4s ease;
-    opacity: 0;
-    animation: gentleFadeIn 2s ease-out 0.5s forwards;
+    opacity: 1;
+    position: relative;
+    z-index: 21; /* Ensure image is above particles */
 }
 
 .bio-photo:hover {
@@ -587,11 +594,27 @@ img {
     box-shadow: 0 12px 48px rgba(106, 123, 140, 0.25);
 }
 
+/* Particle-free zone around bio photo */
+.bio-photo-container::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: var(--bg-primary);
+    border-radius: 16px;
+    z-index: 19; /* Below the image but above particles */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
 .bio-scroll-indicator {
     margin-top: 40px;
     cursor: pointer;
     transition: all 0.4s ease;
     opacity: 0.7;
+    position: relative;
+    z-index: 25; /* Ensure it's above everything */
 }
 
 .bio-scroll-indicator:hover {
@@ -604,6 +627,12 @@ img {
     cursor: pointer;
     transition: all 0.4s ease;
     opacity: 0.7;
+    position: relative;
+    z-index: 25; /* Ensure it's above everything */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .bio-scroll-indicator-second:hover {
@@ -660,6 +689,21 @@ img {
     margin: 0 auto 60px auto;
     box-sizing: border-box;
     text-align: center;
+    position: relative;
+    z-index: 20; /* Higher z-index to be above particles */
+}
+
+.bio-photo-after-arrow::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: var(--bg-primary);
+    border-radius: 16px;
+    z-index: 19; /* Below the image but above particles */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .bio-photo-after-arrow .bio-photo {
@@ -669,8 +713,9 @@ img {
     box-shadow: 0 8px 32px rgba(106, 123, 140, 0.15);
     transition: all 0.4s ease;
     opacity: 1;
-    animation: gentleFadeIn 2s ease-out 0.5s forwards;
     cursor: pointer;
+    position: relative;
+    z-index: 21; /* Ensure image is above particles */
 }
 
 .bio-photo-after-arrow .bio-photo:hover {
@@ -686,14 +731,26 @@ img {
     text-align: left;
     box-sizing: border-box;
     margin: 0 20px; /* Increased side margins for better balance */
-    padding: 0 15px; /* Additional padding for clean look */
+    padding: 25px 30px; /* Increased padding for better visual separation */
+    background: transparent; /* Transparent background - no outer card */
+    border-radius: 0; /* No border radius since no background */
+    backdrop-filter: none; /* No blur effect */
+    -webkit-backdrop-filter: none; /* Safari support */
+    border: none; /* No border */
+    box-shadow: none; /* No shadow */
     transition: color var(--transition-speed) ease;
+    position: relative;
+    z-index: 15; /* Above particles but below images */
 }
+
+/* Removed .bio-story-text::before since the outer card is now transparent */
 
 .bio-story-text p {
     margin-bottom: 24px;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    position: relative;
+    z-index: 1;
 }
 
 .bio-story-text p:last-child {
@@ -703,14 +760,33 @@ img {
 /* Bio section styling for cleaner organization */
 .bio-section {
     margin-bottom: 40px;
-    padding-bottom: 30px;
+    padding: 30px 25px;
     border-bottom: 1px solid var(--border-secondary);
-    transition: border-color var(--transition-speed) ease;
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background */
+    border-radius: 12px; /* Rounded corners */
+    border: 2px solid #00bfff; /* Neon blue border */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow */
+    transition: border-color var(--transition-speed) ease, background var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    position: relative;
+    z-index: 15; /* Above particles but below images */
+}
+
+.bio-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border-radius: 12px;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .bio-section:last-child {
     margin-bottom: 0;
-    padding-bottom: 0;
+    padding-bottom: 30px;
     border-bottom: none;
 }
 
@@ -1641,13 +1717,13 @@ body.home .nav-logo {
     animation: flame-flicker 0.2s infinite alternate;
 }
 
-/* Element 3 - Modern spacecraft (blue/white with deep red glow) */
+/* Element 3 - Modern spacecraft (blue/white with bright red glow) */
 .element-3 .rocket-body,
 .element-3 .rocket-fin {
-    stroke: #8B0000;  /* deep red */
+    stroke: #FF0000;  /* bright red */
     fill: none;
     stroke-width: 2;
-    filter: drop-shadow(0 0 4px #8B0000) drop-shadow(0 0 8px #8B0000);
+    filter: drop-shadow(0 0 4px #FF0000) drop-shadow(0 0 8px #FF0000);
 }
 
 .element-3 .rocket-flame {
@@ -2288,19 +2364,19 @@ body.home .nav-logo {
 
 /* Project Cards with Modal */
 .project-card-expandable {
-    background: var(--bg-secondary);
-    border-radius: 16px;
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards */
+    border-radius: 12px; /* Rounded corners like bio cards */
     padding: 40px;
-    box-shadow: 0 8px 32px var(--shadow-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
     transition: all 0.5s ease, box-shadow var(--transition-speed) ease;
-    border: 2px solid transparent;
+    border: 2px solid #00bfff; /* Neon blue border like bio cards */
     overflow: hidden;
-    backdrop-filter: blur(10px);
     transform-origin: center;
     cursor: pointer;
     position: relative;
     width: 100%;
     box-sizing: border-box;
+    z-index: 15; /* Above particles but below images, same as bio cards */
 }
 
 /* Project cards responsive adjustments */
@@ -3244,7 +3320,7 @@ body.home .nav-logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--gradient-accent);
+    background: var(--bg-primary);
     position: relative;
 }
 
@@ -3273,45 +3349,7 @@ body.home .nav-logo {
     letter-spacing: 0.1em !important;
 }
 
-/* Bio Scroll Indicator */
-.bio-scroll-indicator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    animation: gentleFadeInUp 1.2s ease-out 0.8s both;
-}
-
-.bio-scroll-indicator:hover {
-    transform: translateY(5px);
-}
-
-.scroll-arrow {
-    font-size: 2rem;
-    color: var(--accent-primary);
-    animation: bounce 2s infinite;
-}
-
-.scroll-text {
-    font-size: 0.9rem;
-    color: var(--text-tertiary);
-    font-weight: 500;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
-}
+/* Removed duplicate bio-scroll-indicator rules that were causing conflicts */
 
 .bio-photo-container {
     display: flex;
@@ -3975,9 +4013,10 @@ body.home .nav-logo {
 
 /* Photo Project Item */
 .photo-project-item {
-    background: var(--bg-secondary);
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
+    border: 2px solid #00bfff; /* Neon blue border like bio cards */
     overflow: hidden;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -3988,18 +4027,41 @@ body.home .nav-logo {
     display: flex;
     flex-direction: column;
     width: 100%;
+    z-index: 15; /* Above particles but below images, same as bio cards */
 }
 
 .photo-project-item:hover {
     transform: translateY(-4px) scale(1.05);
-    border: 2px solid rgba(0, 123, 255, 0.6);
-    box-shadow: 0 0 25px rgba(0, 123, 255, 0.4), 0 0 50px rgba(0, 123, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
 }
 
 /* Dark mode: ensure cards are grey */
 [data-theme="dark"] .photo-project-item {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+    border: 2px solid #00bfff; /* Neon blue border like bio cards */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
+    z-index: 15; /* Above particles but below images, same as bio cards */
+}
+
+/* Dark mode hover override for photo project items */
+[data-theme="dark"] .photo-project-item:hover {
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+}
+
+/* Dark mode override for personal photo items */
+[data-theme="dark"] .personal-photo-item {
+    z-index: 20; /* Higher z-index to be above particles, same as bio photo */
+}
+
+[data-theme="dark"] .personal-photo-item::before {
+    background: var(--bg-primary);
+    z-index: 19; /* Below the image but above particles */
+}
+
+[data-theme="dark"] .personal-photo {
+    z-index: 21; /* Ensure image is above particles, same as bio photo */
 }
 
 .photo-project-main {
@@ -4127,6 +4189,22 @@ body.home .nav-logo {
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: #f5f5f5;
+    position: relative;
+    z-index: 20; /* Higher z-index to be above particles, same as bio photo */
+}
+
+/* Particle-free zone around personal photos */
+.personal-photo-item::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: var(--bg-primary);
+    border-radius: 8px;
+    z-index: 19; /* Below the image but above particles */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .personal-photo-item:hover {
@@ -4139,6 +4217,8 @@ body.home .nav-logo {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    position: relative;
+    z-index: 21; /* Ensure image is above particles, same as bio photo */
 }
 
 .personal-photo-item:hover .personal-photo {
@@ -4519,20 +4599,21 @@ body.home .nav-logo {
 }
 
 .service-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+    border: 2px solid #00bfff; /* Neon blue border like bio cards */
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
     padding: 30px;
     text-align: center;
     transition: all 0.3s ease;
     transform-origin: center;
+    z-index: 15; /* Above particles but below images, same as bio cards */
 }
 
 .service-card:hover {
     transform: translateY(-4px) scale(1.05);
-    border: 2px solid rgba(0, 123, 255, 0.6);
-    box-shadow: 0 0 25px rgba(0, 123, 255, 0.4), 0 0 50px rgba(0, 123, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
 }
 
 .service-card h3 {
@@ -4594,8 +4675,38 @@ body.home .nav-logo {
 
 .service-card .learn-more-btn:hover {
     opacity: 1;
-    color: var(--accent-tertiary);
+                    color: var(--accent-tertiary);
+            }
+            
+            /* Dark mode override for service cards */
+[data-theme="dark"] .service-card {
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+    border: 2px solid #00bfff; /* Neon blue border like bio cards */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
+    z-index: 15; /* Above particles but below images, same as bio cards */
 }
+
+/* Dark mode hover override for service cards */
+[data-theme="dark"] .service-card:hover {
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+}
+            
+            /* Dark mode override for contact form section */
+            [data-theme="dark"] .contact-form-section {
+                background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+                border: 2px solid #00bfff; /* Neon blue border like bio cards */
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
+                z-index: 15; /* Above particles but below images, same as bio cards */
+            }
+            
+            /* Dark mode override for contact links section */
+            [data-theme="dark"] .contact-links-section {
+                background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+                border: 2px solid #00bfff; /* Neon blue border like bio cards */
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
+                z-index: 15; /* Above particles but below images, same as bio cards */
+            }
 
 /* Service Modal */
 .service-modal {
@@ -5532,16 +5643,16 @@ body.home .nav-logo {
 
 /* Volunteer Expandable Cards */
 .volunteer-card-expandable {
-    background: var(--bg-secondary);
-    border-radius: 16px;
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards */
+    border-radius: 12px; /* Rounded corners like bio cards */
     padding: 30px;
     margin-bottom: 30px;
-    box-shadow: 0 4px 20px var(--shadow-primary);
-    border: 1px solid var(--border-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
+    border: 2px solid #00bfff; /* Neon blue border like bio cards */
     transition: all 0.3s ease;
     transform-origin: center;
     cursor: pointer;
-    backdrop-filter: blur(10px);
+    z-index: 15; /* Above particles but below images, same as bio cards */
 }
 
 .volunteer-card-expandable:hover {
@@ -6453,8 +6564,11 @@ html:not([data-theme="dark"]) #dustCanvas {
 
 /* Dark mode settings for volunteer card expandable */
 [data-theme="dark"] .volunteer-card-expandable {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards */
+    border-radius: 12px; /* Rounded corners like bio cards */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
+    border: 2px solid #00bfff; /* Neon blue border like bio cards */
+    z-index: 15; /* Above particles but below images, same as bio cards */
 }
 
 [data-theme="dark"] .volunteer-card-expandable:hover {
@@ -6541,16 +6655,17 @@ html:not([data-theme="dark"]) #dustCanvas {
 
 /* Contact form section - Redesigned */
 .contact-form-section {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+    border: 2px solid #00bfff; /* Neon blue border like bio cards */
     border-radius: 20px;
     padding: 60px; /* Increased for more breathing room */
-    box-shadow: 0 8px 32px var(--shadow-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
     transition: all 0.3s ease;
     min-height: 520px; /* Increased to match contact links */
     display: flex;
     flex-direction: column;
     position: relative;
+    z-index: 15; /* Above particles but below images, same as bio cards */
 }
 
 .contact-form-section:hover {
@@ -6691,16 +6806,17 @@ html:not([data-theme="dark"]) #dustCanvas {
 
 /* Contact links section - Redesigned */
 .contact-links-section {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
+    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+    border: 2px solid #00bfff; /* Neon blue border like bio cards */
     border-radius: 20px;
     padding: 60px; /* Increased to match contact form */
-    box-shadow: 0 8px 32px var(--shadow-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
     transition: all 0.3s ease;
     min-height: 520px; /* Increased to match contact form */
     display: flex;
     flex-direction: column;
     position: relative;
+    z-index: 15; /* Above particles but below images, same as bio cards */
 }
 
 .contact-links-section:hover {
