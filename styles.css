@@ -4735,7 +4735,7 @@ body:not(.home) .nav-logo {
 html,
 html[data-theme="dark"],
 html:not([data-theme="light"]) .contact-form-section {
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+    background: transparent !important; /* Transparent background */
     border: 1px solid var(--border-primary); /* Subtle border matching dark theme */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow without neon glow */
     z-index: 15; /* Above particles but below images, same as bio cards */
@@ -4745,7 +4745,7 @@ html:not([data-theme="light"]) .contact-form-section {
 html,
 html[data-theme="dark"],
 html:not([data-theme="light"]) .contact-links-section {
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+    background: transparent !important; /* Transparent background */
     border: 1px solid var(--border-primary); /* Subtle border matching dark theme */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow without neon glow */
     z-index: 15; /* Above particles but below images, same as bio cards */
@@ -6698,7 +6698,7 @@ html:not([data-theme="dark"]) #dustCanvas {
 
 /* Contact form section - Redesigned */
 .contact-form-section {
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+    background: transparent !important; /* Transparent background */
     border: 1px solid var(--border-primary); /* Subtle border matching dark theme */
     border-radius: 20px;
     padding: 60px; /* Increased for more breathing room */
@@ -6849,7 +6849,7 @@ html:not([data-theme="dark"]) #dustCanvas {
 
 /* Contact links section - Redesigned */
 .contact-links-section {
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+    background: transparent !important; /* Transparent background */
     border: 1px solid var(--border-primary); /* Subtle border matching dark theme */
     border-radius: 20px;
     padding: 60px; /* Increased to match contact form */
