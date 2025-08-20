@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     
-    let currentTheme = 'auto'; // 'auto', 'light', or 'dark'
+    let currentTheme = 'dark'; // 'auto', 'light', or 'dark'
     
     // Function to apply theme
     function applyTheme(theme = null) {
