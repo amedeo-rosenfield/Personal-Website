@@ -10,8 +10,8 @@
             currentTheme = theme;
             localStorage.setItem('theme', theme);
         } else {
-            // Get stored theme or default to auto
-            currentTheme = localStorage.getItem('theme') || 'auto';
+            // Default to dark mode immediately, then check localStorage
+            currentTheme = localStorage.getItem('theme') || 'dark';
         }
         
         let isDark = false;

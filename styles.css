@@ -6560,7 +6560,8 @@ html:not([data-theme="dark"]) #dustCanvas {
     font-weight: 600;
     color: var(--text-primary);
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    margin-top: 0;
     letter-spacing: -0.01em;
     flex-shrink: 0;
 }
@@ -6569,14 +6570,14 @@ html:not([data-theme="dark"]) #dustCanvas {
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     flex: 1;
     justify-content: flex-start;
+    margin: 0;
+    padding: 0;
 }
 
-.form-group {
-    margin-bottom: 25px;
-}
+
 
 .form-group label {
     display: block;
@@ -6614,6 +6615,11 @@ html:not([data-theme="dark"]) #dustCanvas {
     gap: 8px;
 }
 
+/* Override for contact form to ensure proper alignment */
+.contact-form .form-group {
+    margin-bottom: 0 !important;
+}
+
 .form-group label {
     font-family: 'Inter', sans-serif;
     font-size: 0.95rem;
@@ -6624,7 +6630,7 @@ html:not([data-theme="dark"]) #dustCanvas {
 
 .form-group input,
 .form-group textarea {
-    padding: 14px 16px;
+    padding: 12px 14px;
     border: 2px solid var(--border-primary);
     border-radius: 12px;
     font-family: 'Inter', sans-serif;
@@ -6644,8 +6650,8 @@ html:not([data-theme="dark"]) #dustCanvas {
 
 .form-group textarea {
     resize: vertical;
-    min-height: 120px;
-    max-height: 200px;
+    min-height: 100px;
+    max-height: 150px;
 }
 
 /* Submit button - Enhanced */
@@ -6654,13 +6660,13 @@ html:not([data-theme="dark"]) #dustCanvas {
     color: white;
     border: none;
     border-radius: 12px;
-    padding: 16px 28px;
+    padding: 14px 24px;
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 20px;
+    margin-top: 15px;
     align-self: flex-start;
 }
 
@@ -6724,6 +6730,7 @@ html:not([data-theme="dark"]) #dustCanvas {
     color: var(--text-primary);
     text-align: center;
     margin-bottom: 30px;
+    margin-top: 0;
     letter-spacing: -0.01em;
     flex-shrink: 0;
 }
@@ -6731,9 +6738,17 @@ html:not([data-theme="dark"]) #dustCanvas {
 .contact-links {
     display: flex;
     flex-direction: column;
-    gap: 20px;
     flex: 1;
     justify-content: flex-start;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensure contact page uses the correct spacing */
+.contact-links-section .contact-links {
+    justify-content: flex-start;
+    gap: 20px;
 }
 
 .contact-link-item {
@@ -6798,11 +6813,12 @@ html:not([data-theme="dark"]) #dustCanvas {
                 min-height: 420px;
             }
             
-            .contact-links-section {
-                padding-top: 15px; /* Maintain alignment on mobile */
-            }
-    
 
+    
+    .contact-links-section .contact-links {
+        justify-content: flex-start;
+        gap: 15px;
+    }
     
     .contact-form-section h3.form-title,
     .contact-links-section h3.form-title {
@@ -6826,11 +6842,12 @@ html:not([data-theme="dark"]) #dustCanvas {
                 min-height: 400px;
             }
             
-            .contact-links-section {
-                padding-top: 12px; /* Maintain alignment on smaller mobile */
-            }
-    
 
+    
+    .contact-links-section .contact-links {
+        justify-content: flex-start;
+        gap: 10px;
+    }
     
     .contact-form-section h3.form-title,
     .contact-links-section h3.form-title {

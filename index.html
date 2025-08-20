@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Amedeo Rosenfield - Portfolio</title>
+    <style>
+        /* Prevent white flash on page load */
+        html, body {
+            background-color: #0a0a0a !important;
+            color: #ffffff !important;
+        }
+    </style>
     <link rel="stylesheet" href="styles.css?v=3">
     <script src="theme.js?v=3"></script>
 </head>
@@ -179,7 +186,7 @@
                     const numParticles = 3000; // Further reduced for older computers
                     const particles = [];
                     let activeShootingStars = 0;
-                    const maxShootingStars = 10; // Reduced for better performance
+                    const maxShootingStars = 25; // Increased for more shooting stars
 
                     for (let i = 0; i < numParticles; i++) {
                         const isMotionless = Math.random() < 0.9; // 90% chance of being motionless for better performance
@@ -188,12 +195,99 @@
                         let speedX = 0;
                         let speedY = 0;
                         let radius = isMicroscopic ? Math.random() * 0.08 : Math.random() * 0.4; // Smaller particles
-                        let alpha = isMicroscopic ? Math.random() * 0.25 : Math.random() * 0.5; // Lower alpha
+                        let alpha = isMicroscopic ? Math.random() * 0.35 + 0.1 : Math.random() * 0.6 + 0.2; // Brighter alpha
 
                         if (!isMotionless) {
                             // Regular moving particles with reduced speed
                             speedX = (Math.random() - 0.5) * 0.08;
                             speedY = (Math.random() - 0.5) * 0.08;
+                        }
+
+                        particles.push({
+                            x: Math.random() * width,
+                            y: Math.random() * height,
+                            radius: radius,
+                            alpha: alpha,
+                            speedX: speedX,
+                            speedY: speedY,
+                            isShootingStar: false,
+                            trail: null,
+                            createdAt: Date.now()
+                        });
+                    }
+
+                    // Add 600 additional brighter dust particles
+                    for (let i = 0; i < 600; i++) {
+                        const isMotionless = Math.random() < 0.8; // 80% chance of being motionless
+                        const isMicroscopic = Math.random() < 0.7; // 70% chance of being microscopically small
+
+                        let speedX = 0;
+                        let speedY = 0;
+                        let radius = isMicroscopic ? Math.random() * 0.12 : Math.random() * 0.6; // Slightly larger particles
+                        let alpha = isMicroscopic ? Math.random() * 0.5 + 0.3 : Math.random() * 0.7 + 0.4; // Even brighter alpha values
+
+                        if (!isMotionless) {
+                            // Moving particles with slightly higher speed
+                            speedX = (Math.random() - 0.5) * 0.12;
+                            speedY = (Math.random() - 0.5) * 0.12;
+                        }
+
+                        particles.push({
+                            x: Math.random() * width,
+                            y: Math.random() * height,
+                            radius: radius,
+                            alpha: alpha,
+                            speedX: speedX,
+                            speedY: speedY,
+                            isShootingStar: false,
+                            trail: null,
+                            createdAt: Date.now()
+                        });
+                    }
+
+                    // Add 20,000 very tiny particles for authentic space feel
+                    for (let i = 0; i < 20000; i++) {
+                        const isMotionless = Math.random() < 0.95; // 95% chance of being motionless for performance
+                        const isUltraMicroscopic = Math.random() < 0.9; // 90% chance of being ultra-microscopic
+
+                        let speedX = 0;
+                        let speedY = 0;
+                        let radius = isUltraMicroscopic ? Math.random() * 0.03 : Math.random() * 0.06; // Extremely tiny particles
+                        let alpha = isUltraMicroscopic ? Math.random() * 0.25 + 0.1 : Math.random() * 0.35 + 0.15; // Brighter subtle alpha
+
+                        if (!isMotionless) {
+                            // Very slow movement for the few moving particles
+                            speedX = (Math.random() - 0.5) * 0.04;
+                            speedY = (Math.random() - 0.5) * 0.04;
+                        }
+
+                        particles.push({
+                            x: Math.random() * width,
+                            y: Math.random() * height,
+                            radius: radius,
+                            alpha: alpha,
+                            speedX: speedX,
+                            speedY: speedY,
+                            isShootingStar: false,
+                            trail: null,
+                            createdAt: Date.now()
+                        });
+                    }
+
+                    // Add 100,000 additional ultra-tiny particles for maximum space immersion
+                    for (let i = 0; i < 100000; i++) {
+                        const isMotionless = Math.random() < 0.98; // 98% chance of being motionless for performance
+                        const isUltraMicroscopic = Math.random() < 0.95; // 95% chance of being ultra-microscopic
+
+                        let speedX = 0;
+                        let speedY = 0;
+                        let radius = isUltraMicroscopic ? Math.random() * 0.02 : Math.random() * 0.04; // Even tinier particles
+                        let alpha = isUltraMicroscopic ? Math.random() * 0.2 + 0.1 : Math.random() * 0.3 + 0.15; // Brighter subtle alpha
+
+                        if (!isMotionless) {
+                            // Extremely slow movement for the few moving particles
+                            speedX = (Math.random() - 0.5) * 0.02;
+                            speedY = (Math.random() - 0.5) * 0.02;
                         }
 
                         particles.push({
@@ -230,8 +324,8 @@
                         activeShootingStars++;
                     }
 
-                    // Create shooting stars periodically with longer intervals
-                    setInterval(createShootingStar, 10000); // 10 seconds between shooting stars
+                    // Create shooting stars more frequently
+                    setInterval(createShootingStar, 3000); // 3 seconds between shooting stars
 
                     function animate() {
                         try {

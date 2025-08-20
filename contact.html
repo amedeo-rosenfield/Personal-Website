@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Contact Me - Amedeo Rosenfield</title>
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=9">
     <script src="theme.js?v=3"></script>
 </head>
 <body class="contact">
@@ -264,11 +264,11 @@
                         height = canvas.height = window.innerHeight;
                     });
 
-                    // Create particles with reduced count for better performance
-                    const numParticles = 3000; // Further reduced for older computers
+                    // Create particles with 5x increased count
+                    const numParticles = 15000; // 5x increased dust particles
                     const particles = [];
                     let activeShootingStars = 0;
-                    const maxShootingStars = 10; // Reduced for better performance
+                    const maxShootingStars = 125; // 5x increased shooting stars
 
                     for (let i = 0; i < numParticles; i++) {
                         const isMotionless = Math.random() < 0.9; // 90% chance of being motionless for better performance
@@ -298,6 +298,8 @@
                         });
                     }
 
+
+
                     // Function to create a new shooting star
                     function createShootingStar() {
                         if (activeShootingStars >= maxShootingStars) return;
@@ -319,8 +321,8 @@
                         activeShootingStars++;
                     }
 
-                    // Create shooting stars periodically with longer intervals
-                    setInterval(createShootingStar, 10000); // 10 seconds between shooting stars
+                    // Create shooting stars 5x more frequently
+                    setInterval(createShootingStar, 600); // 5x more frequent shooting stars
 
                     function animate() {
                         try {

@@ -183,7 +183,7 @@
                     const numParticles = 3000; // Further reduced for older computers
                     const particles = [];
                     let activeShootingStars = 0;
-                    const maxShootingStars = 10; // Reduced for better performance
+                    const maxShootingStars = 25; // Increased for more shooting stars
 
                     for (let i = 0; i < numParticles; i++) {
                         const isMotionless = Math.random() < 0.9; // 90% chance of being motionless for better performance
@@ -234,8 +234,8 @@
                         activeShootingStars++;
                     }
 
-                    // Create shooting stars periodically with longer intervals
-                    setInterval(createShootingStar, 10000); // 10 seconds between shooting stars
+                                    // Create shooting stars more frequently
+                setInterval(createShootingStar, 3000); // 3 seconds between shooting stars
 
                     function animate() {
                         try {
