@@ -10,6 +10,10 @@
 
 html {
     color-scheme: dark;
+    /* Remove any potential outlines or borders */
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 /* ===== LIGHT/DARK MODE CSS VARIABLES ===== */
@@ -93,6 +97,16 @@ body {
     background: #0a0a0a !important;
     background-color: #0a0a0a !important;
     color: #ffffff !important;
+    /* Remove any potential outlines or borders */
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    /* Ensure full width coverage */
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* Dark mode navbar */
@@ -165,6 +179,15 @@ body {
     position: relative;
     overflow-y: auto; /* Use auto to prevent multiple scrollbars */
     box-sizing: border-box;
+    /* Remove any potential outlines or borders */
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    /* Ensure full width coverage */
+    min-width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* Universal responsive container */
@@ -1239,6 +1262,9 @@ img {
     align-items: center;
     width: 100%;
     box-sizing: border-box;
+    /* Ensure proper Flexbox layout */
+    flex-wrap: nowrap;
+    gap: 0;
 }
 
 .nav-left {
@@ -1257,6 +1283,9 @@ img {
     margin-left: auto;
     margin-right: 0;
     flex-shrink: 0;
+    /* Ensure proper right alignment and spacing */
+    justify-content: flex-end;
+    flex-wrap: nowrap;
 }
 
 /* Modern Theme Toggle Button */
@@ -1334,23 +1363,33 @@ img {
     transform: scale(1.15);
 }
 
-/* Hide nav logo on home page but maintain exact same layout */
+/* Navbar visibility logic */
+/* Home page: Show theme toggle, hide logo */
 body.home .nav-logo {
     opacity: 0;
     animation: none;
     visibility: hidden;
-}
-
-/* Show theme toggle button only on home page */
-body:not(.home) .theme-toggle-btn {
     display: none !important;
 }
 
-/* Show nav logo only on non-home pages */
+body.home .theme-toggle-btn {
+    opacity: 1;
+    visibility: visible;
+    display: flex !important;
+}
+
+/* Non-home pages: Show logo, hide theme toggle */
 body:not(.home) .nav-logo {
     opacity: 1;
     visibility: visible;
+    display: block !important;
     animation: gentleFadeIn 2s ease-out 0.5s forwards;
+}
+
+body:not(.home) .theme-toggle-btn {
+    opacity: 0;
+    visibility: hidden;
+    display: none !important;
 }
 
 .nav-link {
