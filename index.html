@@ -12,7 +12,7 @@
             color: #ffffff !important;
         }
     </style>
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=4">
     <script src="theme.js?v=3"></script>
 </head>
 <body class="home">
@@ -182,8 +182,36 @@
                         height = canvas.height = window.innerHeight;
                     });
 
-                    // Create particles with reduced count for better performance
-                    const numParticles = 3000; // Further reduced for older computers
+                    // Browser detection and performance optimization
+                    const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+                    const isFirefox = /Firefox/.test(navigator.userAgent);
+                    const isOlderComputer = navigator.hardwareConcurrency < 4; // Less than 4 CPU cores
+                    
+                    // Adjust particle count based on browser and performance
+                    let numParticles = 3000;
+                    let additionalBrightParticles = 600;
+                    let ultraTinyParticles = 20000;
+                    let additionalUltraTinyParticles = 100000;
+                    
+                    if (isChrome && isOlderComputer) {
+                        // Reduce particles significantly for Chrome on older computers
+                        numParticles = 1000;
+                        additionalBrightParticles = 200;
+                        ultraTinyParticles = 5000;
+                        additionalUltraTinyParticles = 20000;
+                        console.log('Chrome on older computer detected - reducing particles for performance');
+                    } else if (isChrome) {
+                        // Moderate reduction for Chrome
+                        numParticles = 2000;
+                        additionalBrightParticles = 400;
+                        ultraTinyParticles = 10000;
+                        additionalUltraTinyParticles = 50000;
+                        console.log('Chrome detected - moderate particle reduction');
+                    } else if (isFirefox) {
+                        // Keep full particles for Firefox
+                        console.log('Firefox detected - using full particle count');
+                    }
+                    
                     const particles = [];
                     let activeShootingStars = 0;
                     const maxShootingStars = 25; // Increased for more shooting stars
@@ -216,8 +244,8 @@
                         });
                     }
 
-                    // Add 600 additional brighter dust particles
-                    for (let i = 0; i < 600; i++) {
+                    // Add additional brighter dust particles
+                    for (let i = 0; i < additionalBrightParticles; i++) {
                         const isMotionless = Math.random() < 0.8; // 80% chance of being motionless
                         const isMicroscopic = Math.random() < 0.7; // 70% chance of being microscopically small
 
@@ -245,8 +273,8 @@
                         });
                     }
 
-                    // Add 20,000 very tiny particles for authentic space feel
-                    for (let i = 0; i < 20000; i++) {
+                    // Add very tiny particles for authentic space feel
+                    for (let i = 0; i < ultraTinyParticles; i++) {
                         const isMotionless = Math.random() < 0.95; // 95% chance of being motionless for performance
                         const isUltraMicroscopic = Math.random() < 0.9; // 90% chance of being ultra-microscopic
 
@@ -274,8 +302,8 @@
                         });
                     }
 
-                    // Add 100,000 additional ultra-tiny particles for maximum space immersion
-                    for (let i = 0; i < 100000; i++) {
+                    // Add additional ultra-tiny particles for maximum space immersion
+                    for (let i = 0; i < additionalUltraTinyParticles; i++) {
                         const isMotionless = Math.random() < 0.98; // 98% chance of being motionless for performance
                         const isUltraMicroscopic = Math.random() < 0.95; // 95% chance of being ultra-microscopic
 
@@ -327,10 +355,29 @@
                     // Create shooting stars more frequently
                     setInterval(createShootingStar, 3000); // 3 seconds between shooting stars
 
+                    // Performance monitoring
+                    let frameCount = 0;
+                    let lastTime = Date.now();
+                    let fps = 60;
+                    
                     function animate() {
                         try {
-                            ctx.clearRect(0, 0, width, height);
+                            // Calculate FPS
+                            frameCount++;
                             const currentTime = Date.now();
+                            if (currentTime - lastTime >= 1000) {
+                                fps = frameCount;
+                                frameCount = 0;
+                                lastTime = currentTime;
+                                
+                                // If FPS drops too low, reduce particles
+                                if (fps < 30 && particles.length > 5000) {
+                                    console.log('Low FPS detected:', fps, '- reducing particles');
+                                    particles.splice(5000); // Keep only first 5000 particles
+                                }
+                            }
+                            
+                            ctx.clearRect(0, 0, width, height);
                             
                             // Filter out expired shooting stars and update active count
                             const validParticles = particles.filter(p => {
