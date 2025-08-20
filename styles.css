@@ -6540,10 +6540,10 @@ html:not([data-theme="dark"]) #dustCanvas {
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
     border-radius: 20px;
-    padding: 40px;
+    padding: 60px; /* Increased for more breathing room */
     box-shadow: 0 8px 32px var(--shadow-primary);
     transition: all 0.3s ease;
-    min-height: 480px;
+    min-height: 520px; /* Increased to match contact links */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -6560,53 +6560,21 @@ html:not([data-theme="dark"]) #dustCanvas {
     font-weight: 600;
     color: var(--text-primary);
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 35px; /* Increased for better spacing */
     margin-top: 0;
     letter-spacing: -0.01em;
     flex-shrink: 0;
 }
 
-/* Contact form styling - Improved */
+/* Contact form styling - Professional and modern */
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px; /* Increased for better spacing */
     flex: 1;
     justify-content: flex-start;
     margin: 0;
-    padding: 0;
-}
-
-
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #2c3e50;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #ecf0f1;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent-primary);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
+    padding: 20px 20px 0 20px; /* Added top padding to lower content from the top */
 }
 
 .form-group {
@@ -6622,74 +6590,87 @@ html:not([data-theme="dark"]) #dustCanvas {
 
 .form-group label {
     font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 0.95rem; /* Slightly larger for better readability */
+    font-weight: 600; /* Increased weight for better hierarchy */
     color: var(--text-primary);
-    margin-bottom: 4px;
+    margin-bottom: 6px; /* Increased for better spacing */
+    letter-spacing: -0.01em;
 }
 
 .form-group input,
 .form-group textarea {
-    padding: 12px 14px;
+    padding: 16px 18px; /* Increased padding for better touch targets */
     border: 2px solid var(--border-primary);
     border-radius: 12px;
     font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+    font-size: 1rem; /* Slightly larger for better readability */
     background: var(--bg-primary);
     color: var(--text-primary);
     transition: all 0.3s ease;
     box-sizing: border-box;
+    line-height: 1.5;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--accent-primary);
-    box-shadow: 0 0 0 3px rgba(77, 166, 255, 0.1);
+    box-shadow: 0 0 0 4px rgba(77, 166, 255, 0.1);
+    transform: translateY(-1px);
 }
 
 .form-group textarea {
     resize: vertical;
-    min-height: 100px;
-    max-height: 150px;
+    min-height: 100px; /* Increased for better usability */
+    max-height: 150px; /* Increased for better usability */
+    line-height: 1.6;
 }
 
-/* Submit button - Enhanced */
+/* Submit button - Professional styling */
 .submit-btn {
     background: var(--accent-primary);
     color: white;
     border: none;
     border-radius: 12px;
-    padding: 14px 24px;
+    padding: 16px 28px; /* Increased padding for better touch target */
     font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+    font-size: 1rem; /* Slightly larger */
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 15px;
+    margin-top: 20px; /* Increased for better spacing */
     align-self: flex-start;
+    letter-spacing: -0.01em;
+    box-shadow: 0 4px 12px rgba(77, 166, 255, 0.2);
 }
 
 .submit-btn:hover {
     background: var(--accent-tertiary);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(77, 166, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(77, 166, 255, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(77, 166, 255, 0.2);
 }
 
 .submit-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
+    box-shadow: none;
 }
 
 /* Success and error states - Improved */
 .form-success,
 .form-error {
-    padding: 16px;
+    padding: 20px;
     border-radius: 12px;
     margin-top: 20px;
     text-align: center;
     font-weight: 500;
+    font-size: 0.95rem;
 }
 
 .form-success {
@@ -6709,10 +6690,10 @@ html:not([data-theme="dark"]) #dustCanvas {
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
     border-radius: 20px;
-    padding: 40px;
+    padding: 60px; /* Increased to match contact form */
     box-shadow: 0 8px 32px var(--shadow-primary);
     transition: all 0.3s ease;
-    min-height: 480px;
+    min-height: 520px; /* Increased to match contact form */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -6729,7 +6710,7 @@ html:not([data-theme="dark"]) #dustCanvas {
     font-weight: 600;
     color: var(--text-primary);
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px; /* Increased to match contact form */
     margin-top: 0;
     letter-spacing: -0.01em;
     flex-shrink: 0;
@@ -6739,33 +6720,36 @@ html:not([data-theme="dark"]) #dustCanvas {
     display: flex;
     flex-direction: column;
     flex: 1;
-    justify-content: flex-start;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 24px; /* Increased for better spacing */
     margin: 0;
     padding: 0;
 }
 
 /* Ensure contact page uses the correct spacing */
 .contact-links-section .contact-links {
-    justify-content: flex-start;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 24px; /* Increased for better spacing */
 }
 
 .contact-link-item {
     background: var(--bg-primary);
     border: 1px solid var(--border-primary);
     border-radius: 16px;
-    padding: 24px;
+    padding: 28px; /* Increased padding for better breathing room */
     transition: all 0.3s ease;
     flex: 1;
     display: flex;
     align-items: center;
+    text-decoration: none;
+    color: inherit;
 }
 
 .contact-link-item:hover {
     border-color: var(--accent-primary);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px var(--shadow-primary);
+    background: var(--bg-secondary);
 }
 
 .contact-details {
@@ -6778,9 +6762,10 @@ html:not([data-theme="dark"]) #dustCanvas {
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 8px;
+    letter-spacing: -0.01em;
 }
 
-.contact-details a {
+.contact-details span {
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     color: var(--accent-primary);
@@ -6790,7 +6775,7 @@ html:not([data-theme="dark"]) #dustCanvas {
     word-break: break-all;
 }
 
-.contact-details a:hover {
+.contact-link-item:hover .contact-details span {
     color: var(--accent-tertiary);
 }
 
@@ -6808,22 +6793,20 @@ html:not([data-theme="dark"]) #dustCanvas {
     }
     
     .contact-form-section,
-                .contact-links-section {
-                padding: 30px 20px;
-                min-height: 420px;
-            }
-            
-
+    .contact-links-section {
+        padding: 40px 25px;
+        min-height: 480px;
+    }
     
     .contact-links-section .contact-links {
-        justify-content: flex-start;
-        gap: 15px;
+        justify-content: space-between;
+        gap: 20px;
     }
     
     .contact-form-section h3.form-title,
     .contact-links-section h3.form-title {
         font-size: 1.6rem;
-        margin-bottom: 25px;
+        margin-bottom: 30px;
     }
     
     .contact-content {
@@ -6837,22 +6820,20 @@ html:not([data-theme="dark"]) #dustCanvas {
     }
     
     .contact-form-section,
-                .contact-links-section {
-                padding: 25px 15px;
-                min-height: 400px;
-            }
-            
-
+    .contact-links-section {
+        padding: 30px 20px;
+        min-height: 450px;
+    }
     
     .contact-links-section .contact-links {
-        justify-content: flex-start;
-        gap: 10px;
+        justify-content: space-between;
+        gap: 16px;
     }
     
     .contact-form-section h3.form-title,
     .contact-links-section h3.form-title {
         font-size: 1.4rem;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
     
     .contact-sections {
