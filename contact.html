@@ -14,8 +14,8 @@
         }
     </style>
     
-                                            <link rel="stylesheet" href="styles.css?v=118">
-             <script src="theme.js?v=11"></script>
+                                                <link rel="stylesheet" href="styles.css?v=122">
+    <script src="theme.js?v=12"></script>
 </head>
 <body class="contact">
     <canvas id="dustCanvas"></canvas>
@@ -95,7 +95,12 @@
                             
                             <form id="visitorForm" class="contact-form">
                                 <div class="form-group">
-                                    <label for="visitorEmail">Your Email *</label>
+                                    <label for="visitorName">Name *</label>
+                                    <input type="text" id="visitorName" name="name" required placeholder="Your name">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="visitorEmail">Email *</label>
                                     <input type="email" id="visitorEmail" name="email" required placeholder="your.email@example.com">
                                 </div>
                                 
@@ -179,6 +184,7 @@
                     e.preventDefault();
                     
                     const formData = new FormData(visitorForm);
+                    const name = formData.get('name');
                     const email = formData.get('email');
                     const message = formData.get('message');
                     
@@ -195,6 +201,7 @@
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
+                            name: name,
                             email: email,
                             message: message
                         })
