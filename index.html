@@ -12,7 +12,7 @@
             color: #ffffff !important;
         }
     </style>
-    <link rel="stylesheet" href="styles.css?v=112">
+                <link rel="stylesheet" href="styles.css?v=115">
     <script src="theme.js?v=9"></script>
 </head>
 <body class="home">
@@ -110,6 +110,18 @@
     </main>
     
     <script>
+        // Handle rocket animation transition from initial to infinite
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingElements = document.querySelectorAll('.floating-element');
+            floatingElements.forEach(element => {
+                element.addEventListener('animationend', function() {
+                    if (!this.classList.contains('initial-animation-complete')) {
+                        this.classList.add('initial-animation-complete');
+                    }
+                });
+            });
+        });
+
         // Simplified, consistent dust particles system
         document.addEventListener('DOMContentLoaded', function() {
             const canvas = document.getElementById('dustCanvas');

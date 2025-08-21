@@ -47,6 +47,9 @@ html {
     
     --transition-speed: 0.3s;
     
+    /* Navbar edge offset for consistent left-edge anchoring */
+    --edge-offset: 24px;
+    
     /* Add smooth transitions for theme switching */
     transition: color var(--transition-speed) ease, 
                 border-color var(--transition-speed) ease, 
@@ -107,6 +110,21 @@ body {
     max-width: none !important;
     margin: 0 !important;
     padding: 0 !important;
+    /* Prevent layout shift from scrollbars */
+    scrollbar-gutter: stable both-edges;
+    /* Global box-sizing for consistent sizing */
+    box-sizing: border-box;
+}
+
+/* Global box-sizing reset */
+* {
+    box-sizing: border-box;
+}
+
+/* Minimal CSS reset for consistent cross-browser behavior */
+html, body {
+    margin: 0;
+    padding: 0;
 }
 
 /* Dark mode navbar */
@@ -1115,6 +1133,12 @@ img {
     transition: all 0.4s ease, border-color var(--transition-speed) ease;
     width: 100%;
     box-sizing: border-box;
+    /* Full-bleed navbar with consistent edge offset */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: calc(var(--edge-offset) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--edge-offset) + env(safe-area-inset-right, 0px));
 }
 
 /* Navbar when scrolled */
@@ -1139,10 +1163,13 @@ img {
 @media (max-width: 1023px) {
     .navbar {
         padding: 15px 0;
+        /* Maintain edge offset on smaller screens */
+        padding-left: calc(var(--edge-offset) + env(safe-area-inset-left, 0px));
+        padding-right: calc(var(--edge-offset) + env(safe-area-inset-right, 0px));
     }
     
     .nav-container {
-        padding: 0 20px;
+        padding: 0;
     }
     
     .nav-logo {
@@ -1168,10 +1195,13 @@ img {
 @media (max-width: 767px) {
     .navbar {
         padding: 12px 0;
+        /* Maintain edge offset on smaller screens */
+        padding-left: calc(var(--edge-offset) + env(safe-area-inset-left, 0px));
+        padding-right: calc(var(--edge-offset) + env(safe-area-inset-right, 0px));
     }
     
     .nav-container {
-        padding: 0 16px;
+        padding: 0;
     }
     
     .nav-logo {
@@ -1201,10 +1231,13 @@ img {
 @media (max-width: 480px) {
     .navbar {
         padding: 10px 0;
+        /* Maintain edge offset on smaller screens */
+        padding-left: calc(var(--edge-offset) + env(safe-area-inset-left, 0px));
+        padding-right: calc(var(--edge-offset) + env(safe-area-inset-right, 0px));
     }
     
     .nav-container {
-        padding: 0 12px;
+        padding: 0;
     }
     
     .nav-logo {
@@ -1234,10 +1267,13 @@ img {
 @media (max-width: 319px) {
     .navbar {
         padding: 8px 0;
+        /* Maintain edge offset on smaller screens */
+        padding-left: calc(var(--edge-offset) + env(safe-area-inset-left, 0px));
+        padding-right: calc(var(--edge-offset) + env(safe-area-inset-right, 0px));
     }
     
     .nav-container {
-        padding: 0 8px;
+        padding: 0;
     }
     
     .nav-logo {
@@ -1254,17 +1290,18 @@ img {
 }
 
 .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
+    /* Remove max-width constraint for full-bleed navbar */
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     box-sizing: border-box;
     /* Ensure proper Flexbox layout */
     flex-wrap: nowrap;
     gap: 0;
+    /* Remove padding since navbar handles edge offset */
+    padding: 0;
+    margin: 0;
 }
 
 .nav-left {
@@ -1273,6 +1310,8 @@ img {
     gap: 20px;
     margin-left: 0;
     flex-shrink: 0;
+    /* Ensure left item stays at consistent distance from page edge */
+    min-width: 0;
 }
 
 .nav-menu {
@@ -1286,6 +1325,8 @@ img {
     /* Ensure proper right alignment and spacing */
     justify-content: flex-end;
     flex-wrap: nowrap;
+    /* Ensure right item stays at consistent distance from page edge */
+    min-width: 0;
 }
 
 /* Modern Theme Toggle Button */
@@ -6740,10 +6781,10 @@ html:not([data-theme="dark"]) #dustCanvas {
     background: transparent !important; /* Transparent background */
     border: 2px solid #00bfff; /* Neon blue border */
     border-radius: 20px;
-    padding: 60px; /* Increased for more breathing room */
+    padding: 20px; /* Further reduced for smaller outer card */
     box-shadow: 0 0 15px rgba(0, 191, 255, 0.3); /* Neon blue glow */
     transition: all 0.3s ease;
-    min-height: 520px; /* Increased to match contact links */
+    min-height: 350px; /* Further reduced for smaller outer card */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -6891,10 +6932,10 @@ html:not([data-theme="dark"]) #dustCanvas {
     background: transparent !important; /* Transparent background */
     border: 2px solid #00bfff; /* Neon blue border */
     border-radius: 20px;
-    padding: 60px; /* Increased to match contact form */
+    padding: 20px; /* Further reduced to match contact form */
     box-shadow: 0 0 15px rgba(0, 191, 255, 0.3); /* Neon blue glow */
     transition: all 0.3s ease;
-    min-height: 520px; /* Increased to match contact form */
+    min-height: 350px; /* Further reduced to match contact form */
     display: flex;
     flex-direction: column;
     position: relative;
