@@ -77,6 +77,8 @@ html {
     --neon-glow: rgba(0, 120, 255, 0.3);
     --neon-glow-strong: rgba(0, 120, 255, 0.5);
     
+    --modal-overlay: rgba(0, 0, 0, 0.5);
+    
     /* Add smooth transitions for theme switching */
     transition: color var(--transition-speed) ease, 
                 border-color var(--transition-speed) ease, 
@@ -135,6 +137,8 @@ html {
     
     --neon-glow: rgba(77, 166, 255, 0.2);
     --neon-glow-strong: rgba(77, 166, 255, 0.4);
+    
+    --modal-overlay: rgba(0, 0, 0, 0.9);
     
     /* Add smooth transitions for theme switching */
     transition: color var(--transition-speed) ease, 
@@ -4821,7 +4825,7 @@ body:not(.home) .theme-toggle-btn {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: var(--modal-overlay);
     z-index: 10000;
     opacity: 0;
     transition: opacity 0.3s ease;
