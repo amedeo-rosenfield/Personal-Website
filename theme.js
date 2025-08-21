@@ -2,50 +2,49 @@
 (function() {
     'use strict';
     
-    let currentTheme = 'dark'; // Always default to dark
+    // Function to get stored theme or default to dark
+    function getStoredTheme() {
+        const stored = localStorage.getItem('theme');
+        // If no theme is stored, default to dark mode
+        if (!stored) {
+            return 'dark';
+        }
+        return stored === 'light' ? 'light' : 'dark';
+    }
     
     // Function to apply theme
     function applyTheme(theme = null) {
-        // Always default to dark mode, only check localStorage for user preference
-        if (theme && theme === 'light') {
-            currentTheme = 'light';
-            localStorage.setItem('theme', 'light');
-        } else {
-            currentTheme = 'dark';
-            localStorage.setItem('theme', 'dark');
+        // If no theme provided, get from localStorage or default to dark
+        if (!theme) {
+            theme = getStoredTheme();
         }
         
-        // Force dark mode unless user explicitly chose light
-        const isDark = currentTheme !== 'light';
+        // Store the theme choice
+        localStorage.setItem('theme', theme);
         
-        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        // Apply the theme to the document
+        document.documentElement.setAttribute('data-theme', theme);
         
-        // Force dark mode on html element
-        if (isDark) {
-            document.documentElement.style.colorScheme = 'dark';
-            document.documentElement.style.backgroundColor = '#0a0a0a';
-            document.documentElement.style.color = '#ffffff';
-        }
+        // Apply theme using data-theme attribute only
+        // CSS variables will handle all styling
+        
+        // Update button text
+        updateThemeButton();
         
         // Debug logging
         console.log('Theme applied:', {
-            currentTheme: currentTheme,
-            isDark: isDark,
+            theme: theme,
             dataTheme: document.documentElement.getAttribute('data-theme'),
             localStorage: localStorage.getItem('theme')
         });
-        
-        // Update button text if it exists
-        updateThemeButton();
     }
     
     // Function to toggle theme
     function toggleTheme() {
-        console.log('Toggle theme called, current theme:', currentTheme);
-        
-        // Simple toggle between light and dark
+        const currentTheme = getStoredTheme();
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        console.log('Switching from', currentTheme, 'to', newTheme);
+        
+        console.log('Toggling theme from', currentTheme, 'to', newTheme);
         applyTheme(newTheme);
     }
     
@@ -53,31 +52,31 @@
     function updateThemeButton() {
         const themeButton = document.getElementById('theme-toggle');
         if (themeButton) {
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            const newText = isDark ? 'Light Mode' : 'Dark Mode';
-            themeButton.textContent = newText;
-            console.log('Button text updated to:', newText, 'isDark:', isDark);
-        } else {
-            console.log('Theme button not found');
+            const currentTheme = getStoredTheme();
+            const buttonText = currentTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+            themeButton.textContent = buttonText;
+            console.log('Button text updated to:', buttonText);
         }
     }
     
-    // Initialize theme immediately and on DOM load
+    // Initialize theme
     function initializeTheme() {
-        console.log('Initializing theme, DOM ready state:', document.readyState);
+        console.log('Initializing theme');
         console.log('Stored theme in localStorage:', localStorage.getItem('theme'));
         
-        // Force dark mode by default
+        // Apply the stored theme (or default to dark)
         applyTheme();
         
-        // Ensure dark mode is applied even if other scripts try to override
-        setTimeout(() => {
-            const currentDataTheme = document.documentElement.getAttribute('data-theme');
-            if (currentDataTheme !== 'dark' && currentTheme === 'dark') {
-                console.log('Forcing dark mode after initialization');
-                applyTheme('dark');
-            }
-        }, 100);
+        // Add click handler for theme toggle button
+        const themeButton = document.getElementById('theme-toggle');
+        if (themeButton) {
+            themeButton.addEventListener('click', toggleTheme);
+            console.log('Theme button click handler added');
+        }
+        
+        // Ensure data-theme is set on html element
+        const currentTheme = getStoredTheme();
+        document.documentElement.setAttribute('data-theme', currentTheme);
     }
     
     // Apply theme immediately if DOM is already loaded
@@ -91,22 +90,16 @@
     document.addEventListener('DOMContentLoaded', function() {
         console.log('DOM loaded, ensuring theme is applied');
         
-        // Add click handler for theme toggle button
-        const themeButton = document.getElementById('theme-toggle');
-        if (themeButton) {
-            themeButton.addEventListener('click', toggleTheme);
-            console.log('Theme button click handler added');
-        } else {
-            console.log('Theme button not found during initialization');
-        }
-        
-        // Double-check dark mode is applied
+        // Double-check theme is applied correctly
         setTimeout(() => {
-            if (currentTheme === 'dark' && document.documentElement.getAttribute('data-theme') !== 'dark') {
-                console.log('Re-applying dark mode after DOM load');
-                applyTheme('dark');
+            const storedTheme = getStoredTheme();
+            const currentDataTheme = document.documentElement.getAttribute('data-theme');
+            
+            if (currentDataTheme !== storedTheme) {
+                console.log('Re-applying theme after DOM load');
+                applyTheme(storedTheme);
             }
-        }, 200);
+        }, 100);
     });
     
     // Navbar scroll functionality
@@ -116,10 +109,8 @@
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
             if (scrollTop > 50) {
-                // Add scrolled class when user has scrolled down
                 navbar.classList.add('navbar-scrolled');
             } else {
-                // Remove scrolled class when at top
                 navbar.classList.remove('navbar-scrolled');
             }
         }
@@ -147,6 +138,6 @@
     document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             window.diagnoseDustParticles();
-        }, 2000); // Wait 2 seconds for everything to load
+        }, 2000);
     });
 })();

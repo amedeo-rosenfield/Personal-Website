@@ -3,21 +3,27 @@
 /* Import fonts - Calm, refined typography */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap');
 
-/* ===== ENFORCE DARK MODE BY DEFAULT ===== */
-:root {
-    color-scheme: dark;
+/* ===== GLOBAL RESET ===== */
+* {
+    box-sizing: border-box;
 }
 
-html {
-    color-scheme: dark;
-    /* Remove any potential outlines or borders */
+html, body {
+    margin: 0;
+    padding: 0;
     outline: none !important;
     border: none !important;
     box-shadow: none !important;
 }
 
-/* ===== LIGHT/DARK MODE CSS VARIABLES ===== */
+html {
+    scrollbar-gutter: stable both-edges;
+}
+
+/* ===== LIGHT MODE CSS VARIABLES (DEFAULT) ===== */
 :root {
+    color-scheme: light;
+    
     /* Light mode colors */
     --bg-primary: #FFFFFF;
     --bg-secondary: #f8f9fa;
@@ -50,16 +56,39 @@ html {
     /* Navbar edge offset for consistent left-edge anchoring */
     --edge-offset: 24px;
     
+    /* Light mode specific colors */
+    --navbar-bg: #FFFFFF;
+    --navbar-text: #333333;
+    --navbar-border: #e5e7eb;
+    
+    --card-bg: #FFFFFF;
+    --card-border: #e5e7eb;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    
+    --button-bg: #0078ff;
+    --button-text: #FFFFFF;
+    --button-hover: #0056b3;
+    
+    --input-bg: #FFFFFF;
+    --input-border: #e5e7eb;
+    --input-text: #333333;
+    --input-focus: #0078ff;
+    
+    --neon-glow: rgba(0, 120, 255, 0.3);
+    --neon-glow-strong: rgba(0, 120, 255, 0.5);
+    
     /* Add smooth transitions for theme switching */
     transition: color var(--transition-speed) ease, 
                 border-color var(--transition-speed) ease, 
-                box-shadow var(--transition-speed) ease;
+                box-shadow var(--transition-speed) ease,
+                background-color var(--transition-speed) ease;
 }
 
-/* Dark mode colors - ALWAYS APPLIED BY DEFAULT */
-html,
-html[data-theme="dark"],
-html:not([data-theme="light"]) {
+/* ===== DARK MODE CSS VARIABLES ===== */
+[data-theme="dark"] {
+    color-scheme: dark;
+    
+    /* Dark mode colors */
     --bg-primary: #0a0a0a;
     --bg-secondary: #1a1a1a;
     --bg-tertiary: #2d2d2d;
@@ -86,75 +115,70 @@ html:not([data-theme="light"]) {
     --gradient-secondary: linear-gradient(90deg, #8fa3b8, #6b8ca3);
     --gradient-accent: radial-gradient(circle at center, rgba(77, 166, 255, 0.05) 0%, rgba(77, 166, 255, 0.02) 70%, #1a1a1a 100%);
     
+    /* Dark mode specific colors */
+    --navbar-bg: #0a0a0a;
+    --navbar-text: #ffffff;
+    --navbar-border: #404040;
+    
+    --card-bg: #1a1a1a;
+    --card-border: #404040;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    
+    --button-bg: #4da6ff;
+    --button-text: #ffffff;
+    --button-hover: #2d7dd2;
+    
+    --input-bg: #0a0a0a;
+    --input-border: #404040;
+    --input-text: #ffffff;
+    --input-focus: #4da6ff;
+    
+    --neon-glow: rgba(77, 166, 255, 0.2);
+    --neon-glow-strong: rgba(77, 166, 255, 0.4);
+    
     /* Add smooth transitions for theme switching */
     transition: color var(--transition-speed) ease, 
                 border-color var(--transition-speed) ease, 
-                box-shadow var(--transition-speed) ease;
+                box-shadow var(--transition-speed) ease,
+                background-color var(--transition-speed) ease;
 }
 
-/* Force dark mode on all elements */
-html,
-html[data-theme="dark"],
-html:not([data-theme="light"]),
+/* ===== BASE STYLES ===== */
 body {
-    background: #0a0a0a !important;
-    background-color: #0a0a0a !important;
-    color: #ffffff !important;
-    /* Remove any potential outlines or borders */
-    outline: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    /* Ensure full width coverage */
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    /* Prevent layout shift from scrollbars */
-    scrollbar-gutter: stable both-edges;
-    /* Global box-sizing for consistent sizing */
-    box-sizing: border-box;
-}
-
-/* Global box-sizing reset */
-* {
-    box-sizing: border-box;
-}
-
-/* Minimal CSS reset for consistent cross-browser behavior */
-html, body {
-    margin: 0;
-    padding: 0;
-}
-
-/* Dark mode navbar */
-html,
-html[data-theme="dark"],
-html:not([data-theme="light"]) .navbar {
-    background: transparent !important;
-    border-bottom: 1px solid var(--border-primary);
-}
-
-html,
-html[data-theme="dark"],
-html:not([data-theme="light"]) .engineering-landing {
     background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
-html,
-html[data-theme="dark"],
-html:not([data-theme="light"]) .volunteering-landing {
+/* ===== NAVBAR STYLES ===== */
+.navbar {
+    background: var(--navbar-bg);
+    border-bottom: 1px solid var(--navbar-border);
+    color: var(--navbar-text);
+    transition: background-color var(--transition-speed) ease, 
+                border-color var(--transition-speed) ease, 
+                color var(--transition-speed) ease;
+}
+
+/* ===== LANDING PAGE BACKGROUNDS ===== */
+.engineering-landing,
+.volunteering-landing {
     background: var(--bg-primary);
+    transition: background-color var(--transition-speed) ease;
 }
 
-html,
-html[data-theme="dark"],
-html:not([data-theme="light"]) .project-card-expandable {
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
-    border-radius: 12px; /* Rounded corners like bio cards */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
-    border: 2px solid #00bfff; /* Neon blue border like bio cards */
-    z-index: 15; /* Above particles but below images, same as bio cards */
+/* ===== PROJECT CARD STYLES ===== */
+.project-card-expandable {
+    background: var(--card-bg) !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--card-shadow), 0 0 15px var(--neon-glow);
+    border: 2px solid var(--accent-primary);
+    z-index: 15;
+    transition: background-color var(--transition-speed) ease,
+                border-color var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease;
 }
 
 /* ===== UNIVERSAL RESPONSIVE DESIGN ===== */
@@ -827,10 +851,10 @@ img {
     margin-bottom: 40px;
     padding: 30px 25px;
     border-bottom: 1px solid var(--border-secondary);
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background */
+    background: var(--card-bg) !important; /* Use theme-specific background */
     border-radius: 12px; /* Rounded corners */
-    border: 2px solid #00bfff; /* Neon blue border */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow */
+    border: 2px solid var(--accent-primary); /* Neon blue border */
+    box-shadow: 0 4px 20px var(--card-shadow), 0 0 15px var(--neon-glow); /* Enhanced shadow with neon glow */
     transition: border-color var(--transition-speed) ease, background var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
     position: relative;
     z-index: 15; /* Above particles but below images */
@@ -1125,12 +1149,13 @@ img {
     top: 0;
     left: 0;
     right: 0;
-    background: transparent !important;
+    background: var(--navbar-bg);
     backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid var(--border-primary);
+    border-bottom: 1px solid var(--navbar-border);
+    color: var(--navbar-text);
     z-index: 1000;
     padding: 20px 0;
-    transition: all 0.4s ease, border-color var(--transition-speed) ease;
+    transition: all 0.4s ease, border-color var(--transition-speed) ease, background-color var(--transition-speed) ease, color var(--transition-speed) ease;
     width: 100%;
     box-sizing: border-box;
     /* Full-bleed navbar with consistent edge offset */
@@ -1143,18 +1168,10 @@ img {
 
 /* Navbar when scrolled */
 .navbar-scrolled {
-    background: rgba(255, 255, 255, 0.9) !important;
+    background: var(--navbar-bg) !important;
     backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid var(--border-primary);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Dark mode navbar when scrolled */
-[data-theme="dark"] .navbar-scrolled {
-    background: rgba(10, 10, 10, 0.9) !important;
-    backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid var(--border-primary);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--navbar-border);
+    box-shadow: 0 2px 20px var(--card-shadow);
 }
 
 
@@ -2483,12 +2500,12 @@ body:not(.home) .theme-toggle-btn {
 
 /* Project Cards with Modal */
 .project-card-expandable {
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards */
+    background: var(--card-bg) !important; /* Use theme-specific background */
     border-radius: 12px; /* Rounded corners like bio cards */
     padding: 40px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
-    transition: all 0.5s ease, box-shadow var(--transition-speed) ease;
-    border: 2px solid #00bfff; /* Neon blue border like bio cards */
+    box-shadow: 0 4px 20px var(--card-shadow), 0 0 15px var(--neon-glow); /* Enhanced shadow with neon glow like bio cards */
+    transition: all 0.5s ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease;
+    border: 2px solid var(--accent-primary); /* Neon blue border like bio cards */
     overflow: hidden;
     transform-origin: center;
     cursor: pointer;
@@ -2519,8 +2536,8 @@ body:not(.home) .theme-toggle-btn {
 
 .project-card-expandable:hover {
     transform: translateY(-4px) scale(1.05);
-    border: 2px solid rgba(0, 123, 255, 0.6);
-    box-shadow: 0 0 25px rgba(0, 123, 255, 0.4), 0 0 50px rgba(0, 123, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 25px var(--neon-glow-strong), 0 0 50px var(--neon-glow), 0 16px 64px var(--shadow-primary);
 }
 
 /* Project Modal */
@@ -4132,41 +4149,27 @@ body:not(.home) .theme-toggle-btn {
 
 /* Photo Project Item */
 .photo-project-item {
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
+    background: var(--card-bg) !important;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
-    border: 2px solid #00bfff; /* Neon blue border like bio cards */
+    box-shadow: 0 4px 20px var(--card-shadow), 0 0 15px var(--neon-glow);
+    border: 2px solid var(--accent-primary);
     overflow: hidden;
     cursor: pointer;
     transition: all 0.3s ease;
     max-width: 600px;
     margin: 0 auto;
     transform-origin: center;
-    height: 450px; /* Fixed height for consistent dimensions */
+    height: 450px;
     display: flex;
     flex-direction: column;
     width: 100%;
-    z-index: 15; /* Above particles but below images, same as bio cards */
+    z-index: 15;
 }
 
 .photo-project-item:hover {
     transform: translateY(-4px) scale(1.05);
     border: 2px solid var(--accent-primary);
-    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
-}
-
-/* Dark mode: ensure cards are grey */
-[data-theme="dark"] .photo-project-item {
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
-    border: 2px solid #00bfff; /* Neon blue border like bio cards */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
-    z-index: 15; /* Above particles but below images, same as bio cards */
-}
-
-/* Dark mode hover override for photo project items */
-[data-theme="dark"] .photo-project-item:hover {
-    border: 2px solid var(--accent-primary);
-    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+    box-shadow: 0 0 25px var(--neon-glow-strong), 0 0 50px var(--neon-glow), 0 16px 64px var(--shadow-primary);
 }
 
 /* Dark mode override for personal photo items */
@@ -4718,21 +4721,21 @@ body:not(.home) .theme-toggle-btn {
 }
 
 .service-card {
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
-    border: 2px solid #00bfff; /* Neon blue border like bio cards */
+    background: var(--card-bg) !important;
+    border: 2px solid var(--accent-primary);
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
+    box-shadow: 0 4px 20px var(--card-shadow), 0 0 15px var(--neon-glow);
     padding: 30px;
     text-align: center;
     transition: all 0.3s ease;
     transform-origin: center;
-    z-index: 15; /* Above particles but below images, same as bio cards */
+    z-index: 15;
 }
 
 .service-card:hover {
     transform: translateY(-4px) scale(1.05);
     border: 2px solid var(--accent-primary);
-    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+    box-shadow: 0 0 25px var(--neon-glow-strong), 0 0 50px var(--neon-glow), 0 16px 64px var(--shadow-primary);
 }
 
 .service-card h3 {
@@ -4797,38 +4800,17 @@ body:not(.home) .theme-toggle-btn {
                     color: var(--accent-tertiary);
             }
             
-            /* Dark mode override for service cards */
-[data-theme="dark"] .service-card {
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards, forced with !important */
-    border: 2px solid #00bfff; /* Neon blue border like bio cards */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
-    z-index: 15; /* Above particles but below images, same as bio cards */
-}
 
-/* Dark mode hover override for service cards */
-[data-theme="dark"] .service-card:hover {
-    border: 2px solid var(--accent-primary);
-    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
-}
             
-            /* Dark mode override for contact form section */
-html,
-html[data-theme="dark"],
-html:not([data-theme="light"]) .contact-form-section {
-    background: transparent !important; /* Transparent background */
-    border: 2px solid #00bfff; /* Neon blue border */
-    box-shadow: 0 0 15px rgba(0, 191, 255, 0.3); /* Neon blue glow */
-    z-index: 15; /* Above particles but below images, same as bio cards */
-}
-
-/* Dark mode override for contact links section */
-html,
-html[data-theme="dark"],
-html:not([data-theme="light"]) .contact-links-section {
-    background: transparent !important; /* Transparent background */
-    border: 2px solid #00bfff; /* Neon blue border */
-    box-shadow: 0 0 15px rgba(0, 191, 255, 0.3); /* Neon blue glow */
-    z-index: 15; /* Above particles but below images, same as bio cards */
+/* ===== CONTACT FORM STYLES ===== */
+.contact-form-section,
+.contact-links-section {
+    background: transparent !important;
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 15px var(--neon-glow);
+    z-index: 15;
+    transition: border-color var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease;
 }
 
 /* Service Modal */
@@ -5601,7 +5583,7 @@ html:not([data-theme="light"]) .contact-links-section {
     font-family: 'Poppins', sans-serif;
     font-size: 2rem;
     font-weight: 700;
-    color: #222222;
+    color: var(--text-primary);
     margin-bottom: 40px;
     text-align: center;
     letter-spacing: -0.02em;
@@ -5627,8 +5609,8 @@ html:not([data-theme="light"]) .contact-links-section {
 
 .volunteer-card:hover {
     transform: translateY(-4px) scale(1.05);
-    border: 2px solid rgba(0, 123, 255, 0.6);
-    box-shadow: 0 0 25px rgba(0, 123, 255, 0.4), 0 0 50px rgba(0, 123, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 25px var(--neon-glow-strong), 0 0 50px var(--neon-glow), 0 16px 64px var(--shadow-primary);
 }
 
 .volunteer-header {
@@ -5766,22 +5748,22 @@ html:not([data-theme="light"]) .contact-links-section {
 
 /* Volunteer Expandable Cards */
 .volunteer-card-expandable {
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards */
-    border-radius: 12px; /* Rounded corners like bio cards */
+    background: var(--card-bg) !important;
+    border-radius: 12px;
     padding: 30px;
     margin-bottom: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
-    border: 2px solid #00bfff; /* Neon blue border like bio cards */
+    box-shadow: 0 4px 20px var(--card-shadow), 0 0 15px var(--neon-glow);
+    border: 2px solid var(--accent-primary);
     transition: all 0.3s ease;
     transform-origin: center;
     cursor: pointer;
-    z-index: 15; /* Above particles but below images, same as bio cards */
+    z-index: 15;
 }
 
 .volunteer-card-expandable:hover {
     transform: translateY(-4px) scale(1.05);
     border: 2px solid var(--accent-primary);
-    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+    box-shadow: 0 0 25px var(--neon-glow-strong), 0 0 50px var(--neon-glow), 0 16px 64px var(--shadow-primary);
 }
 
 .volunteer-preview {
@@ -6437,16 +6419,18 @@ html:not([data-theme="dark"]) #dustCanvas {
     z-index: 1 !important;
 }
 
-/* Dark mode settings for bio section background */
-[data-theme="dark"] .bio-section {
-    background: var(--bg-secondary);
+/* ===== BIO SECTION STYLES ===== */
+.bio-section {
+    background: var(--card-bg);
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 30px;
-    border: 1px solid var(--border-primary);
+    border: 1px solid var(--card-border);
+    transition: background-color var(--transition-speed) ease,
+                border-color var(--transition-speed) ease;
 }
 
-[data-theme="dark"] .bio-section:last-child {
+.bio-section:last-child {
     margin-bottom: 0;
 }
 
@@ -6461,60 +6445,71 @@ html:not([data-theme="dark"]) #dustCanvas {
     box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
 }
 
-/* Dark mode settings for contact form */
-[data-theme="dark"] .contact-form {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
+/* ===== CONTACT FORM INPUT STYLES ===== */
+.contact-form {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    transition: background-color var(--transition-speed) ease,
+                border-color var(--transition-speed) ease;
 }
 
-[data-theme="dark"] .contact-form h3 {
+.contact-form h3 {
     color: var(--text-primary);
+    transition: color var(--transition-speed) ease;
 }
 
-[data-theme="dark"] .contact-form label {
+.contact-form label {
     color: var(--text-primary);
+    transition: color var(--transition-speed) ease;
 }
 
-[data-theme="dark"] .contact-form input,
-[data-theme="dark"] .contact-form textarea {
+.contact-form input,
+.contact-form textarea {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--input-text);
+    transition: background-color var(--transition-speed) ease,
+                border-color var(--transition-speed) ease,
+                color var(--transition-speed) ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 2px var(--neon-glow);
+}
+
+/* ===== CONTACT ITEM STYLES ===== */
+.contact-item,
+.contact-link-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    transition: background-color var(--transition-speed) ease,
+                border-color var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease;
+}
+
+.contact-item:hover,
+.contact-link-item:hover {
     background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    color: var(--text-primary);
-}
-
-[data-theme="dark"] .contact-form input:focus,
-[data-theme="dark"] .contact-form textarea:focus {
     border-color: var(--accent-primary);
-    box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.2);
+    box-shadow: 0 0 25px var(--neon-glow-strong), 0 0 50px var(--neon-glow), 0 16px 64px var(--shadow-primary);
 }
 
-/* Dark mode settings for contact boxes (grey instead of white) */
-[data-theme="dark"] .contact-item,
-[data-theme="dark"] .contact-link-item {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-}
-
-[data-theme="dark"] .contact-item:hover,
-[data-theme="dark"] .contact-link-item:hover {
-    background: var(--bg-primary);
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
-}
-
-/* Dark mode settings for "Send me a message" text */
-[data-theme="dark"] .contact-form-container h3,
-[data-theme="dark"] .contact-info h3 {
+/* ===== CONTACT TEXT STYLES ===== */
+.contact-form-container h3,
+.contact-info h3 {
     color: var(--text-primary);
+    transition: color var(--transition-speed) ease;
 }
 
-/* Dark mode settings for contact details text */
-[data-theme="dark"] .contact-details h4,
-[data-theme="dark"] .contact-details a {
+.contact-details h4,
+.contact-details a {
     color: var(--text-primary);
+    transition: color var(--transition-speed) ease;
 }
 
-[data-theme="dark"] .contact-details a:hover {
+.contact-details a:hover {
     color: var(--accent-primary);
 }
 
@@ -6523,16 +6518,19 @@ html:not([data-theme="dark"]) #dustCanvas {
     white-space: nowrap;
 }
 
-/* Dark mode settings for Volunteer Experiences title */
-[data-theme="dark"] .volunteer-experiences h3 {
+/* Volunteer Experiences title */
+.volunteer-experiences h3 {
     color: var(--text-primary);
+    transition: color var(--transition-speed) ease;
 }
 
-/* DJ blocks grey styling (same as contact boxes) */
+/* ===== DJ CTA STYLES ===== */
 .dj-cta {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
+    transition: background-color var(--transition-speed) ease,
+                border-color var(--transition-speed) ease;
     padding: 30px;
     margin: 40px 0;
     transition: all 0.3s ease;
@@ -6638,9 +6636,9 @@ html:not([data-theme="dark"]) #dustCanvas {
     color: var(--text-secondary);
 }
 
-/* Make Charity Bike Ride Organizer title white in dark mode */
+/* Make Charity Bike Ride Organizer title use theme color in dark mode */
 [data-theme="dark"] .volunteer-card-expandable[data-volunteer="2"] .volunteer-title {
-    color: #ffffff !important;
+    color: var(--text-primary) !important;
 }
 
 /* Dark mode settings for volunteering main content background */
@@ -6687,16 +6685,16 @@ html:not([data-theme="dark"]) #dustCanvas {
 
 /* Dark mode settings for volunteer card expandable */
 [data-theme="dark"] .volunteer-card-expandable {
-    background: rgba(10, 10, 10, 1) !important; /* Solid, non-transparent background like bio cards */
+    background: var(--card-bg) !important; /* Use theme-specific background */
     border-radius: 12px; /* Rounded corners like bio cards */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 191, 255, 0.3); /* Enhanced shadow with neon glow like bio cards */
-    border: 2px solid #00bfff; /* Neon blue border like bio cards */
+    box-shadow: 0 4px 20px var(--card-shadow), 0 0 15px var(--neon-glow); /* Enhanced shadow with neon glow like bio cards */
+    border: 2px solid var(--accent-primary); /* Neon blue border like bio cards */
     z-index: 15; /* Above particles but below images, same as bio cards */
 }
 
 [data-theme="dark"] .volunteer-card-expandable:hover {
     border: 2px solid var(--accent-primary);
-    box-shadow: 0 0 25px rgba(77, 166, 255, 0.4), 0 0 50px rgba(77, 166, 255, 0.2), 0 16px 64px rgba(106, 123, 140, 0.12);
+    box-shadow: 0 0 25px var(--neon-glow-strong), 0 0 50px var(--neon-glow), 0 16px 64px var(--shadow-primary);
 }
 
 /* Dark mode settings for volunteer list in modal */
