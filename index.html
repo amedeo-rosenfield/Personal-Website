@@ -26,7 +26,9 @@
                 <h1 class="nav-logo"></h1>
                 <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">Dark Mode</button>
             </div>
-            <ul class="nav-menu">
+            
+            <!-- Desktop Navigation Menu -->
+            <ul class="nav-menu desktop-menu">
                 <li><a href="index.html" class="nav-link active">Home</a></li>
                 <li><a href="bio.html" class="nav-link">Bio</a></li>
                 <li><a href="engineering.html" class="nav-link">Engineering</a></li>
@@ -35,6 +37,27 @@
                 <li><a href="dj.html" class="nav-link">DJ</a></li>
                 <li><a href="contact.html" class="nav-link">Contact Me</a></li>
             </ul>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Mobile Dropdown Menu -->
+            <ul class="nav-menu mobile-menu" id="mobile-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="bio.html" class="nav-link">Bio</a></li>
+                <li><a href="engineering.html" class="nav-link">Engineering</a></li>
+                <li><a href="volunteering.html" class="nav-link">Volunteering</a></li>
+                <li><a href="photography.html" class="nav-link">Photography</a></li>
+                <li><a href="dj.html" class="nav-link">DJ</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Me</a></li>
+            </ul>
+            
+            <!-- Mobile Menu Overlay -->
+            <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
         </div>
     </nav>
 
@@ -303,9 +326,83 @@
                 requestAnimationFrame(animate);
             }
             
-            // Start animation
-            animate();
-        });
+        // Start animation
+        animate();
+    });
+
+    // Mobile menu toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                // Toggle mobile menu
+                mobileMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+                if (mobileMenuOverlay) {
+                    mobileMenuOverlay.classList.toggle('active');
+                }
+                
+                // Prevent body scroll when menu is open
+                if (mobileMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileMenuLinks = mobileMenu.querySelectorAll('.nav-link');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                    if (mobileMenuOverlay) {
+                        mobileMenuOverlay.classList.remove('active');
+                    }
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // Close mobile menu when clicking on overlay
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenuToggle.contains(event.target) && 
+                    !mobileMenu.contains(event.target) && 
+                    mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                    if (mobileMenuOverlay) {
+                        mobileMenuOverlay.classList.remove('active');
+                    }
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Close mobile menu on window resize if screen becomes larger
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 767) {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                    if (mobileMenuOverlay) {
+                        mobileMenuOverlay.classList.remove('active');
+                    }
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+    });
     </script>
 </body>
 </html>
