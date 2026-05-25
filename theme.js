@@ -24,7 +24,6 @@
         const currentTheme = getStoredTheme();
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         playThemeTransition(newTheme);
-        applyTheme(newTheme);
     }
     
     function playThemeTransition(newTheme) {
@@ -38,6 +37,9 @@
         overlay.className = 'theme-transition-overlay';
         void overlay.offsetWidth;
         overlay.classList.add('active', newTheme === 'dark' ? 'to-dark' : 'to-light');
+        setTimeout(function() {
+            applyTheme(newTheme);
+        }, 350);
         overlay.addEventListener('animationend', function handler() {
             overlay.className = 'theme-transition-overlay';
             overlay.removeEventListener('animationend', handler);
