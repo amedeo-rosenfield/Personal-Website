@@ -2828,23 +2828,6 @@ body.mobile-menu-active {
         border-radius: 0;
         max-height: 100vh;
     }
-
-    .project-modal .project-main-content {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .project-modal-header {
-        padding: 16px 16px 12px 16px;
-    }
-
-    .project-modal-body {
-        padding: 12px 16px 16px 16px;
-    }
-
-    .project-modal .project-text-content {
-        padding-right: 0;
-    }
 }
 
 @media (max-width: 480px) {
@@ -2853,19 +2836,6 @@ body.mobile-menu-active {
         max-width: 100%;
         border-radius: 0;
         max-height: 100vh;
-    }
-
-    .project-modal .project-main-content {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .project-modal-header {
-        padding: 12px 12px 10px 12px;
-    }
-
-    .project-modal-body {
-        padding: 10px 12px 12px 12px;
     }
 }
 
@@ -3004,6 +2974,41 @@ body.mobile-menu-active {
     object-fit: cover;
     border-radius: 6px;
     width: 100%;
+}
+
+/* Project modal mobile responsive — must come after base .project-modal rules */
+@media (max-width: 767px) {
+    .project-modal .project-main-content {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    .project-modal .project-modal-header {
+        padding: 16px 16px 12px 16px;
+    }
+
+    .project-modal .project-modal-body {
+        padding: 12px 16px 16px 16px;
+    }
+
+    .project-modal .project-text-content {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-modal .project-main-content {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+
+    .project-modal .project-modal-header {
+        padding: 12px 12px 10px 12px;
+    }
+
+    .project-modal .project-modal-body {
+        padding: 10px 12px 12px 12px;
+    }
 }
 
 .project-photo-placeholder {
