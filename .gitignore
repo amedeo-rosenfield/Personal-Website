@@ -1,0 +1,19 @@
+# OS files
+desktop.ini
+.DS_Store
+Thumbs.db
+
+# SSL certificates (local dev)
+localhost.crt
+localhost.key
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
