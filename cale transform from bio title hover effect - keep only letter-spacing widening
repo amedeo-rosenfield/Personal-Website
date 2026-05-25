@@ -1,5 +1,0 @@
-[33mb3378c5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix bio title hover effect and remove missing script.js reference
-[33m35f695c[m Fix bio subheader spacing and home page scroll space
-[33m149e63e[m Add more scroll space to home page - increased hero-main height from 120vh to 140vh and adjusted bottom-actions positioning
-[33md5e1b19[m Remove CTA sections from all pages - Clean up call-to-action sections from engineering, volunteering, photography, and DJ pages
-[33m2eb3391[m Add family photo to bio page
