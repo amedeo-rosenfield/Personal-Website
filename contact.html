@@ -62,13 +62,21 @@
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
             <div class="nav-left">
                 <a href="index.html" class="nav-logo-link">
                     <h1 class="nav-logo">Amedeo Rosenfield</h1>
                 </a>
                 <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">Dark Mode</button>
             </div>
-            <ul class="nav-menu">
+            
+            <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="bio.html" class="nav-link">Bio</a></li>
                 <li><a href="engineering.html" class="nav-link">Engineering</a></li>
