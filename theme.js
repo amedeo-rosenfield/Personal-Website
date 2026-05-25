@@ -23,19 +23,38 @@
     function toggleTheme() {
         const currentTheme = getStoredTheme();
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        playThemeTransition(newTheme);
         applyTheme(newTheme);
+    }
+    
+    function playThemeTransition(newTheme) {
+        var overlay = document.getElementById('theme-transition-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'theme-transition-overlay';
+            overlay.className = 'theme-transition-overlay';
+            document.body.appendChild(overlay);
+        }
+        overlay.className = 'theme-transition-overlay';
+        void overlay.offsetWidth;
+        overlay.classList.add('active', newTheme === 'dark' ? 'to-dark' : 'to-light');
+        overlay.addEventListener('animationend', function handler() {
+            overlay.className = 'theme-transition-overlay';
+            overlay.removeEventListener('animationend', handler);
+        });
     }
     
     function updateThemeButton() {
         var currentTheme = getStoredTheme();
         var label = currentTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+        var icon = currentTheme === 'dark' ? '\u263C ' : '\u263E ';
         var themeButton = document.getElementById('theme-toggle');
         if (themeButton) {
             themeButton.textContent = label;
         }
         var mobileThemeLink = document.getElementById('mobile-theme-toggle-link');
         if (mobileThemeLink) {
-            mobileThemeLink.textContent = label;
+            mobileThemeLink.innerHTML = icon + label;
         }
     }
     
@@ -93,7 +112,7 @@
         
         if (!mobileMenuToggle || !navMenu) return;
         
-        // Inject theme toggle as last item in mobile dropdown
+        // Inject theme toggle as last item in mobile dropdown with icon
         if (!document.getElementById('mobile-theme-toggle-link')) {
             var themeItem = document.createElement('li');
             themeItem.className = 'mobile-theme-toggle-item';
@@ -101,7 +120,8 @@
             themeLink.href = '#';
             themeLink.className = 'nav-link';
             themeLink.id = 'mobile-theme-toggle-link';
-            themeLink.textContent = getStoredTheme() === 'dark' ? 'Light Mode' : 'Dark Mode';
+            var isDark = getStoredTheme() === 'dark';
+            themeLink.innerHTML = (isDark ? '&#9788; ' : '&#9790; ') + (isDark ? 'Light Mode' : 'Dark Mode');
             themeLink.addEventListener('click', function(e) {
                 e.preventDefault();
                 toggleTheme();

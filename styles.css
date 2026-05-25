@@ -1513,18 +1513,21 @@ body:not(.home) .theme-toggle-btn {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Mobile dropdown: hidden by default, animated with max-height */
+/* Mobile dropdown: compact width, anchored to right near hamburger */
 .nav-menu.mobile-open {
     display: flex !important;
     position: absolute;
     top: 100%;
-    left: 0;
     right: 0;
+    width: auto;
+    min-width: 180px;
     background: var(--navbar-bg);
     backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid var(--navbar-border);
+    border: 1px solid var(--navbar-border);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
     flex-direction: column;
-    padding: 8px 16px 16px;
+    padding: 8px 12px 12px;
     gap: 2px;
     z-index: 1001;
     box-shadow: 0 8px 24px var(--card-shadow);
@@ -1571,11 +1574,30 @@ body:not(.home) .theme-toggle-btn {
     display: none;
 }
 
-/* Theme toggle inside mobile dropdown */
+/* Theme toggle inside mobile dropdown — distinct from nav links */
 .nav-menu.mobile-open .mobile-theme-toggle-item {
     border-top: 1px solid var(--border-primary);
-    margin-top: 4px;
+    margin-top: 6px;
     padding-top: 8px;
+}
+
+.nav-menu.mobile-open .mobile-theme-toggle-item .nav-link {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--accent-primary);
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 8px 14px;
+    transition: all 0.2s ease;
+}
+
+.nav-menu.mobile-open .mobile-theme-toggle-item .nav-link:hover {
+    background: var(--accent-primary);
+    color: #fff;
 }
 
 /* Hide the mobile theme toggle item on desktop */
@@ -1585,6 +1607,39 @@ body:not(.home) .theme-toggle-btn {
 
 .nav-menu.mobile-open .mobile-theme-toggle-item {
     display: block;
+}
+
+/* ===== THEME TRANSITION OVERLAY ===== */
+.theme-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 99999;
+    opacity: 0;
+}
+
+.theme-transition-overlay.active {
+    animation: themeWipe 0.5s ease-out forwards;
+}
+
+@keyframes themeWipe {
+    0% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.theme-transition-overlay.to-dark {
+    background: radial-gradient(circle at center, rgba(10, 10, 10, 0.8) 0%, transparent 70%);
+}
+
+.theme-transition-overlay.to-light {
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
 }
 
 /* Prevent body scroll when mobile menu is open */
