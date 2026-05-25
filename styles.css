@@ -1677,7 +1677,7 @@ body:not(.home) .theme-toggle-btn {
     pointer-events: none;
     z-index: 99999;
     clip-path: circle(0% at 50% 50%);
-    transition: clip-path 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: clip-path 1.6s cubic-bezier(0.05, 0, 0.2, 1);
 }
 
 .theme-transition-overlay.expanding {
@@ -2976,6 +2976,41 @@ body.mobile-menu-active {
     width: 100%;
 }
 
+/* Project modal mobile responsive — must come after base .project-modal rules */
+@media (max-width: 767px) {
+    .project-modal .project-main-content {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    .project-modal .project-modal-header {
+        padding: 16px 16px 12px 16px;
+    }
+
+    .project-modal .project-modal-body {
+        padding: 12px 16px 16px 16px;
+    }
+
+    .project-modal .project-text-content {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-modal .project-main-content {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+
+    .project-modal .project-modal-header {
+        padding: 12px 12px 10px 12px;
+    }
+
+    .project-modal .project-modal-body {
+        padding: 10px 12px 12px 12px;
+    }
+}
+
 .project-photo-placeholder {
     background: var(--bg-secondary);
     border: 2px dashed var(--border-primary);
@@ -4026,8 +4061,8 @@ body.mobile-menu-active {
     }
     
     .nav-container {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row !important;
+        gap: 0;
     }
     
     .nav-menu {

@@ -53,7 +53,7 @@
         
         setTimeout(function() {
             applyTheme(newTheme);
-        }, 900);
+        }, 100);
         
         setTimeout(function() {
             overlay.style.transition = 'none';
@@ -61,7 +61,7 @@
             overlay.style.clipPath = '';
             void overlay.offsetWidth;
             overlay.style.transition = '';
-        }, 2000);
+        }, 1800);
     }
     
     function updateThemeButton() {
