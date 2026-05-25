@@ -20,13 +20,13 @@
         updateThemeButton();
     }
     
-    function toggleTheme() {
+    function toggleTheme(event) {
         const currentTheme = getStoredTheme();
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        playThemeTransition(newTheme);
+        playThemeTransition(newTheme, event);
     }
     
-    function playThemeTransition(newTheme) {
+    function playThemeTransition(newTheme, event) {
         var overlay = document.getElementById('theme-transition-overlay');
         if (!overlay) {
             overlay = document.createElement('div');
@@ -34,16 +34,34 @@
             overlay.className = 'theme-transition-overlay';
             document.body.appendChild(overlay);
         }
+        
+        var originX = '50%';
+        var originY = '0%';
+        if (event && event.target) {
+            var rect = event.target.getBoundingClientRect();
+            originX = (rect.left + rect.width / 2) + 'px';
+            originY = (rect.top + rect.height / 2) + 'px';
+        }
+        
         overlay.className = 'theme-transition-overlay';
+        overlay.classList.add(newTheme === 'dark' ? 'to-dark' : 'to-light');
+        overlay.style.setProperty('--origin-x', originX);
+        overlay.style.setProperty('--origin-y', originY);
+        overlay.style.clipPath = 'circle(0% at ' + originX + ' ' + originY + ')';
         void overlay.offsetWidth;
-        overlay.classList.add('active', newTheme === 'dark' ? 'to-dark' : 'to-light');
+        overlay.classList.add('expanding');
+        
         setTimeout(function() {
             applyTheme(newTheme);
-        }, 350);
-        overlay.addEventListener('animationend', function handler() {
+        }, 900);
+        
+        setTimeout(function() {
+            overlay.style.transition = 'none';
             overlay.className = 'theme-transition-overlay';
-            overlay.removeEventListener('animationend', handler);
-        });
+            overlay.style.clipPath = '';
+            void overlay.offsetWidth;
+            overlay.style.transition = '';
+        }, 2000);
     }
     
     function updateThemeButton() {
@@ -126,7 +144,7 @@
             themeLink.innerHTML = (isDark ? '&#9788; ' : '&#9790; ') + (isDark ? 'Light Mode' : 'Dark Mode');
             themeLink.addEventListener('click', function(e) {
                 e.preventDefault();
-                toggleTheme();
+                toggleTheme(e);
             });
             themeItem.appendChild(themeLink);
             navMenu.appendChild(themeItem);
